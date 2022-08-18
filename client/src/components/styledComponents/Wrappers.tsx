@@ -5,6 +5,9 @@ import styled from "styled-components";
 //wrapper for navbar
 export const NavWrapper = styled.div`
   display: flex;
+  height: 150px;
+  width: 100%;
+  background-color: #0f0f0f;
 `;
 
 //wrapper for hero section of booking page

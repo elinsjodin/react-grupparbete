@@ -3,7 +3,7 @@ import {
   NavWrapper,
   BookingHeroWrapper,
   AddBookingWrapper,
-} from "../../styles/Wrappers";
+} from "../styledComponents/Wrappers";
 
 import {
   AddBookingCalanderContainer,
@@ -14,12 +14,8 @@ import {
   AddBookingMonthContainer,
   BookingHeroContentContainer,
   BookingHeroTitleContainer,
-} from "../../styles/Containers";
+} from "../styledComponents/Containers";
 import { useEffect, useState } from "react";
-
-interface IBackendData {
-  booking: string[];
-}
 
 export const BookingPage = () => {
   const [backendData, setBackendData] = useState({ bookings: [] });
@@ -30,7 +26,6 @@ export const BookingPage = () => {
       .then((data) => {
         setBackendData(data);
       });
-    // .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -40,7 +35,7 @@ export const BookingPage = () => {
       ) : (
         backendData.bookings.map((booking, i) => <p key={i}>{booking}</p>)
       )}
-      {/* {typeof backendData.data !== "undefined" ? ( <p>loading..</p> } : (backendData.guests.map((guest, i) => <p key={i}> {guest}</p>))*/}
+
       <NavWrapper></NavWrapper>
       <BookingHeroWrapper>
         <BookingHeroTitleContainer></BookingHeroTitleContainer>

@@ -7,11 +7,22 @@ import styled from "styled-components";
 //container for navbar
 export const NavLogo = styled.div`
   display: flex;
+  height: 150px;
+  width: 50%;
+  background-color: #555555;
 `;
 
 //container for navbar
-export const NavLinks = styled.div`
+export const NavLinksContainer = styled.div`
   display: flex;
+  height: 150px;
+  width: 50%;
+  background-color: #931e1e;
+
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
 `;
 
 //BOOKING
