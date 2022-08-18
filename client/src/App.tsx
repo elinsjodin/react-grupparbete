@@ -15,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />}></Route>
-          <Route index element={<BookingPage />}></Route>
-          <Route index element={<ContactPage />}></Route>
-          <Route index element={<AdminPage />}></Route>
+          <Route element={<BookingPage />}></Route>
+          <Route element={<ContactPage />}></Route>
+          <Route element={<AdminPage />}></Route>
           <Route element={<SecondAdminPage />}></Route>
           <Route element={<ConfirmationPage />}></Route>
           <Route path="*" element={<NotFound />}></Route>
