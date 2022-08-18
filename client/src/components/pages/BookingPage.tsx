@@ -17,8 +17,12 @@ import {
 } from "../../styles/Containers";
 import { useEffect, useState } from "react";
 
+// interface IBackendData {
+//   bookings: string[];
+// }
+
 export const BookingPage = () => {
-  const [backendData, setBackendData] = useState({});
+  const [backendData, setBackendData] = useState({ bookings: [] });
 
   useEffect(() => {
     fetch("/api")
@@ -31,7 +35,6 @@ export const BookingPage = () => {
 
   return (
     <>
-      {/* {typeof backendData.data !== "undefined" ? ( <p>loading..</p> } : (backendData.guests.map((guest, i) => <p key={i}> {guest}</p>))*/}
       <NavWrapper></NavWrapper>
       <BookingHeroWrapper>
         <BookingHeroTitleContainer></BookingHeroTitleContainer>

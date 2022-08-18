@@ -15,11 +15,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />}></Route>
-          <Route index element={<BookingPage />}></Route>
-          <Route index element={<ContactPage />}></Route>
-          <Route index element={<AdminPage />}></Route>
-          <Route element={<SecondAdminPage />}></Route>
-          <Route element={<ConfirmationPage />}></Route>
+          <Route path="/bookings" element={<BookingPage />}></Route>
+          <Route path="/contact" element={<ContactPage />}></Route>
+          <Route path="/admin" element={<AdminPage />}></Route>
+          <Route path="/admin/:id" element={<SecondAdminPage />}></Route>
+          <Route path="/confirm" element={<ConfirmationPage />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Route>
       </Routes>
