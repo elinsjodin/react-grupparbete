@@ -18,11 +18,13 @@ import {
 import { useEffect, useState } from "react";
 
 interface IBackendData {
-  booking: string[];
+  bookings: string[];
 }
 
 export const BookingPage = () => {
-  const [backendData, setBackendData] = useState({ bookings: [] });
+  const [backendData, setBackendData] = useState<IBackendData>({
+    bookings: [],
+  });
 
   useEffect(() => {
     fetch("/api")
@@ -30,7 +32,6 @@ export const BookingPage = () => {
       .then((data) => {
         setBackendData(data);
       });
-    // .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -40,7 +41,6 @@ export const BookingPage = () => {
       ) : (
         backendData.bookings.map((booking, i) => <p key={i}>{booking}</p>)
       )}
-      {/* {typeof backendData.data !== "undefined" ? ( <p>loading..</p> } : (backendData.guests.map((guest, i) => <p key={i}> {guest}</p>))*/}
       <NavWrapper></NavWrapper>
       <BookingHeroWrapper>
         <BookingHeroTitleContainer></BookingHeroTitleContainer>
