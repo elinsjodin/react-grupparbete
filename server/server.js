@@ -24,10 +24,6 @@ app.use("/admin", adminRouter);
 
 app.use("/admin/:id", secondAdminRouter);
 
-app.use("/", (req, res) => {
-  res.status(404).redirect("*");
-});
-
 // Test, ska tas bort innan deployment
 // app.get("/api", (req, res) => {
 //   res.json({ bookings: ["testingBookings"] });

@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
   res.render({ bookings });
 });
 
-router.get("/:id/delete", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   await BookingsModel.findById(req.params.id).deleteOne();
 });
 
