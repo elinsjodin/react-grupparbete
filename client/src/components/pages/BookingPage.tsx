@@ -14,7 +14,7 @@ import {
   BookingHeroContentContainer,
   BookingHeroTitleContainer,
   AddBookingChooseAmountContainer,
-  AddBookingChooseAmountHolder,
+  AddBookingChooseTimeHolder,
 } from "../styledComponents/Containers";
 import { useEffect, useState } from "react";
 import { FormInput } from "../styledComponents/Inputs";
@@ -34,7 +34,7 @@ export const BookingPage = () => {
   }, []);
 
   return (
-    <>
+    <div>
       {/* typeof is used to check if the data is an array */}
       {typeof backendData.bookings === "undefined" ? (
         <p>Loading...</p>
@@ -60,17 +60,25 @@ export const BookingPage = () => {
           Placeholder for calander
         </AddBookingCalanderContainer>
         <AddBookingChooseTimeContainer>
-          <AddBookingChooseAmountHolder>
+          <AddBookingChooseTimeHolder>
             <h1>Choose a Time</h1>
             <div>
-              <button>1</button>
-              <p>4</p>
-              <button>2</button>
+              <section>
+                <button>18:00</button>
+                <button>21:00</button>
+              </section>
             </div>
-          </AddBookingChooseAmountHolder>
+          </AddBookingChooseTimeHolder>
         </AddBookingChooseTimeContainer>
         <AddBookingChooseAmountContainer>
-          Amount of people
+          <h1>How many?</h1>
+          <div>
+            <section>
+              <button>+</button>
+              <p>4</p>
+              <button>-</button>
+            </section>
+          </div>
         </AddBookingChooseAmountContainer>
         <AddBookingFormContainer>
           <AddBookingFormInputFieldsContainer>
@@ -88,6 +96,6 @@ export const BookingPage = () => {
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
-    </>
+    </div>
   );
 };

@@ -90,20 +90,37 @@ export const AddBookingChooseTimeContainer = styled.div`
   height: 170px;
   width: 100%;
   color: #ffffff;
-
-  background-color: #2b7fa3;
 `;
-export const AddBookingChooseAmountHolder = styled.div`
+export const AddBookingChooseTimeHolder = styled.div`
   display: flex;
   flex-direction: column;
   height: 50px;
-  width: 70%;
+  width: 100vw;
   color: #ffffff;
-  background-color: #208322;
   justify-content: center;
   align-items: center;
-  padding-left: 15px;
-  padding-right: 15px;
+
+  h1 {
+    display: flex;
+  }
+  div {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    section {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        height: 30px;
+      }
+    }
+  }
 `;
 
 export const AddBookingChooseAmountContainer = styled.div`
@@ -111,7 +128,30 @@ export const AddBookingChooseAmountContainer = styled.div`
   height: 170px;
   width: 100%;
   color: #ffffff;
-  background-color: #6e0606;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    display: flex;
+  }
+  div {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    section {
+      display: flex;
+      gap: 40px;
+      justify-content: center;
+      align-items: center;
+
+      button {
+        height: 30px;
+      }
+    }
+  }
 `;
 
 //container for booking form and input
