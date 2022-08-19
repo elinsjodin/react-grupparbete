@@ -3,7 +3,8 @@ const router = express.Router();
 
 const BookingsModel = require("../models/BookingsModel.js");
 
-router.get("/admin/:id", async (req, res) => {
+// Kommer ev behöva ändra för att hämta in specifik bokning
+router.get("/", async (req, res) => {
   const booking = await BookingsModel.findOne();
 
   const bookingsArray = [];

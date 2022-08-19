@@ -21,7 +21,7 @@ import { FormInput } from "../styledComponents/Inputs";
 import { FormButton } from "../styledComponents/Buttons";
 import { arrayBuffer } from "stream/consumers";
 
-// this interface is used to define the properties of the backend response
+// Byt till ex IBooking sen från models
 interface IBackendData {
   bookings: string[];
 }
@@ -57,7 +57,7 @@ export const BookingPage = () => {
 
   // fetch data from backend and set it to state
   useEffect(() => {
-    fetch("/api")
+    fetch("/")
       .then((res) => res.json())
       .then((data) => {
         setBackendData(data);
