@@ -17,6 +17,7 @@ import {
 } from "../../styles/Containers";
 import { useEffect, useState } from "react";
 
+// Byt till ex IBooking sen från models
 interface IBackendData {
   bookings: string[];
 }
@@ -27,7 +28,7 @@ export const BookingPage = () => {
   });
 
   useEffect(() => {
-    fetch("/api")
+    fetch("/")
       .then((res) => res.json())
       .then((data) => {
         setBackendData(data);

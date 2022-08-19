@@ -3,7 +3,7 @@ const router = express.Router();
 
 const BookingsModel = require("../models/BookingsModel.js");
 
-router.get("/confirm/:id", async (req, res) => {
+router.get("/", async (req, res) => {
   const booking = await BookingsModel.findOne();
 
   const bookingsArray = [];
