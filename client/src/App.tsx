@@ -19,7 +19,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />}></Route>
           <Route path="/admin" element={<AdminPage />}></Route>
           <Route path="/admin/:id" element={<SecondAdminPage />}></Route>
-          <Route path="/confir/:id" element={<ConfirmationPage />}></Route>
+          <Route path="/confirm/:id" element={<ConfirmationPage />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Route>
       </Routes>
