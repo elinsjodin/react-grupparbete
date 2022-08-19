@@ -21,10 +21,12 @@ import { FormInput } from "../styledComponents/Inputs";
 import { FormButton } from "../styledComponents/Buttons";
 import { arrayBuffer } from "stream/consumers";
 
+// this interface is used to define the properties of the backend response
 interface IBackendData {
   bookings: string[];
 }
 
+//this interface is used to define the properties of the booking form
 interface IForm {
   time: string;
   amount: number;
@@ -34,6 +36,7 @@ interface IForm {
   message: string;
 }
 
+//this interface is used to define the properties of the filled form
 interface IFilledForm {
   filledForm: IForm[];
 }
