@@ -17,15 +17,40 @@ import {
   AddBookingChooseTimeHolder,
 } from "../styledComponents/Containers";
 import { useEffect, useState } from "react";
+import { FormInput } from "../styledComponents/Inputs";
+import { FormButton } from "../styledComponents/Buttons";
+import { arrayBuffer } from "stream/consumers";
 
 interface IBackendData {
   bookings: string[];
 }
 
+interface IForm {
+  time: string;
+  amount: number;
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+interface IFilledForm {
+  filledForm: IForm[];
+}
+
 export const BookingPage = () => {
+  //state for the backend data
   const [backendData, setBackendData] = useState<IBackendData>({
     bookings: [],
   });
+
+  //state for the form
+  const [filledForm, setFilledForm] = useState<IFilledForm>({
+    filledForm: [],
+  });
+
+  //array to push form in too
+  const [guestInfoList, setGuestInfoList] = useState<[]>([]);
 
   // fetch data from backend and set it to state
   useEffect(() => {
