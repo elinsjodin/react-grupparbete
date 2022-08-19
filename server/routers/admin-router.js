@@ -3,7 +3,8 @@ const router = express.Router();
 
 const BookingsModel = require("../models/BookingsModel.js");
 
-router.get("/admin", async (req, res) => {
+router.get("/", async (req, res) => {
+  res.send("Hello from admin");
   const bookings = await BookingsModel.find().lean();
 
   res.render({ bookings });

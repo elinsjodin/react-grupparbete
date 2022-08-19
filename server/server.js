@@ -29,9 +29,9 @@ app.use("/", (req, res) => {
 });
 
 // Test, ska tas bort innan deployment
-app.get("/api", (req, res) => {
-  res.json({ bookings: ["testingBookings"] });
-});
+// app.get("/api", (req, res) => {
+//   res.json({ bookings: ["testingBookings"] });
+// });
 
 app.listen(4000, () => {
   console.log("Server started on 'http://localhost:5000'");
