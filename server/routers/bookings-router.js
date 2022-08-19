@@ -9,6 +9,7 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  //newbooking is an object with the properties defined in the BookingsModel.js file
   const newBooking = new BookingsModel({
     date: req.body.date,
     time: req.body.time,
@@ -16,6 +17,7 @@ router.post("/", async (req, res) => {
     bookedby: res.locals.id,
   });
 
+  //save the new booking to the database
   await newBooking.save();
 
   res.redirect("/confirm/" + res.locals.id);

@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
 
   const bookingsArray = [];
 
+  //loop through the bookings and push them to the bookingsArray
   for (const item of booking) {
     if (item.bookedBy == res.locals.id) {
       bookingsArray.push(item);
