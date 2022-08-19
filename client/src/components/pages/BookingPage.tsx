@@ -19,26 +19,11 @@ import {
 import { useEffect, useState } from "react";
 import { FormInput } from "../styledComponents/Inputs";
 import { FormButton } from "../styledComponents/Buttons";
-import { arrayBuffer } from "stream/consumers";
+import { IBooking } from "../../models/IBooking";
 
 // Byt till ex IBooking sen från models
 interface IBackendData {
-  bookings: string[];
-}
-
-//this interface is used to define the properties of the booking form
-interface IForm {
-  time: string;
-  amount: number;
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
-
-//this interface is used to define the properties of the filled form
-interface IFilledForm {
-  filledForm: IForm[];
+  bookings: IBooking[];
 }
 
 export const BookingPage = () => {
@@ -47,13 +32,16 @@ export const BookingPage = () => {
     bookings: [],
   });
 
-  //state for the form
-  const [filledForm, setFilledForm] = useState<IFilledForm>({
-    filledForm: [],
+  //state for the booking interface
+  const [filledForm, setFilledForm] = useState<IBooking>({
+    date: "",
+    time: [],
+    amount: ["1"],
+    guestInfo: [{ name: "", email: "", phone: "", message: "" }],
   });
 
   //array to push form in too
-  const [guestInfoList, setGuestInfoList] = useState<[]>([]);
+  const [guestInfoList, setGuestInfoList] = useState<[{}]>([{}]);
 
   // fetch data from backend and set it to state
   useEffect(() => {
@@ -66,13 +54,6 @@ export const BookingPage = () => {
 
   return (
     <div>
-      {/* typeof is used to check if the data is an array */}
-      {typeof backendData.bookings === "undefined" ? (
-        <p>Loading...</p>
-      ) : (
-        //map through the data and return a list of bookings
-        backendData.bookings.map((booking, i) => <p key={i}>{booking}</p>)
-      )}
       <BookingHeroWrapper>
         <BookingHeroTitleContainer>
           <h1>Booking</h1>
@@ -94,8 +75,32 @@ export const BookingPage = () => {
             <h1>Choose a Time</h1>
             <div>
               <section>
-                <button>18:00</button>
-                <button>21:00</button>
+                <button
+                  onClick={() => {
+                    //add time to the array in the state
+                    setFilledForm({
+                      //... is used to spread the array in the state and add the new time
+                      ...filledForm,
+                      //time is an array and push the new time to the array
+                      time: ["18:00"],
+                    });
+                    console.log(filledForm);
+                  }}
+                >
+                  18:00
+                </button>
+
+                <button
+                  onClick={() => {
+                    setFilledForm({
+                      ...filledForm,
+                      time: ["21:00"],
+                    });
+                    console.log(filledForm);
+                  }}
+                >
+                  21:00
+                </button>
               </section>
             </div>
           </AddBookingChooseTimeHolder>
@@ -104,25 +109,118 @@ export const BookingPage = () => {
           <h1>How many?</h1>
           <div>
             <section>
-              <button>+</button>
-              <p>4</p>
-              <button>-</button>
+              <button
+                onClick={() => {
+                  //add time to the array in the state
+                  setFilledForm({
+                    ...filledForm,
+                    amount: ["2"],
+                  });
+                  console.log(filledForm);
+                }}
+              >
+                +
+              </button>
+
+              <p>{filledForm.amount}</p>
+              <button
+                onClick={() => {
+                  //add time to the array in the state
+                  setFilledForm({
+                    ...filledForm,
+                    amount: ["1"],
+                  });
+                  console.log(filledForm);
+                }}
+              >
+                -
+              </button>
             </section>
           </div>
         </AddBookingChooseAmountContainer>
         <AddBookingFormContainer>
           <AddBookingFormInputFieldsContainer>
             <p>Full Name</p>
-            <FormInput placeholder="Lars larson" />
+
+            <FormInput
+              placeholder="Lars larson"
+              onChange={(e) => {
+                setFilledForm({
+                  ...filledForm,
+                  guestInfo: [
+                    {
+                      name: e.target.value,
+                      email: filledForm.guestInfo[0].email,
+                      phone: filledForm.guestInfo[0].phone,
+                      message: filledForm.guestInfo[0].message,
+                    },
+                  ],
+                });
+              }}
+            ></FormInput>
             <p>Email</p>
-            <FormInput placeholder="lars@larson.com" />
+            <FormInput
+              placeholder="Lars@larson.se"
+              onChange={(e) => {
+                setFilledForm({
+                  ...filledForm,
+                  guestInfo: [
+                    {
+                      name: filledForm.guestInfo[0].name,
+                      email: e.target.value,
+                      phone: filledForm.guestInfo[0].phone,
+                      message: filledForm.guestInfo[0].message,
+                    },
+                  ],
+                });
+              }}
+            />
             <p>Phone</p>
-            <FormInput placeholder="1689490153" />
+            <FormInput
+              placeholder="070-1234567"
+              onChange={(e) => {
+                setFilledForm({
+                  ...filledForm,
+                  guestInfo: [
+                    {
+                      name: filledForm.guestInfo[0].name,
+                      email: filledForm.guestInfo[0].email,
+                      phone: e.target.value,
+                      message: filledForm.guestInfo[0].message,
+                    },
+                  ],
+                });
+              }}
+            />
             <p>user request</p>
-            <FormInput placeholder="vegan" />
+            <FormInput
+              placeholder="No Caviar"
+              onChange={(e) => {
+                setFilledForm({
+                  ...filledForm,
+                  guestInfo: [
+                    {
+                      name: filledForm.guestInfo[0].name,
+                      email: filledForm.guestInfo[0].email,
+                      phone: filledForm.guestInfo[0].phone,
+                      message: e.target.value,
+                    },
+                  ],
+                });
+              }}
+            />
           </AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
-            <FormButton>Book</FormButton>
+            <FormButton
+              onClick={() => {
+                guestInfoList.push(filledForm.guestInfo[0]);
+                guestInfoList.shift();
+                setGuestInfoList(guestInfoList);
+                console.log(guestInfoList);
+              }}
+            >
+              Book
+            </FormButton>
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
