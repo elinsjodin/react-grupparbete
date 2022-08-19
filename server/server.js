@@ -33,6 +33,6 @@ app.get("/api", (req, res) => {
   res.json({ bookings: ["testingBookings"] });
 });
 
-app.listen(5000, () => {
+app.listen(4000, () => {
   console.log("Server started on 'http://localhost:5000'");
 });

@@ -1,9 +1,8 @@
 //imported styles
 import {
-  NavWrapper,
   BookingHeroWrapper,
   AddBookingWrapper,
-} from "../../styles/Wrappers";
+} from "../styledComponents/Wrappers";
 
 import {
   AddBookingCalanderContainer,
@@ -14,7 +13,9 @@ import {
   AddBookingMonthContainer,
   BookingHeroContentContainer,
   BookingHeroTitleContainer,
-} from "../../styles/Containers";
+  AddBookingChooseAmountContainer,
+  AddBookingChooseTimeHolder,
+} from "../styledComponents/Containers";
 import { useEffect, useState } from "react";
 
 interface IBackendData {
@@ -26,6 +27,7 @@ export const BookingPage = () => {
     bookings: [],
   });
 
+  // fetch data from backend and set it to state
   useEffect(() => {
     fetch("/api")
       .then((res) => res.json())
@@ -35,26 +37,67 @@ export const BookingPage = () => {
   }, []);
 
   return (
-    <>
+    <div>
+      {/* typeof is used to check if the data is an array */}
       {typeof backendData.bookings === "undefined" ? (
         <p>Loading...</p>
       ) : (
+        //map through the data and return a list of bookings
         backendData.bookings.map((booking, i) => <p key={i}>{booking}</p>)
       )}
-      <NavWrapper></NavWrapper>
       <BookingHeroWrapper>
-        <BookingHeroTitleContainer></BookingHeroTitleContainer>
-        <BookingHeroContentContainer></BookingHeroContentContainer>
+        <BookingHeroTitleContainer>
+          <h1>Booking</h1>
+        </BookingHeroTitleContainer>
+        <BookingHeroContentContainer>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+            quidem, quisquam quisquam.
+          </p>
+        </BookingHeroContentContainer>
       </BookingHeroWrapper>
       <AddBookingWrapper>
-        <AddBookingMonthContainer></AddBookingMonthContainer>
-        <AddBookingCalanderContainer></AddBookingCalanderContainer>
-        <AddBookingChooseTimeContainer></AddBookingChooseTimeContainer>
+        <AddBookingMonthContainer>July 2022</AddBookingMonthContainer>
+        <AddBookingCalanderContainer>
+          Placeholder for calander
+        </AddBookingCalanderContainer>
+        <AddBookingChooseTimeContainer>
+          <AddBookingChooseTimeHolder>
+            <h1>Choose a Time</h1>
+            <div>
+              <section>
+                <button>18:00</button>
+                <button>21:00</button>
+              </section>
+            </div>
+          </AddBookingChooseTimeHolder>
+        </AddBookingChooseTimeContainer>
+        <AddBookingChooseAmountContainer>
+          <h1>How many?</h1>
+          <div>
+            <section>
+              <button>+</button>
+              <p>4</p>
+              <button>-</button>
+            </section>
+          </div>
+        </AddBookingChooseAmountContainer>
         <AddBookingFormContainer>
-          <AddBookingFormInputFieldsContainer></AddBookingFormInputFieldsContainer>
-          <AddBookingFormButtonFieldsContainer></AddBookingFormButtonFieldsContainer>
+          <AddBookingFormInputFieldsContainer>
+            <p>Full Name</p>
+            <FormInput placeholder="Lars larson" />
+            <p>Email</p>
+            <FormInput placeholder="lars@larson.com" />
+            <p>Phone</p>
+            <FormInput placeholder="1689490153" />
+            <p>user request</p>
+            <FormInput placeholder="vegan" />
+          </AddBookingFormInputFieldsContainer>
+          <AddBookingFormButtonFieldsContainer>
+            <FormButton>Book</FormButton>
+          </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
-    </>
+    </div>
   );
 };
