@@ -1,10 +1,13 @@
+export interface IGuest {
+  namn: "";
+  email: "";
+  phone: "";
+  message: "";
+}
+
 export interface IBooking {
-  id: string;
-  date: string;
-  time: string;
-  amount: number;
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
+  date: Date[];
+  time: string[];
+  amount: number[];
+  guestInfo: any[];
 }
