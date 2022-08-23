@@ -6,7 +6,7 @@ export interface IGuest {
 }
 
 export interface IBooking {
-  date: Date[];
+  date: string[];
   time: string[];
   amount: number[];
   guestInfo: any[];

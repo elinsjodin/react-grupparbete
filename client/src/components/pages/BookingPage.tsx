@@ -34,7 +34,7 @@ interface IBackendData {
 
 export const BookingPage = () => {
   //state for the count of people
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
 
   //state for the date
   const [calanderDate, setCalanderDate] = useState(new Date());
@@ -49,7 +49,7 @@ export const BookingPage = () => {
   const [filledForm, setFilledForm] = useState<IBooking>({
     date: [],
     time: [],
-    amount: [],
+    amount: [1],
     guestInfo: [{ name: "", email: "", phone: "", message: "" }],
   });
 
@@ -72,7 +72,8 @@ export const BookingPage = () => {
   //FUNCTIONS in order you see them on screen
 
   const handleChosenDate = () => {
-    setFilledForm({ ...filledForm, date: [calanderDate] });
+    setFilledForm({ ...filledForm, date: [calanderDate.toDateString()] });
+    //make sure the date is not in the past
   };
 
   //handles click for time
@@ -93,20 +94,30 @@ export const BookingPage = () => {
 
   //handles amount of guest increase
   const handleAmountIncrease = () => {
-    setCount(count + 1);
-    setFilledForm({
-      ...filledForm,
-      amount: [count],
-    });
+    if (count === 6) {
+      alert(
+        "You can't book for more than 6 people, if you need more please contact us"
+      );
+    } else {
+      setCount(count + 1);
+      setFilledForm({
+        ...filledForm,
+        amount: [count],
+      });
+    }
   };
 
   //handles amount of guest decrease
   const handleAmountDecrease = () => {
-    setCount(count - 1);
-    setFilledForm({
-      ...filledForm,
-      amount: [count],
-    });
+    if (count === 1) {
+      return;
+    } else {
+      setCount(count - 1);
+      setFilledForm({
+        ...filledForm,
+        amount: [count],
+      });
+    }
   };
 
   //handles input for guest name
@@ -163,16 +174,30 @@ export const BookingPage = () => {
 
   //handles commit of booking
   const handleSubmit = () => {
-    // //add new info about guest to the array in the state
-    guestInfoList.push(filledForm.guestInfo[0]);
-    guestInfoList.shift();
-    filledForm.guestInfo = guestInfoList;
+    //check if all fields are filled
+    if (
+      filledForm.date[0] === undefined ||
+      filledForm.time[0] === undefined ||
+      filledForm.amount[0] === undefined ||
+      filledForm.guestInfo[0].name === "" ||
+      filledForm.guestInfo[0].email === "" ||
+      filledForm.guestInfo[0].phone === ""
+    ) {
+      alert("Make sure all fields are filled");
+    }
+    //check if date is in the past
+    else {
+      //add new info about guest to the array in the state
+      guestInfoList.push(filledForm.guestInfo[0]);
+      guestInfoList.shift();
+      filledForm.guestInfo = guestInfoList;
 
-    //booking request contain all the info backend needs about the booking
-    bookingRequest.push(filledForm);
-    bookingRequest.shift();
+      //booking request contain all the info backend needs about the booking
+      bookingRequest.push(filledForm);
+      bookingRequest.shift();
 
-    console.log(bookingRequest);
+      console.log(bookingRequest);
+    }
   };
 
   return (
@@ -213,7 +238,7 @@ export const BookingPage = () => {
             <section>
               <button onClick={handleAmountIncrease}>+</button>
 
-              <p>{filledForm.amount}</p>
+              <p>{count}</p>
               <button onClick={handleAmountDecrease}>-</button>
             </section>
           </div>
