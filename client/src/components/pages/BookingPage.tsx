@@ -207,10 +207,12 @@ export const BookingPage = () => {
 
       bookingRequest.shift();
 
-      console.log(bookingRequest);
+      const bookingRequestJson = JSON.stringify(bookingRequest);
 
-      // send booking request to backend
-      axios.post("/bookings", bookingRequest).then((res) => {
+      console.log(bookingRequestJson);
+      //send jsonbooking request to backend
+
+      axios.post("/bookings", bookingRequestJson).then((res) => {
         console.log(res);
       });
     }

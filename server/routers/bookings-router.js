@@ -6,7 +6,7 @@ const BookingValidation = require("../validations/bookingValidation.js");
 const { validate } = require("express-validation");
 
 router.get("/", (req, res) => {
-  res.send("Hello from Bookings");
+  res.send("Hello from the booking router");
 });
 
 router.post(
