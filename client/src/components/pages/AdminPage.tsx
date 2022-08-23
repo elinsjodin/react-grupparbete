@@ -11,19 +11,19 @@ export const AdminPage = () => {
   });
 
   useEffect(() => {
-    //if data is not found, fetch data from backend
-    axios;
-    if (backendData.bookings.length === 0) {
-      axios.get("/bookings").then((res) => {
-        setBackendData(res.data);
-      });
+    if (backendData.bookings.length !== 0) {
+      return;
     }
-    // set data to backend
-    else {
-      setBackendData(backendData);
-    }
-  }),
-    [backendData.bookings.length];
+    fetchDataFromBackend();
+  });
+
+  //function that fetches the backend data using async await axios
+  const fetchDataFromBackend = async () => {
+    const response = await axios.get("/bookings");
+    setBackendData(response.data);
+    const bookings = response.data.bookings;
+    return bookings;
+  };
 
   return (
     <>

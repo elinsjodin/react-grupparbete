@@ -1,3 +1,5 @@
+import axios from "axios";
+
 //imported styles
 import {
   BookingHeroWrapper,
@@ -70,10 +72,6 @@ export const BookingPage = () => {
   }, []);
 
   //FUNCTIONS in order you see them on screen
-  //disable past date in calander
-  const disablePastDate = (date: Date) => {
-    return date < new Date();
-  };
 
   const handleChosenDate = () => {
     // if user chosen a past date, set date to today
@@ -178,7 +176,7 @@ export const BookingPage = () => {
   };
 
   //handles commit of booking
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     //check if all fields are filled
     if (
       filledForm.date[0] === undefined ||
@@ -206,9 +204,24 @@ export const BookingPage = () => {
 
       //booking request contain all the info backend needs about the booking
       bookingRequest.push(filledForm);
+
       bookingRequest.shift();
 
       console.log(bookingRequest);
+
+      // send booking request to backend
+      // fetch using axios and async await
+      const response = await axios.post("/bookings", {
+        bookingRequest: bookingRequest,
+      });
+      //if backend returns success, alert user and clear the form
+      if (response.data.success) {
+        alert("Booking successful");
+        //reset the booking request
+        bookingRequest.shift();
+      } else {
+        alert("Booking unsuccessful");
+      }
     }
   };
 
