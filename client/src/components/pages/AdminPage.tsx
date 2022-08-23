@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-
+import { IBooking } from "../../models/IBooking";
+import axios from "axios";
 // Byt till ex IBooking sen från models
 interface IBackendData {
   bookings: string[];
@@ -11,12 +12,19 @@ export const AdminPage = () => {
   });
 
   useEffect(() => {
-    fetch("/")
-      .then((res) => res.json())
-      .then((data) => {
-        setBackendData(data);
+    //if data is not found, fetch data from backend
+    axios;
+    if (backendData.bookings.length === 0) {
+      axios.get("/bookings").then((res) => {
+        setBackendData(res.data);
       });
-  }, []);
+    }
+    // set data to backend
+    else {
+      setBackendData(backendData);
+    }
+  }),
+    [backendData.bookings.length];
 
   return (
     <>
