@@ -70,10 +70,15 @@ export const BookingPage = () => {
   }, []);
 
   //FUNCTIONS in order you see them on screen
+  //disable past date in calander
+  const disablePastDate = (date: Date) => {
+    return date < new Date();
+  };
 
   const handleChosenDate = () => {
+    // if user chosen a past date, set date to today
+
     setFilledForm({ ...filledForm, date: [calanderDate.toDateString()] });
-    //make sure the date is not in the past
   };
 
   //handles click for time
@@ -181,7 +186,14 @@ export const BookingPage = () => {
       filledForm.amount[0] === undefined ||
       filledForm.guestInfo[0].name === "" ||
       filledForm.guestInfo[0].email === "" ||
-      filledForm.guestInfo[0].phone === ""
+      filledForm.guestInfo[0].phone === "" ||
+      filledForm.guestInfo[0].name.indexOf(" ") === 1 ||
+      filledForm.guestInfo[0].email.indexOf("@") === -1 ||
+      filledForm.guestInfo[0].email.indexOf(".") === -1 ||
+      filledForm.guestInfo[0].email.indexOf(" ") !== -1 ||
+      filledForm.guestInfo[0].phone.length !== 10 ||
+      filledForm.guestInfo[0].phone.indexOf(" ") !== -1 ||
+      filledForm.guestInfo[0].phone.indexOf("-") !== -1
     ) {
       alert("Make sure all fields are filled");
     }
@@ -217,7 +229,11 @@ export const BookingPage = () => {
         <AddBookingMonthContainer>July 2022</AddBookingMonthContainer>
         <AddBookingCalanderContainer>
           <div>
-            <Calendar onChange={handleChosenDate} />
+            <Calendar
+              onChange={handleChosenDate}
+              value={calanderDate}
+              minDate={new Date()}
+            />
           </div>
         </AddBookingCalanderContainer>
         <AddBookingChooseTimeContainer>
