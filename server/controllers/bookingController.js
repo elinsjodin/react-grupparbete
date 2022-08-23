@@ -15,7 +15,9 @@ module.exports = class BookingController {
 
   async GetAllBookings(req, res, next) {
     try {
+      //recive a post from /bookings
       const results = await bookingService.GetAllBookings();
+      //send a response to the client
       res.send(results);
     } catch (error) {
       next({ status: 400, message: error.message });

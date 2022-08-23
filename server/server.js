@@ -6,6 +6,7 @@ const adminRouter = require("./routers/admin-router.js");
 const { default: mongoose } = require("mongoose");
 const config = require("./configurations/config.js");
 const errorHandler = require("./middlewares/errorHandler.js");
+const cors = require("cors");
 
 // const path = require("path");
 
@@ -16,6 +17,14 @@ const errorHandler = require("./middlewares/errorHandler.js");
 // app.use(express.static(path.resolve(__dirname, "../client/build")));
 
 //express.json is a middleware that allows us to use the req.body object
+app.use(
+  cors({
+    origin: ["*"],
+
+    methods: ["GET", "POST", "DELETE", "UPDATE", "PUT"],
+  })
+);
+
 app.use(express.json());
 //localhost:5000/bookings
 app.use("/bookings", bookingsRouter);

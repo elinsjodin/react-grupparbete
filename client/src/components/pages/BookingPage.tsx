@@ -49,9 +49,9 @@ export const BookingPage = () => {
 
   //state for the booking interface
   const [filledForm, setFilledForm] = useState<IBooking>({
-    date: [],
-    time: [],
-    numberOfGuests: [1],
+    date: "",
+    time: "",
+    numberOfGuests: 1,
     bookedBy: [{ name: "", email: "", phone: "", message: "" }],
   });
 
@@ -76,14 +76,14 @@ export const BookingPage = () => {
   const handleChosenDate = () => {
     // if user chosen a past date, set date to today
 
-    setFilledForm({ ...filledForm, date: [calanderDate.toDateString()] });
+    setFilledForm({ ...filledForm, date: calanderDate.toDateString() });
   };
 
   //handles click for time
   const handleFirstTime = () => {
     setFilledForm({
       ...filledForm,
-      time: ["18:00"],
+      time: "18:00",
     });
   };
 
@@ -91,7 +91,7 @@ export const BookingPage = () => {
   const handleSecondTime = () => {
     setFilledForm({
       ...filledForm,
-      time: ["21:00"],
+      time: "21:00",
     });
   };
 
@@ -105,7 +105,7 @@ export const BookingPage = () => {
       setCount(count + 1);
       setFilledForm({
         ...filledForm,
-        numberOfGuests: [count],
+        numberOfGuests: count,
       });
     }
   };
@@ -118,7 +118,7 @@ export const BookingPage = () => {
       setCount(count - 1);
       setFilledForm({
         ...filledForm,
-        numberOfGuests: [count],
+        numberOfGuests: count,
       });
     }
   };
@@ -177,43 +177,32 @@ export const BookingPage = () => {
 
   //handles commit of booking
   const handleSubmit = () => {
-    //check if all fields are filled
-    if (
-      filledForm.date[0] === undefined ||
-      filledForm.time[0] === undefined ||
-      filledForm.numberOfGuests[0] === undefined ||
-      filledForm.bookedBy[0].name === "" ||
-      filledForm.bookedBy[0].email === "" ||
-      filledForm.bookedBy[0].phone === "" ||
-      filledForm.bookedBy[0].name.indexOf(" ") === 1 ||
-      filledForm.bookedBy[0].email.indexOf("@") === -1 ||
-      filledForm.bookedBy[0].email.indexOf(".") === -1 ||
-      filledForm.bookedBy[0].email.indexOf(" ") !== -1 ||
-      filledForm.bookedBy[0].phone.length !== 10 ||
-      filledForm.bookedBy[0].phone.indexOf(" ") !== -1 ||
-      filledForm.bookedBy[0].phone.indexOf("-") !== -1
-    ) {
-      alert("Make sure all fields are filled");
-    }
-    //check if date is in the past
-    else {
-      //add new info about guest to the array in the state
-      guestInfoList.push(filledForm.bookedBy[0]);
-      guestInfoList.shift();
-      filledForm.bookedBy = guestInfoList;
+    //add new info about guest to the array in the state
+    guestInfoList.push(filledForm.bookedBy[0]);
+    guestInfoList.shift();
+    filledForm.bookedBy = guestInfoList;
 
-      //booking request contain all the info backend needs about the booking
-      bookingRequest.push(filledForm);
+    //booking request contain all the info backend needs about the booking
+    bookingRequest.push(filledForm);
 
-      bookingRequest.shift();
+    bookingRequest.shift();
 
-      console.log(bookingRequest);
+    console.log(bookingRequest);
 
-      // send booking request to backend
-      axios.post("/bookings", bookingRequest).then((res) => {
-        console.log(res);
+    fetch("/bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookingRequest),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    }
   };
 
   return (
