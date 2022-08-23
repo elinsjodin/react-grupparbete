@@ -5,13 +5,16 @@ const confirmationRouter = require("./routers/confirmation-router.js");
 const adminRouter = require("./routers/admin-router.js");
 const { default: mongoose } = require("mongoose");
 const config = require("./configurations/config.js");
-const path = require("path");
+const errorHandler = require("./middlewares/errorHandler.js");
+
+// const path = require("path");
 
 // urlencoded is a middleware that allows us to use the req.body object
 // app.use(express.urlencoded({ extended: true }));
 
 // this allows for React static files to render on screen
-app.use(express.static(path.resolve(__dirname, "../client/build")));
+// app.use(express.static(path.resolve(__dirname, "../client/build")));
+
 //express.json is a middleware that allows us to use the req.body object
 app.use(express.json());
 //localhost:5000/bookings
@@ -20,6 +23,8 @@ app.use("/bookings", bookingsRouter);
 app.use("/confirm", confirmationRouter);
 //localhost:5000/admin
 app.use("/admin", adminRouter);
+// error hantering - måste ligga sist så att våra requests går igenom alla routes först
+app.use(errorHandler);
 
 //localhost:5000/
 // Endast log?

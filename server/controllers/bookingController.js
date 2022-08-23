@@ -1,66 +1,55 @@
 const BookingService = require("../services/bookingService.js");
-// const validation = require("../validation/validation.js");
 
 const bookingService = new BookingService();
 
 module.exports = class BookingController {
   async CreateNewBooking(req, res, next) {
-    let booking = req.body;
-
-    const result = await bookingService.CreateNewBooking(booking);
-
-    if (result) {
+    try {
+      let booking = req.body;
+      const result = await bookingService.CreateNewBooking(booking);
       res.send(result);
-    } else {
-      res.send("error");
+    } catch (error) {
+      next({ status: 400, message: error.message });
     }
   }
 
   async GetAllBookings(req, res, next) {
-    const results = await bookingService.GetAllBookings();
-
-    if (results) {
+    try {
+      const results = await bookingService.GetAllBookings();
       res.send(results);
-    } else {
-      res.send("error");
+    } catch (error) {
+      next({ status: 400, message: error.message });
     }
   }
 
   async GetBookingById(req, res, next) {
-    const id = req.query.id;
-
-    const result = await bookingService.GetBookingById(id);
-
-    if (result) {
+    try {
+      const id = req.query.id;
+      const result = await bookingService.GetBookingById(id);
       res.send(result);
-    } else {
-      res.send("error");
+    } catch (error) {
+      next({ status: 400, message: error.message });
     }
   }
 
   async DeleteBooking(req, res, next) {
-    const id = req.query.id;
-
-    const result = await bookingService.DeleteBooking(id);
-
-    if (result) {
+    try {
+      const id = req.query.id;
+      const result = await bookingService.DeleteBooking(id);
       res.send(result);
-    } else {
-      res.send("error");
+    } catch (error) {
+      next({ status: 400, message: error.message });
     }
   }
 
   async EditBooking(req, res, next) {
-    const id = req.query.id;
-
-    const booking = req.body;
-
-    const result = await bookingService.EditBooking(id, booking);
-
-    if (result) {
+    try {
+      const id = req.query.id;
+      const booking = req.body;
+      const result = await bookingService.EditBooking(id, booking);
       res.send(result);
-    } else {
-      res.send("error");
+    } catch (error) {
+      next({ status: 400, message: error.message });
     }
   }
 };
