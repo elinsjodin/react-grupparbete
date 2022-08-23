@@ -26,7 +26,7 @@ app.use("/admin", adminRouter);
 // error hantering - måste ligga sist så att våra requests går igenom alla routes först
 app.use(errorHandler);
 
-//localhost:5000/
+//localhost:8000/
 // Endast log?
 app.get("/", (req, res) => {
   res.json();

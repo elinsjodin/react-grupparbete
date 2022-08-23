@@ -214,14 +214,15 @@ export const BookingPage = () => {
       const response = await axios.post("/bookings", {
         bookingRequest: bookingRequest,
       });
+      return response;
       //if backend returns success, alert user and clear the form
-      if (response.data.success) {
-        alert("Booking successful");
-        //reset the booking request
-        bookingRequest.shift();
-      } else {
-        alert("Booking unsuccessful");
-      }
+      // if (response.data.success) {
+      //   alert("Booking successful");
+      //   //reset the booking request
+      //   bookingRequest.shift();
+      // } else {
+      //   alert("Booking unsuccessful");
+      // }
     }
   };
 

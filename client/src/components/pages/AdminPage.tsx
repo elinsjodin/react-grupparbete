@@ -32,7 +32,7 @@ export const AdminPage = () => {
       ) : (
         backendData.bookings.map((booking, i) => <p key={i}>{booking}</p>)
       )}
-      <div>Hello from AdminPage</div>;
+      <div>Hello from AdminPage</div>
     </>
   );
 };
