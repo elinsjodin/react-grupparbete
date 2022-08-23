@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { IBooking } from "../../models/IBooking";
 import axios from "axios";
 // Byt till ex IBooking sen från models
 interface IBackendData {
