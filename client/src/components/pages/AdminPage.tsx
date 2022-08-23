@@ -30,6 +30,7 @@ export const AdminPage = () => {
       {typeof backendData.bookings === "undefined" ? (
         <p>Loading...</p>
       ) : (
+        //map through the backend data and display it
         backendData.bookings.map((booking, i) => <p key={i}>{booking}</p>)
       )}
       <div>Hello from AdminPage</div>;

@@ -51,8 +51,8 @@ export const BookingPage = () => {
   const [filledForm, setFilledForm] = useState<IBooking>({
     date: [],
     time: [],
-    amount: [1],
-    guestInfo: [{ name: "", email: "", phone: "", message: "" }],
+    numberOfGuests: [1],
+    bookedBy: [{ name: "", email: "", phone: "", message: "" }],
   });
 
   //state for the backend data
@@ -105,7 +105,7 @@ export const BookingPage = () => {
       setCount(count + 1);
       setFilledForm({
         ...filledForm,
-        amount: [count],
+        numberOfGuests: [count],
       });
     }
   };
@@ -118,7 +118,7 @@ export const BookingPage = () => {
       setCount(count - 1);
       setFilledForm({
         ...filledForm,
-        amount: [count],
+        numberOfGuests: [count],
       });
     }
   };
@@ -127,9 +127,9 @@ export const BookingPage = () => {
   const handleGuestName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilledForm({
       ...filledForm,
-      guestInfo: [
+      bookedBy: [
         {
-          ...filledForm.guestInfo[0],
+          ...filledForm.bookedBy[0],
           name: e.target.value,
         },
       ],
@@ -140,9 +140,9 @@ export const BookingPage = () => {
   const handleGuestEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilledForm({
       ...filledForm,
-      guestInfo: [
+      bookedBy: [
         {
-          ...filledForm.guestInfo[0],
+          ...filledForm.bookedBy[0],
           email: e.target.value,
         },
       ],
@@ -153,9 +153,9 @@ export const BookingPage = () => {
   const handleGuestPhone = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilledForm({
       ...filledForm,
-      guestInfo: [
+      bookedBy: [
         {
-          ...filledForm.guestInfo[0],
+          ...filledForm.bookedBy[0],
           phone: e.target.value,
         },
       ],
@@ -166,9 +166,9 @@ export const BookingPage = () => {
   const handleGuestMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilledForm({
       ...filledForm,
-      guestInfo: [
+      bookedBy: [
         {
-          ...filledForm.guestInfo[0],
+          ...filledForm.bookedBy[0],
           message: e.target.value,
         },
       ],
@@ -176,31 +176,31 @@ export const BookingPage = () => {
   };
 
   //handles commit of booking
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     //check if all fields are filled
     if (
       filledForm.date[0] === undefined ||
       filledForm.time[0] === undefined ||
-      filledForm.amount[0] === undefined ||
-      filledForm.guestInfo[0].name === "" ||
-      filledForm.guestInfo[0].email === "" ||
-      filledForm.guestInfo[0].phone === "" ||
-      filledForm.guestInfo[0].name.indexOf(" ") === 1 ||
-      filledForm.guestInfo[0].email.indexOf("@") === -1 ||
-      filledForm.guestInfo[0].email.indexOf(".") === -1 ||
-      filledForm.guestInfo[0].email.indexOf(" ") !== -1 ||
-      filledForm.guestInfo[0].phone.length !== 10 ||
-      filledForm.guestInfo[0].phone.indexOf(" ") !== -1 ||
-      filledForm.guestInfo[0].phone.indexOf("-") !== -1
+      filledForm.numberOfGuests[0] === undefined ||
+      filledForm.bookedBy[0].name === "" ||
+      filledForm.bookedBy[0].email === "" ||
+      filledForm.bookedBy[0].phone === "" ||
+      filledForm.bookedBy[0].name.indexOf(" ") === 1 ||
+      filledForm.bookedBy[0].email.indexOf("@") === -1 ||
+      filledForm.bookedBy[0].email.indexOf(".") === -1 ||
+      filledForm.bookedBy[0].email.indexOf(" ") !== -1 ||
+      filledForm.bookedBy[0].phone.length !== 10 ||
+      filledForm.bookedBy[0].phone.indexOf(" ") !== -1 ||
+      filledForm.bookedBy[0].phone.indexOf("-") !== -1
     ) {
       alert("Make sure all fields are filled");
     }
     //check if date is in the past
     else {
       //add new info about guest to the array in the state
-      guestInfoList.push(filledForm.guestInfo[0]);
+      guestInfoList.push(filledForm.bookedBy[0]);
       guestInfoList.shift();
-      filledForm.guestInfo = guestInfoList;
+      filledForm.bookedBy = guestInfoList;
 
       //booking request contain all the info backend needs about the booking
       bookingRequest.push(filledForm);
@@ -210,18 +210,9 @@ export const BookingPage = () => {
       console.log(bookingRequest);
 
       // send booking request to backend
-      // fetch using axios and async await
-      const response = await axios.post("/bookings", {
-        bookingRequest: bookingRequest,
+      axios.post("/bookings", bookingRequest).then((res) => {
+        console.log(res);
       });
-      //if backend returns success, alert user and clear the form
-      if (response.data.success) {
-        alert("Booking successful");
-        //reset the booking request
-        bookingRequest.shift();
-      } else {
-        alert("Booking unsuccessful");
-      }
     }
   };
 
@@ -286,7 +277,7 @@ export const BookingPage = () => {
               onChange={handleGuestEmail}
             />
             <p>Phone</p>
-            <FormInput placeholder="070-1234567" onChange={handleGuestPhone} />
+            <FormInput placeholder="0701234567" onChange={handleGuestPhone} />
             <p>user request</p>
             <FormInput placeholder="No Caviar" onChange={handleGuestMessage} />
           </AddBookingFormInputFieldsContainer>

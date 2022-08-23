@@ -8,6 +8,6 @@ export interface IGuest {
 export interface IBooking {
   date: string[];
   time: string[];
-  amount: number[];
-  guestInfo: any[];
+  numberOfGuests: number[];
+  bookedBy: any[];
 }
