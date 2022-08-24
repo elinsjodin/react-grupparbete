@@ -189,7 +189,7 @@ export const BookingPage = () => {
 
     console.log(bookingRequest);
 
-    fetch("/bookings", {
+    fetch("http://localhost:3000/bookings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
