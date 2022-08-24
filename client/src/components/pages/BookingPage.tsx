@@ -42,7 +42,12 @@ export const BookingPage = () => {
   const [calanderDate, setCalanderDate] = useState(new Date());
 
   //state for all info about guest
-  const [guestInfoList, setGuestInfoList] = useState<[{}]>([{}]);
+  // const [guestInfoList, setGuestInfoList] = useState<IBooking>({
+  //   date: "",
+  //   time: "",
+  //   numberOfGuests: 1,
+  //   bookedBy: { name: "", email: "", phone: "", message: "" },
+  // });
 
   //state for all info about booking
   const [bookingRequest, setBookingRequest] = useState<[{}]>([{}]);
@@ -52,7 +57,7 @@ export const BookingPage = () => {
     date: "",
     time: "",
     numberOfGuests: 1,
-    bookedBy: [{ name: "", email: "", phone: "", message: "" }],
+    bookedBy: { name: "", email: "", phone: "", message: "" },
   });
 
   //state for the backend data
@@ -127,12 +132,10 @@ export const BookingPage = () => {
   const handleGuestName = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilledForm({
       ...filledForm,
-      bookedBy: [
-        {
-          ...filledForm.bookedBy[0],
-          name: e.target.value,
-        },
-      ],
+      bookedBy: {
+        ...filledForm.bookedBy,
+        name: e.target.value,
+      },
     });
   };
 
@@ -140,12 +143,10 @@ export const BookingPage = () => {
   const handleGuestEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilledForm({
       ...filledForm,
-      bookedBy: [
-        {
-          ...filledForm.bookedBy[0],
-          email: e.target.value,
-        },
-      ],
+      bookedBy: {
+        ...filledForm.bookedBy,
+        email: e.target.value,
+      },
     });
   };
 
@@ -153,12 +154,10 @@ export const BookingPage = () => {
   const handleGuestPhone = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilledForm({
       ...filledForm,
-      bookedBy: [
-        {
-          ...filledForm.bookedBy[0],
-          phone: e.target.value,
-        },
-      ],
+      bookedBy: {
+        ...filledForm.bookedBy,
+        phone: e.target.value,
+      },
     });
   };
 
@@ -166,43 +165,44 @@ export const BookingPage = () => {
   const handleGuestMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFilledForm({
       ...filledForm,
-      bookedBy: [
-        {
-          ...filledForm.bookedBy[0],
-          message: e.target.value,
-        },
-      ],
+      bookedBy: {
+        ...filledForm.bookedBy,
+        message: e.target.value,
+      },
     });
   };
 
   //handles commit of booking
   const handleSubmit = () => {
     //add new info about guest to the array in the state
-    guestInfoList.push(filledForm.bookedBy[0]);
-    guestInfoList.shift();
-    filledForm.bookedBy = guestInfoList;
+    console.log(filledForm);
+    // setGuestInfoList(filledForm.bookedBy.name);
+    // guestInfoList.shift();
+    // filledForm.bookedBy.name = guestInfoList;
 
     //booking request contain all the info backend needs about the booking
-    bookingRequest.push(filledForm);
+    // bookingRequest.push(filledForm);
 
-    bookingRequest.shift();
+    // bookingRequest.shift();
 
-    console.log(bookingRequest);
+    axios.post("http://localhost:3000/bookings", filledForm).then((res) => {
+      console.log(res);
+    });
 
-    fetch("http://localhost:3000/bookings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(bookingRequest),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // fetch("/bookings", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(filledForm),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (
