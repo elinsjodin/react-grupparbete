@@ -1,13 +1,13 @@
 export interface IGuest {
-  namn: "";
-  email: "";
-  phone: "";
-  message: "";
+  name: string;
+  email: string;
+  phone: string;
+  message?: string;
 }
 
 export interface IBooking {
   date: string;
   time: string;
   numberOfGuests: number;
-  bookedBy: [{}];
+  bookedBy: IGuest;
 }
