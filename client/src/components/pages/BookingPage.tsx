@@ -41,17 +41,6 @@ export const BookingPage = () => {
   //state for the date
   const [calanderDate, setCalanderDate] = useState(new Date());
 
-  //state for all info about guest
-  // const [guestInfoList, setGuestInfoList] = useState<IBooking>({
-  //   date: "",
-  //   time: "",
-  //   numberOfGuests: 1,
-  //   bookedBy: { name: "", email: "", phone: "", message: "" },
-  // });
-
-  //state for all info about booking
-  const [bookingRequest, setBookingRequest] = useState<[{}]>([{}]);
-
   //state for the booking interface
   const [filledForm, setFilledForm] = useState<IBooking>({
     date: "",
@@ -73,6 +62,7 @@ export const BookingPage = () => {
       .then((res) => res.json())
       .then((data) => {
         setBackendData(data);
+        console.log(data);
       });
   }, []);
 
@@ -176,33 +166,10 @@ export const BookingPage = () => {
   const handleSubmit = () => {
     //add new info about guest to the array in the state
     console.log(filledForm);
-    // setGuestInfoList(filledForm.bookedBy.name);
-    // guestInfoList.shift();
-    // filledForm.bookedBy.name = guestInfoList;
-
-    //booking request contain all the info backend needs about the booking
-    // bookingRequest.push(filledForm);
-
-    // bookingRequest.shift();
 
     axios.post("http://localhost:3000/bookings", filledForm).then((res) => {
       console.log(res);
     });
-
-    // fetch("/bookings", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(filledForm),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
   };
 
   return (
