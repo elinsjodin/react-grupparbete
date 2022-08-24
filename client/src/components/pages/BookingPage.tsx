@@ -189,20 +189,24 @@ export const BookingPage = () => {
 
     console.log(bookingRequest);
 
-    fetch("http://localhost:3000/bookings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(bookingRequest),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // fetch("http://localhost:3000/bookings", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(bookingRequest),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+    axios.post("http://localhost:3000/bookings", bookingRequest).then((res) => {
+      console.log(res);
+    });
   };
 
   return (
