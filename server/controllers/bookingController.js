@@ -54,4 +54,15 @@ module.exports = class BookingController {
       next({ status: 400, message: error.message });
     }
   }
+
+  async GetGuestByEmail(req, res, next) {
+    try {
+      const id = req.query.id;
+      const email = req.body.email;
+      const result = await bookingService.CompareGuestEmail(id, email);
+      res.send(result);
+    } catch (error) {
+      next({ status: 400, message: error.message });
+    }
+  }
 };
