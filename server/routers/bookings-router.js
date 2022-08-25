@@ -6,6 +6,7 @@ const bookingController = new BookingController();
 const { validate } = require("express-validation");
 
 router.get("/", (req, res) => {
+  // res.send(bookingController.GetAllBookings());
   res.send("Hello from the booking router");
 });
 

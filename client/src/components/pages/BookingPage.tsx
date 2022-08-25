@@ -62,7 +62,9 @@ export const BookingPage = () => {
       .then((res) => res.json())
       .then((data) => {
         setBackendData(data);
-        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 

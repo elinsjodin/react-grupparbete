@@ -15,6 +15,7 @@ module.exports = class BookingController {
 
   async GetAllBookings(req, res, next) {
     try {
+      console.log("Starting");
       //recive a post from /bookings
       const results = await bookingService.GetAllBookings();
       //send a response to the client

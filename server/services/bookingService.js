@@ -14,6 +14,7 @@ module.exports = class BookingService {
 
   async GetAllBookings() {
     const result = await BookingModel.find({});
+    console.log("Found", result);
 
     if (!result) {
       throw new Error("Bookings not found");
