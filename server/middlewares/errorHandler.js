@@ -5,9 +5,9 @@
 // };
 
 const ErrorHandler = (status, message) => {
-  const err = new Error();
-  (err.status = status), (err.message = message);
-  return err;
+  const error = new Error();
+  (error.status = status), (error.message = message);
+  return error;
 };
 
 module.exports = ErrorHandler;
