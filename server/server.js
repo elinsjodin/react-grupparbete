@@ -25,6 +25,15 @@ app.use(
 );
 
 app.use(express.json());
+
+//localhost:8000/
+// Endast log?
+app.get("/", (req, res) => {
+  // res.json();
+  res.send("Hello from main page");
+  console.log("Hello from main page");
+});
+
 //localhost:5000/bookings
 app.use("/bookings", bookingsRouter);
 //localhost:5000/confirmation/:id
@@ -33,13 +42,6 @@ app.use("/confirm", confirmationRouter);
 app.use("/admin", adminRouter);
 // error hantering - måste ligga sist så att våra requests går igenom alla routes först
 app.use(errorHandler);
-
-//localhost:8000/
-// Endast log?
-app.get("/", (req, res) => {
-  res.json();
-  console.log("Hello from main page");
-});
 
 mongoose
   .connect(config.connectionString)
