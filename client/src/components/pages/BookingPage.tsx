@@ -55,10 +55,8 @@ export const BookingPage = () => {
   });
 
   //FETCHES
-
-  // fetch data from backend and set it to state
   useEffect(() => {
-    fetch("/")
+    fetch("http://localhost:3000/bookings")
       .then((res) => res.json())
       .then((data) => {
         setBackendData(data);
@@ -70,10 +68,13 @@ export const BookingPage = () => {
 
   //FUNCTIONS in order you see them on screen
 
+  //handles calander date change
   const handleChosenDate = () => {
-    // if user chosen a past date, set date to today
-
+    //sets the date to the state
+    setCalanderDate(calanderDate);
     setFilledForm({ ...filledForm, date: calanderDate.toDateString() });
+
+    console.log(calanderDate);
   };
 
   //handles click for time
@@ -166,8 +167,16 @@ export const BookingPage = () => {
 
   //handles commit of booking
   const handleSubmit = () => {
-    //add new info about guest to the array in the state
     console.log(filledForm);
+
+    axios
+      .get("http://localhost:3000/bookings")
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     axios.post("http://localhost:3000/bookings", filledForm).then((res) => {
       console.log(res);
@@ -194,6 +203,7 @@ export const BookingPage = () => {
             <Calendar
               onChange={handleChosenDate}
               value={calanderDate}
+              locale="sv-SE"
               minDate={new Date()}
             />
           </div>
@@ -203,6 +213,7 @@ export const BookingPage = () => {
             <h1>Choose a Time</h1>
             <div>
               <section>
+                {/* if date has been taken, disable button */}
                 <button onClick={handleFirstTime}>18:00</button>
 
                 <button onClick={handleSecondTime}>21:00</button>

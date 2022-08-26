@@ -49,7 +49,7 @@ export const AdminPage = () => {
 
   // fetch data from backend and set it to state
   useEffect(() => {
-    fetch("/")
+    fetch("/bookings")
       .then((res) => res.json())
       .then((data) => {
         setBackendData(data);
@@ -61,9 +61,26 @@ export const AdminPage = () => {
 
   //FUNCTIONS in order you see them on screen
 
-  const handleChosenDate = () => {
-    // if user chosen a past date, set date to today
+  const handleRemoveBooking = (id: string) => {
+    axios
+      .delete(`/bookings/${id}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .then(() => {
+        fetch("/")
+          .then((res) => res.json())
+          .then((data) => {
+            setBackendData(data);
+          });
+      });
+  };
 
+  const handleChosenDate = () => {
+    //set the date to the state
     setFilledForm({ ...filledForm, date: calanderDate.toDateString() });
   };
 
@@ -85,9 +102,9 @@ export const AdminPage = () => {
 
   //handles amount of guest increase
   const handleAmountIncrease = () => {
-    if (count === 6) {
+    if (count === 90) {
       alert(
-        "You can't book for more than 6 people, if you need more please contact us"
+        "You can't book for more than 90 people, you dont have space for it"
       );
     } else {
       setCount(count + 1);
@@ -173,11 +190,22 @@ export const AdminPage = () => {
             <h1>Admin</h1>
           </BookingHeroTitleContainer>
           <BookingHeroContentContainer>
-            <ul>
-              {/* <li>
-                Bookings <button onClick={deleteBooking}></button>
-              </li> */}
-            </ul>
+            {backendData.bookings
+              .map((booking) => {
+                return (
+                  <div>
+                    <link href="/admin/{id}">{booking}</link>
+                    <button
+                      onClick={() => {
+                        handleRemoveBooking(booking);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                );
+              })
+              .reverse()}
           </BookingHeroContentContainer>
         </BookingHeroWrapper>
         <AddBookingWrapper>
