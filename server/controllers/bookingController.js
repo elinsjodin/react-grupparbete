@@ -6,10 +6,11 @@ module.exports = class BookingController {
   async CreateNewBooking(req, res, next) {
     try {
       let booking = req.body;
+      console.log("Booking", booking);
       const result = await bookingService.CreateNewBooking(booking);
       res.send(result);
     } catch (error) {
-      next({ status: 400, message: error.message });
+      next({ status: error.status, message: error.message });
     }
   }
 
@@ -21,7 +22,7 @@ module.exports = class BookingController {
       //send a response to the client
       res.send(results);
     } catch (error) {
-      next({ status: 400, message: error.message });
+      next({ status: error.status, message: error.message });
     }
   }
 
@@ -31,7 +32,7 @@ module.exports = class BookingController {
       const result = await bookingService.GetBookingById(id);
       res.send(result);
     } catch (error) {
-      next({ status: 400, message: error.message });
+      next({ status: error.status, message: error.message });
     }
   }
 
@@ -41,7 +42,7 @@ module.exports = class BookingController {
       const result = await bookingService.DeleteBooking(id);
       res.send(result);
     } catch (error) {
-      next({ status: 400, message: error.message });
+      next({ status: error.status, message: error.message });
     }
   }
 
@@ -52,7 +53,7 @@ module.exports = class BookingController {
       const result = await bookingService.EditBooking(id, booking);
       res.send(result);
     } catch (error) {
-      next({ status: 400, message: error.message });
+      next({ status: error.status, message: error.message });
     }
   }
 
@@ -63,7 +64,7 @@ module.exports = class BookingController {
       const result = await bookingService.CompareGuestEmail(id, email);
       res.send(result);
     } catch (error) {
-      next({ status: 400, message: error.message });
+      next({ status: error.status, message: error.message });
     }
   }
 };
