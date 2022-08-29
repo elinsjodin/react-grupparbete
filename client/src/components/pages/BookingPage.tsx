@@ -74,7 +74,17 @@ export const BookingPage = () => {
     setCalanderDate(calanderDate);
     setFilledForm({ ...filledForm, date: calanderDate.toDateString() });
 
-    console.log(calanderDate);
+    // //checks if the date is already booked
+    // const booked = backendData.bookings.find(
+    //   (booking) => booking.date === calanderDate.toDateString()
+    // );
+    // if (booked) {
+    //   setFilledForm({ ...filledForm, time: booked.time });
+    // } else {
+    //   setFilledForm({ ...filledForm, time: "whyyy" });
+    // }
+
+    console.log(filledForm.date);
   };
 
   //handles click for time
@@ -103,7 +113,7 @@ export const BookingPage = () => {
       setCount(count + 1);
       setFilledForm({
         ...filledForm,
-        numberOfGuests: count,
+        numberOfGuests: count + 1,
       });
     }
   };
@@ -116,7 +126,7 @@ export const BookingPage = () => {
       setCount(count - 1);
       setFilledForm({
         ...filledForm,
-        numberOfGuests: count,
+        numberOfGuests: count + 1,
       });
     }
   };
@@ -178,9 +188,14 @@ export const BookingPage = () => {
         console.log(err);
       });
 
-    axios.post("http://localhost:3000/bookings", filledForm).then((res) => {
-      console.log(res);
-    });
+    fetch("http://localhost:3000/bookings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(filledForm),
+    }).then((res) => res.json());
+    alert("Your booking has been sent");
   };
 
   return (

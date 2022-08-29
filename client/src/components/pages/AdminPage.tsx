@@ -47,9 +47,9 @@ export const AdminPage = () => {
 
   //FETCHES
 
-  // fetch data from backend and set it to state
+  //FETCHES
   useEffect(() => {
-    fetch("/bookings")
+    fetch("http://localhost:3000/bookings")
       .then((res) => res.json())
       .then((data) => {
         setBackendData(data);
@@ -82,6 +82,16 @@ export const AdminPage = () => {
   const handleChosenDate = () => {
     //set the date to the state
     setFilledForm({ ...filledForm, date: calanderDate.toDateString() });
+
+    // //checks if the date is already booked
+    // const booked = backendData.bookings.find(
+    //   (booking) => booking.date === calanderDate.toDateString()
+    // );
+    // if (booked) {
+    //   setFilledForm({ ...filledForm, time: booked.time });
+    // } else {
+    //   setFilledForm({ ...filledForm, time: "whyyy" });
+    // }
   };
 
   //handles click for time
@@ -107,7 +117,7 @@ export const AdminPage = () => {
         "You can't book for more than 90 people, you dont have space for it"
       );
     } else {
-      setCount(count + 1);
+      setCount(count);
       setFilledForm({
         ...filledForm,
         numberOfGuests: count,
@@ -118,9 +128,9 @@ export const AdminPage = () => {
   //handles amount of guest decrease
   const handleAmountDecrease = () => {
     if (count === 1) {
-      return;
+      alert("You can't book for less than 1 person");
     } else {
-      setCount(count - 1);
+      setCount(count);
       setFilledForm({
         ...filledForm,
         numberOfGuests: count,
