@@ -59,6 +59,7 @@ export const BookingPage = () => {
     fetch("http://localhost:3000/bookings")
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setBackendData(data);
       })
       .catch((err) => {

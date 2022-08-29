@@ -1,24 +1,18 @@
 const express = require("express");
 const router = express.Router();
+const bookingValidation = require("../validations/bookingValidation.js");
 const BookingController = require("../controllers/bookingController.js");
+
 const bookingController = new BookingController();
-// const BookingValidation = require("../validations/bookingValidation.js");
-// const { validate } = require("express-validation");
 
 router.get("/", (req, res) => {
-  // res.send(bookingController.GetAllBookings());
   res.send("Hello from bookings page");
 });
 
-// router.post(
-//   "/",
-//   validate(BookingValidation.createBookingValidation),
-//   bookingController.CreateNewBooking
-// );
 router.post(
   "/",
-
-  bookingController.CreateNewBooking
+  bookingController.CreateNewBooking,
+  bookingValidation.validateBooking
 );
 
 module.exports = router;
