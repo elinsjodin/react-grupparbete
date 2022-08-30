@@ -1,7 +1,8 @@
 const BookingService = require("../services/bookingService.js");
 const bookingValidation = require("../validations/bookingValidation.js");
-
+const EmailService = require("../services/emailService.js");
 const bookingService = new BookingService();
+const emailService = new EmailService();
 
 module.exports = class BookingController {
   async CreateNewBooking(req, res, next) {
@@ -24,7 +25,7 @@ module.exports = class BookingController {
       const result = await bookingService.CreateNewBooking(bookingDto);
       console.log("Hej från controller");
 
-      await bookingService.sendConfirmationEmail(bookingDto);
+      await emailService.sendConfirmationEmail(bookingDto);
       console.log("Email sent");
 
       res.send(result);

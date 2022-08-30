@@ -1,6 +1,6 @@
 const BookingModel = require("../models/BookingsModel.js");
 const GuestModel = require("../models/GuestsModel.js");
-const nodemailer = require("nodemailer");
+// const nodemailer = require("nodemailer");
 require("dotenv").config();
 // const image = require("../public/images/images-11.jpeg");
 
@@ -125,86 +125,4 @@ module.exports = class BookingService {
       return result;
     }
   }
-
-  async sendConfirmationEmail(bookingConfirmation) {
-    try {
-      console.log("Nodemailer");
-
-      console.log("Confirmed Booking", bookingConfirmation);
-
-      const transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 465,
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASSWORD,
-        },
-      });
-
-      const message = {
-        from: '"Sorkins", <restaurantsorkins@gmail.com>',
-        to: bookingConfirmation.bookedBy.email,
-        subject: "Booking Confirmed",
-        html: `<html>
-          <body>
-          <h2>Thank you ${bookingConfirmation.bookedBy.name} for your booking at Sorkins, we are so excited to see you!
-          </h2>
-          <div>
-          <p><b>Date: </b>${bookingConfirmation.date}</p>
-          <p><b>Time: </b>${bookingConfirmation.time}</p>
-          <p><b>How many: </b>${bookingConfirmation.numberOfGuests}</p>
-          <p><b>Name in booking: </b>${bookingConfirmation.bookedBy.name}</p>
-          <p><b>Email: </b>${bookingConfirmation.bookedBy.email}</p>
-          <p><b>Phone: </b>${bookingConfirmation.bookedBy.phone}</p>
-          <p><b>Message for us: </b>${bookingConfirmation.bookedBy.bookingMessage}</p>
-          <div><img src="cid:images-11.jpeg"/></div>
-          </div>
-          <h3>Questions regarding your booking? Send us your question by answering this email.</h3>
-          </body>
-          </html>`,
-        attachments: [
-          {
-            filename: "images-11.jpeg",
-            path: __dirname + "/../public/images/images-11.jpeg",
-            cid: "images-11.jpeg",
-          },
-        ],
-      };
-      transporter.sendMail(message, (err, info) => {
-        if (err) {
-          console.log("Email not sent, error occurs: ", err);
-        } else {
-          console.log(info, "Message sent: ", info.messageId);
-        }
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  }
 };
-
-// host: dns.resolve.toString("smtp.etheral.email"),
-// host: "google",
-// service: "gmail",
-
-// logger: true,
-// tls: { rejectUnauthorized: false },
-// "liliane.koss@ethereal.email"
-// "ZhUe6jqnhaGF4rXmyE"
-//  "smtp.etheral.email"
-// port: 465,
-// secure: true,
-// requireTLS: true,
-
-// transporter.sendMail(message, (err, info) => {
-//   // console.log(error);
-//   console.log("Message sent: ", message.messageId);
-// });
-
-// transporter.sendMail(message, (err, data) => {
-//   if (err) {
-//     console.log("Email not sent, error occurs", err);
-//   } else {
-//     console.log(data, "Message sent: ", info.messageId);
-//   }
-// });
