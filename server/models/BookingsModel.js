@@ -5,6 +5,7 @@ const bookingsSchema = new Schema({
   date: { type: String, required: true },
   time: { type: String, required: true },
   numberOfGuests: { type: Number, required: true },
+  // numberOfTables?
   bookedBy: {
     type: Schema.Types.ObjectId,
     ref: "Guests",

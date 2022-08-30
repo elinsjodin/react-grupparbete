@@ -5,9 +5,7 @@ const BookingController = require("../controllers/bookingController.js");
 
 const bookingController = new BookingController();
 
-router.get("/", (req, res) => {
-  res.send("Hello from bookings page");
-});
+router.get("/", bookingController.GetAllBookings);
 
 router.post(
   "/",
