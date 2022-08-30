@@ -29,9 +29,8 @@ import { IBooking } from "../../models/IBooking";
 
 // Byt till ex IBooking sen från models
 interface IBackendData {
-  bookings: IBooking[];
+  bookings: string[];
 }
-
 //STATES
 
 export const BookingPage = () => {
@@ -49,23 +48,25 @@ export const BookingPage = () => {
     bookedBy: { name: "", email: "", phone: "", message: "" },
   });
 
-  //state for the backend data
+  //state for backend data
   const [backendData, setBackendData] = useState<IBackendData>({
     bookings: [],
   });
 
   //FETCHES
-  useEffect(() => {
-    fetch("http://localhost:3000/bookings")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setBackendData(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+
+  //fetch backend data and set it to backendData array
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/bookings")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       backendData.bookings.push(data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   //FUNCTIONS in order you see them on screen
 
@@ -84,8 +85,6 @@ export const BookingPage = () => {
     // } else {
     //   setFilledForm({ ...filledForm, time: "whyyy" });
     // }
-
-    console.log(filledForm.date);
   };
 
   //handles click for time
@@ -127,7 +126,7 @@ export const BookingPage = () => {
       setCount(count - 1);
       setFilledForm({
         ...filledForm,
-        numberOfGuests: count + 1,
+        numberOfGuests: count - 1,
       });
     }
   };
@@ -178,15 +177,15 @@ export const BookingPage = () => {
 
   //handles commit of booking
   const handleSubmit = () => {
-    console.log(filledForm);
+    // console.log(filledForm);
 
     axios
       .get("http://localhost:3000/bookings")
       .then((res) => {
-        console.log(res);
+        // console.log(res);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
 
     fetch("http://localhost:3000/bookings", {
@@ -196,7 +195,8 @@ export const BookingPage = () => {
       },
       body: JSON.stringify(filledForm),
     }).then((res) => res.json());
-    alert("Your booking has been sent");
+    // console.log(filledForm);
+    // console.log(backendData);
   };
 
   return (
@@ -268,6 +268,21 @@ export const BookingPage = () => {
           </AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
             <FormButton onClick={handleSubmit}>Book</FormButton>
+
+            <FormButton
+              onClick={() => {
+                axios
+                  .get("http://localhost:3000/bookings")
+                  .then((res) => {
+                    console.log(res);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              }}
+            >
+              Backend
+            </FormButton>
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
