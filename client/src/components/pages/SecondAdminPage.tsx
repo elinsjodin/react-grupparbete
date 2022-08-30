@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Calendar from "react-calendar";
 import { IBooking } from "../../models/IBooking";
 import { FormButton } from "../styledComponents/Buttons";
@@ -40,7 +40,7 @@ export const SecondAdminPage = () => {
     bookedBy: { name: "", email: "", phone: "", message: "" },
   });
 
-  //state for the backend data
+  //state for backend data
   const [backendData, setBackendData] = useState<IBackendData>({
     bookings: [],
   });
@@ -155,17 +155,6 @@ export const SecondAdminPage = () => {
       console.log(res);
     });
   };
-
-  //Behöver hämta in specifik bokning med id
-  // const { id } = useParams<{ id: string }>();
-
-  useEffect(() => {
-    fetch("/")
-      .then((res) => res.json())
-      .then((data) => {
-        setBackendData(data);
-      });
-  }, []);
 
   return (
     <>

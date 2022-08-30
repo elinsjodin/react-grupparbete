@@ -22,15 +22,11 @@ import { FormInput } from "../styledComponents/Inputs";
 import { FormButton } from "../styledComponents/Buttons";
 import { IBooking } from "../../models/IBooking";
 
-// Byt till ex IBooking sen från models
 interface IBackendData {
   bookings: string[];
 }
 
 export const AdminPage = () => {
-  const [backendData, setBackendData] = useState<IBackendData>({
-    bookings: [],
-  });
   //state for the count of people
   const [count, setCount] = useState(1);
 
@@ -43,6 +39,11 @@ export const AdminPage = () => {
     time: "",
     numberOfGuests: 1,
     bookedBy: { name: "", email: "", phone: "", message: "" },
+  });
+
+  //state for backend data
+  const [backendData, setBackendData] = useState<IBackendData>({
+    bookings: [],
   });
 
   //FETCHES

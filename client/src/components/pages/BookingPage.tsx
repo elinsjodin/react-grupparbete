@@ -20,7 +20,7 @@ import {
   AddBookingChooseAmountContainer,
   AddBookingChooseTimeHolder,
 } from "../styledComponents/Containers";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { FormInput } from "../styledComponents/Inputs";
 import { FormButton } from "../styledComponents/Buttons";
 import { IBooking } from "../../models/IBooking";
@@ -55,52 +55,41 @@ export const BookingPage = () => {
 
   //FETCHES
 
-  //fetch backend data and set it to backendData array
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/bookings")
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       backendData.bookings.push(data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
+  // fetch backend data and set it to backendData array
+  useEffect(() => {
+    fetch("http://localhost:3000/bookings")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setBackendData(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   //FUNCTIONS in order you see them on screen
 
   //handles calander date change
-  const handleChosenDate = () => {
-    //sets the date to the state
-    setCalanderDate(calanderDate);
-    setFilledForm({ ...filledForm, date: calanderDate.toDateString() });
-
-    // //checks if the date is already booked
-    // const booked = backendData.bookings.find(
-    //   (booking) => booking.date === calanderDate.toDateString()
-    // );
-    // if (booked) {
-    //   setFilledForm({ ...filledForm, time: booked.time });
-    // } else {
-    //   setFilledForm({ ...filledForm, time: "whyyy" });
-    // }
-  };
+  // const handleChosenDate = () => {
+  //   //if date is taken from backend data list, diable the date
+  //   setCalanderDate(calanderDate);
+  //   setFilledForm({
+  //     ...filledForm,
+  //     date: calanderDate.toDateString(),
+  //   });
+  // };
 
   //handles click for time
   const handleFirstTime = () => {
-    setFilledForm({
-      ...filledForm,
-      time: "18:00",
-    });
+    //if the time is already taken, disable the button
+
+    setFilledForm({ ...filledForm, time: "18:00" });
   };
 
   //handles click for time
   const handleSecondTime = () => {
-    setFilledForm({
-      ...filledForm,
-      time: "21:00",
-    });
+    setFilledForm({ ...filledForm, time: "21:00" });
   };
 
   //handles amount of guest increase
@@ -177,26 +166,14 @@ export const BookingPage = () => {
 
   //handles commit of booking
   const handleSubmit = () => {
-    // console.log(filledForm);
-
     axios
-      .get("http://localhost:3000/bookings")
+      .post("http://localhost:3000/bookings", filledForm)
       .then((res) => {
-        // console.log(res);
+        console.log(res);
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
-
-    fetch("http://localhost:3000/bookings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(filledForm),
-    }).then((res) => res.json());
-    // console.log(filledForm);
-    // console.log(backendData);
   };
 
   return (
@@ -216,12 +193,7 @@ export const BookingPage = () => {
         <AddBookingMonthContainer>July 2022</AddBookingMonthContainer>
         <AddBookingCalanderContainer>
           <div>
-            <Calendar
-              onChange={handleChosenDate}
-              value={calanderDate}
-              locale="sv-SE"
-              minDate={new Date()}
-            />
+            <Calendar onChange={() => setCalanderDate()} value={calanderDate} />
           </div>
         </AddBookingCalanderContainer>
         <AddBookingChooseTimeContainer>
@@ -229,7 +201,6 @@ export const BookingPage = () => {
             <h1>Choose a Time</h1>
             <div>
               <section>
-                {/* if date has been taken, disable button */}
                 <button onClick={handleFirstTime}>18:00</button>
 
                 <button onClick={handleSecondTime}>21:00</button>
@@ -268,21 +239,6 @@ export const BookingPage = () => {
           </AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
             <FormButton onClick={handleSubmit}>Book</FormButton>
-
-            <FormButton
-              onClick={() => {
-                axios
-                  .get("http://localhost:3000/bookings")
-                  .then((res) => {
-                    console.log(res);
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-              }}
-            >
-              Backend
-            </FormButton>
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
