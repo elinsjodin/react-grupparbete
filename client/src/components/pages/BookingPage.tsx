@@ -1,4 +1,9 @@
 import axios from "axios";
+// things to do:
+//get a list of the date that is selected. single booking
+//check if booking has a 2 date with same date
+//check if booking has only 1 then check what time the other one has.
+//remove that time slot thats taken from options
 
 //imported styles
 import {
@@ -29,7 +34,7 @@ import { IBooking } from "../../models/IBooking";
 
 // Byt till ex IBooking sen från models
 interface IBackendData {
-  bookings: string[];
+  bookings: [];
 }
 //STATES
 
@@ -38,11 +43,11 @@ export const BookingPage = () => {
   const [count, setCount] = useState(1);
 
   //state for the date
-  const [calanderDate, setCalanderDate] = useState(new Date());
+  const [calanderValue, calanderOnChange] = useState(new Date());
 
   //state for the booking interface
   const [filledForm, setFilledForm] = useState<IBooking>({
-    date: "",
+    date: new Date().toDateString(),
     time: "",
     numberOfGuests: 1,
     bookedBy: { name: "", email: "", phone: "", message: "" },
@@ -54,14 +59,11 @@ export const BookingPage = () => {
   });
 
   //FETCHES
-
-  // fetch backend data and set it to backendData array
   useEffect(() => {
-    fetch("http://localhost:3000/bookings")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setBackendData(data);
+    axios
+      .get("http://localhost:3000/bookings")
+      .then((res) => {
+        setBackendData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -70,20 +72,13 @@ export const BookingPage = () => {
 
   //FUNCTIONS in order you see them on screen
 
-  // handles calander date change
-  const handleChosenDate = () => {
-    //if date is taken from backend data list, diable the date
-    setCalanderDate(calanderDate);
-    setFilledForm({
-      ...filledForm,
-      date: calanderDate.toDateString(),
-    });
+  const calanderOnChangeHandler = (date: Date) => {
+    setFilledForm({ ...filledForm, date: date.toDateString() });
   };
 
   //handles click for time
   const handleFirstTime = () => {
     //if the time is already taken, disable the button
-
     setFilledForm({ ...filledForm, time: "18:00" });
   };
 
@@ -166,14 +161,27 @@ export const BookingPage = () => {
 
   //handles commit of booking
   const handleSubmit = () => {
-    axios
-      .post("http://localhost:3000/bookings", filledForm)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    //check if the booking is valid
+    if (
+      filledForm.date === "" ||
+      filledForm.time === "" ||
+      filledForm.numberOfGuests === 0
+    ) {
+      alert("Please fill in all fields");
+      return;
+    }
+    //check if the booking is already taken
+    else {
+      axios
+        .post("http://localhost:3000/bookings", filledForm)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      console.log("backend", backendData);
+    }
   };
 
   return (
@@ -194,9 +202,10 @@ export const BookingPage = () => {
         <AddBookingCalanderContainer>
           <div>
             <Calendar
-              onChange={handleChosenDate}
-              value={calanderDate}
               minDate={new Date()}
+              onChange={calanderOnChangeHandler}
+              value={calanderValue}
+              // locale="sv-SE"
             />
           </div>
         </AddBookingCalanderContainer>
@@ -204,6 +213,9 @@ export const BookingPage = () => {
           <AddBookingChooseTimeHolder>
             <h1>Choose a Time</h1>
             <div>
+              {/* <select name="" id="">
+                <option value=""></option>
+              </select> */}
               <section>
                 <button onClick={handleFirstTime}>18:00</button>
 

@@ -46,7 +46,8 @@ module.exports = class BookingController {
       //send a response to the client
       res.send(results);
     } catch (error) {
-      next({ status: error.status, message: error.message });
+      // next({ status: error.status, message: error.message });
+      console.log(error);
     }
   }
 

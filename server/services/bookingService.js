@@ -1,5 +1,6 @@
 const BookingModel = require("../models/BookingsModel.js");
 const GuestModel = require("../models/GuestsModel.js");
+const { param } = require("../routers/bookings-router.js");
 
 module.exports = class BookingService {
   async CreateNewBooking(booking) {

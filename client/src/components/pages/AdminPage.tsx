@@ -31,11 +31,11 @@ export const AdminPage = () => {
   const [count, setCount] = useState(1);
 
   //state for the date
-  const [calanderDate, setCalanderDate] = useState(new Date());
+  const [calanderValue, calanderOnChange] = useState(new Date());
 
   //state for the booking interface
   const [filledForm, setFilledForm] = useState<IBooking>({
-    date: "",
+    date: new Date().toDateString(),
     time: "",
     numberOfGuests: 1,
     bookedBy: { name: "", email: "", phone: "", message: "" },
@@ -80,19 +80,9 @@ export const AdminPage = () => {
       });
   };
 
-  const handleChosenDate = () => {
-    //set the date to the state
-    setFilledForm({ ...filledForm, date: calanderDate.toDateString() });
-
-    // //checks if the date is already booked
-    // const booked = backendData.bookings.find(
-    //   (booking) => booking.date === calanderDate.toDateString()
-    // );
-    // if (booked) {
-    //   setFilledForm({ ...filledForm, time: booked.time });
-    // } else {
-    //   setFilledForm({ ...filledForm, time: "whyyy" });
-    // }
+  const calanderOnChangeHandler = (date: Date) => {
+    calanderOnChange(date);
+    setFilledForm({ ...filledForm, date: date.toDateString() });
   };
 
   //handles click for time
@@ -224,9 +214,11 @@ export const AdminPage = () => {
           <AddBookingCalanderContainer>
             <div>
               <Calendar
-                onChange={handleChosenDate}
-                value={calanderDate}
                 minDate={new Date()}
+                onChange={() => {
+                  calanderOnChangeHandler(calanderValue);
+                }}
+                value={calanderValue}
               />
             </div>
           </AddBookingCalanderContainer>

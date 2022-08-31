@@ -30,11 +30,11 @@ export const SecondAdminPage = () => {
   const [count, setCount] = useState(1);
 
   //state for the date
-  const [calanderDate, setCalanderDate] = useState(new Date());
+  const [calanderValue, calanderOnChange] = useState(new Date());
 
   //state for the booking interface
   const [filledForm, setFilledForm] = useState<IBooking>({
-    date: "",
+    date: new Date().toDateString(),
     time: "",
     numberOfGuests: 1,
     bookedBy: { name: "", email: "", phone: "", message: "" },
@@ -45,9 +45,9 @@ export const SecondAdminPage = () => {
     bookings: [],
   });
 
-  const handleChosenDate = () => {
-    // if user chosen a past date, set date to today
-    setFilledForm({ ...filledForm, date: calanderDate.toDateString() });
+  const calanderOnChangeHandler = (date: Date) => {
+    calanderOnChange(date);
+    setFilledForm({ ...filledForm, date: date.toDateString() });
   };
 
   //handles click for time
@@ -170,9 +170,11 @@ export const SecondAdminPage = () => {
           <AddBookingCalanderContainer>
             <div>
               <Calendar
-                onChange={handleChosenDate}
-                value={calanderDate}
                 minDate={new Date()}
+                onChange={() => {
+                  calanderOnChangeHandler(calanderValue);
+                }}
+                value={calanderValue}
               />
             </div>
           </AddBookingCalanderContainer>
