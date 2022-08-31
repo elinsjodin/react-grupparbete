@@ -7,25 +7,6 @@ const { default: mongoose } = require("mongoose");
 const config = require("./configurations/config.js");
 const errorHandler = require("./middlewares/errorHandler.js");
 const cors = require("cors");
-const path = require("path");
-
-// const path = require("path");
-
-// urlencoded is a middleware that allows us to use the req.body object
-// app.use(express.urlencoded({ extended: true }));
-
-// this allows for React static files to render on screen
-// const dir = path.join(__dirname, "public");
-
-// app.use(express.static(dir));
-
-//app.use(express.static("public"));
-//app.use("/images", express.static("images-11.jpeg"));
-// app.use(
-//   "/assets",
-//   express.static(path.join(__dirname, "../client/src/assets"))
-// );
-// app.use(express.static(path.resolve(__dirname, "../client/src/assets")));
 
 //express.json is a middleware that allows us to use the req.body object
 app.use(

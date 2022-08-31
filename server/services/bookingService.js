@@ -64,7 +64,7 @@ module.exports = class BookingService {
 
       console.log("New Booking", newBooking);
 
-      await newGuest.save(function (err, doc) {
+      newGuest.save(function (err, doc) {
         if (err) return console.error(err);
         console.log("Document inserted succussfully!");
       });
@@ -84,11 +84,6 @@ module.exports = class BookingService {
     const result = await BookingModel.find({});
     console.log("Found", result);
 
-    // const bookings = await BookingModel.find({}).populate("bookedBy").lean();
-    // const guests = GuestModel.find().lean;
-
-    // if (!bookings && !guests)
-
     if (!result) {
       throw new Error("Bookings not found");
     } else {
@@ -106,21 +101,31 @@ module.exports = class BookingService {
     }
   }
 
-  async DeleteBooking(id) {
-    const result = await BookingModel.findById(id).deleteOne();
+  async EditBooking(id, booking) {
+    const result = await BookingModel.findById(id).updateOne(booking);
 
     if (!result) {
-      throw new Error("Failed to delete booking");
+      throw new Error("Failed to edit booking");
     } else {
       return result;
     }
   }
 
-  async EditBooking(id, updatedBooking) {
-    const result = await BookingModel.findById(id, updatedBooking).updateOne();
+  async EditGuest(id, guest) {
+    const result = await GuestModel.findById(id).updateOne(guest);
 
     if (!result) {
-      throw new Error("Failed to edit booking");
+      throw new Error("Failed to edit guest");
+    } else {
+      return result;
+    }
+  }
+
+  async DeleteBooking(id) {
+    const result = await BookingModel.findById(id).deleteOne();
+
+    if (!result) {
+      throw new Error("Failed to delete booking");
     } else {
       return result;
     }
