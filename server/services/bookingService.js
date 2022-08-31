@@ -1,8 +1,12 @@
 const BookingModel = require("../models/BookingsModel.js");
 const GuestModel = require("../models/GuestsModel.js");
+<<<<<<< HEAD
 // const nodemailer = require("nodemailer");
 require("dotenv").config();
 // const image = require("../public/images/images-11.jpeg");
+=======
+const { param } = require("../routers/bookings-router.js");
+>>>>>>> feature/bookingvalid
 
 module.exports = class BookingService {
   async CreateNewBooking(booking) {
