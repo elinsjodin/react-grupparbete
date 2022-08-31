@@ -70,15 +70,15 @@ export const BookingPage = () => {
 
   //FUNCTIONS in order you see them on screen
 
-  //handles calander date change
-  // const handleChosenDate = () => {
-  //   //if date is taken from backend data list, diable the date
-  //   setCalanderDate(calanderDate);
-  //   setFilledForm({
-  //     ...filledForm,
-  //     date: calanderDate.toDateString(),
-  //   });
-  // };
+  // handles calander date change
+  const handleChosenDate = () => {
+    //if date is taken from backend data list, diable the date
+    setCalanderDate(calanderDate);
+    setFilledForm({
+      ...filledForm,
+      date: calanderDate.toDateString(),
+    });
+  };
 
   //handles click for time
   const handleFirstTime = () => {
@@ -193,7 +193,11 @@ export const BookingPage = () => {
         <AddBookingMonthContainer>July 2022</AddBookingMonthContainer>
         <AddBookingCalanderContainer>
           <div>
-            <Calendar onChange={() => setCalanderDate()} value={calanderDate} />
+            <Calendar
+              onChange={handleChosenDate}
+              value={calanderDate}
+              minDate={new Date()}
+            />
           </div>
         </AddBookingCalanderContainer>
         <AddBookingChooseTimeContainer>
