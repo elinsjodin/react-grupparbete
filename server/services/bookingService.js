@@ -1,5 +1,8 @@
 const BookingModel = require("../models/BookingsModel.js");
 const GuestModel = require("../models/GuestsModel.js");
+// const nodemailer = require("nodemailer");
+require("dotenv").config();
+// const image = require("../public/images/images-11.jpeg");
 
 module.exports = class BookingService {
   async CreateNewBooking(booking) {
@@ -10,7 +13,7 @@ module.exports = class BookingService {
       {
         email: booking.bookedBy.email,
       },
-      console.log("Existing email:", booking.bookedBy.email)
+      console.log("Email:", booking.bookedBy.email)
     );
     console.log("Existing Guest", existingGuest);
 

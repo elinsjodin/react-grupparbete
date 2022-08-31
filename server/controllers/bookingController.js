@@ -1,7 +1,8 @@
 const BookingService = require("../services/bookingService.js");
 const bookingValidation = require("../validations/bookingValidation.js");
-
+const EmailService = require("../services/emailService.js");
 const bookingService = new BookingService();
+const emailService = new EmailService();
 
 module.exports = class BookingController {
   async CreateNewBooking(req, res, next) {
@@ -19,19 +20,15 @@ module.exports = class BookingController {
       };
 
       bookingValidation.validateBooking(bookingDto);
-
       console.log("BookingObject", bookingDto);
 
-      const booking = bookingDto;
-
-      console.log("Booking", booking);
-
-      const result = await bookingService.CreateNewBooking(booking);
-
+      const result = await bookingService.CreateNewBooking(bookingDto);
       console.log("Hej från controller");
 
-      res.send(result);
+      await emailService.sendConfirmationEmail(bookingDto);
+      console.log("Email sent");
 
+      res.send(result);
       console.log("Resultat skickat");
     } catch (error) {
       next({ status: error.status, message: error.message });
@@ -81,15 +78,5 @@ module.exports = class BookingController {
       next({ status: error.status, message: error.message });
     }
   }
-
-  async GetGuestByEmail(req, res, next) {
-    try {
-      const id = req.query.id;
-      const email = req.body.email;
-      const result = await bookingService.CompareGuestEmail(id, email);
-      res.send(result);
-    } catch (error) {
-      next({ status: error.status, message: error.message });
-    }
-  }
+  s;
 };
