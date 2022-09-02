@@ -2,7 +2,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { NotFound } from "./components/NotFound";
 import { AdminPage } from "./components/pages/AdminPage";
+import { BookingCanceled } from "./components/pages/BookingCanceled";
 import { BookingPage } from "./components/pages/BookingPage";
+import { CancelBooking } from "./components/pages/CancelBooking";
 import { ConfirmationPage } from "./components/pages/ConfirmationPage";
 import { ContactPage } from "./components/pages/ContactPage";
 import { Layout } from "./components/pages/Layout";
@@ -22,6 +24,11 @@ function App() {
           <Route path="/admin" element={<AdminPage />}></Route>
           <Route path="/admin/:id" element={<SecondAdminPage />}></Route>
           <Route path="/confirm/:id" element={<ConfirmationPage />}></Route>
+          <Route
+            path="/bookings/cancel/:id"
+            element={<CancelBooking />}
+          ></Route>
+          <Route path="/booking-canceled" element={<BookingCanceled />}></Route>
           <Route path="*" element={<NotFound />}></Route>
         </Route>
       </Routes>
