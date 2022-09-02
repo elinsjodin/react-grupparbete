@@ -11,6 +11,8 @@ const bookingController = new BookingController();
 
 router.get("/", bookingController.GetAllBookings);
 
+router.get("/:id", bookingController.GetBookingById);
+
 router.get("/:date", async (req, res) => {
   try {
     // get the date from the request
@@ -44,5 +46,7 @@ router.post(
   bookingController.CreateNewBooking,
   bookingValidation.validateBooking
 );
+
+router.delete("/cancel/:id", bookingController.CancelBooking);
 
 module.exports = router;
