@@ -27,6 +27,8 @@ export const BookingPage = () => {
       });
   }, []);
 
+  //fetch booking by date from backend
+
   //FUNCTIONS in order you see them on screen
 
   return (

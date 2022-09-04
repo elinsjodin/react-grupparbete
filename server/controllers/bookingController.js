@@ -48,6 +48,22 @@ module.exports = class BookingController {
     }
   }
 
+  async GetBookingByDate(req, res, next) {
+    try {
+      const date = req.params.date;
+      const result = await bookingService.GetBookingById(date);
+
+      if (result) {
+        res.status(200).json(result);
+        console.log(result);
+      } else {
+        res.status(404).json({ message: "No bookings found" });
+      }
+    } catch (error) {
+      next({ status: error.status, message: error.message });
+    }
+  }
+
   async GetBookingById(req, res, next) {
     try {
       const id = req.query.id;

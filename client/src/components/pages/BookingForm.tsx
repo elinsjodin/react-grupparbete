@@ -48,6 +48,13 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //HANDLE DATE------------------------------------------
   const handleBookingDate = (date: Date) => {
+    setValue(date);
+    setFilledForm({ ...filledForm, date: date.toDateString() });
+  };
+
+  const handlesetValue = (date: Date) => {
+    handleBookingDate(date);
+
     props.results.forEach((booking) => {
       if (booking.date === date.toDateString()) {
         setDateTaken(true);
@@ -57,12 +64,6 @@ export const BookingForm = (props: IBookingsProps) => {
         console.log("date is not taken");
       }
     });
-  };
-
-  const handlesetValue = (date: Date) => {
-    setValue(date);
-    setFilledForm({ ...filledForm, date: date.toDateString() });
-    handleBookingDate(date);
     console.log(filledForm);
 
     //checks if date is taken
