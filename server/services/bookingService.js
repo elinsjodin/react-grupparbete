@@ -62,6 +62,18 @@ module.exports = class BookingService {
     }
   }
 
+  // async GetBookingsByDate(date) {
+  //   const result = await BookingModel.find({ date: date });
+
+  //   console.log("found date from date", result);
+
+  //   if (!result) {
+  //     throw new Error("Bookings not found");
+  //   } else {
+  //     return result;
+  //   }
+  // }
+
   async GetBookingById(id) {
     const booking = await BookingModel.findById(id);
 

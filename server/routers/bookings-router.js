@@ -51,4 +51,30 @@ router.post(
 
 router.delete("/cancel/:id", bookingController.CancelBooking);
 
+router.get("/:date", async (req, res) => {
+  const date = req.params.date;
+
+  const bookings = await bookingService.GetBookingsByDate(date);
+
+  //if booking matches date then return booking is found
+  if (bookings) {
+    res.status(200).json(bookings);
+  } else {
+    res.status(404).json({ message: "No bookings found" });
+  }
+});
+
+router.post("/:date", async (req, res) => {
+  const date = req.params.date;
+
+  const bookings = await bookingService.GetBookingsByDate(date);
+
+  //if booking matches date then return booking is found
+  if (bookings) {
+    res.status(200).json(bookings);
+  } else {
+    res.status(404).json({ message: "No bookings found" });
+  }
+});
+
 module.exports = router;
