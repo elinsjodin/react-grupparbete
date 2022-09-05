@@ -45,8 +45,6 @@ export const BookingForm = (props: IBookingsProps) => {
   //state for if date is taken
   const [dateTaken, setDateTaken] = useState(false);
 
-  const { matchDate } = useParams<{ matchDate: string }>();
-
   //FUNCTIONS in order you see them on screen
 
   //HANDLE DATE------------------------------------------
@@ -58,16 +56,17 @@ export const BookingForm = (props: IBookingsProps) => {
   const handlesetValue = (date: Date) => {
     handleBookingDate(date);
 
-    props.results.forEach((booking) => {
-      if (booking.date === date.toDateString() && booking.date.length < 15) {
-        setDateTaken(true);
-        console.log("date taken");
-      } else {
-        setDateTaken(false);
-        console.log("date is not taken");
-      }
-    });
-    console.log(filledForm);
+    //if there are more than 30 dates in backend date array with same date as selected, then date is taken
+    if (
+      props.results.filter((booking) => booking.date === date.toDateString())
+        .length > 30
+    ) {
+      console.log("date taken");
+      setDateTaken(true);
+    } else {
+      console.log("date not taken");
+      setDateTaken(false);
+    }
 
     //checks if date is taken
   };
@@ -76,16 +75,23 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles click for time
   const handleFirstTime = () => {
-    setFilledForm({ ...filledForm, time: "18:00" });
-
-    //if date is taken with that time
+    //if 15 booking with same date and time exists, then date is taken
+    let count = 0;
     props.results.forEach((booking) => {
-      if (booking.date === filledForm.date && booking.time === "18:00") {
-        setDateTaken(true);
-        console.log("date taken");
+      if (
+        booking.date === filledForm.date &&
+        booking.time === "15:00 - 18:00"
+      ) {
+        count++;
       }
     });
-
+    if (count < 15) {
+      console.log("time is not taken");
+      setFilledForm({ ...filledForm, time: "18:00" });
+    } else {
+      console.log("date is taken");
+      setDateTaken(true);
+    }
     console.log(filledForm);
   };
 
@@ -269,3 +275,14 @@ export const BookingForm = (props: IBookingsProps) => {
     </div>
   );
 };
+
+// props.results.forEach((booking) => {
+//   if (booking.date === date.toDateString() && booking.date.length < 30) {
+//     console.log("date taken");
+//     setDateTaken(true);
+//   } else {
+//     console.log("date is not taken");
+//     setDateTaken(false);
+//   }
+// });
+// console.log(filledForm);
