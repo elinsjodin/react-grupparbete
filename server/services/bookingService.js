@@ -72,6 +72,17 @@ module.exports = class BookingService {
     }
   }
 
+  async GetBookingByDate(date) {
+    const dateInBooking = await BookingModel.find(date);
+    console.log("Date", dateInBooking);
+
+    if (!dateInBooking) {
+      throw new Error("Date not found");
+    } else {
+      return dateInBooking;
+    }
+  }
+
   async EditBooking(id, booking) {
     const result = await BookingModel.findById(id).updateOne(booking);
 
