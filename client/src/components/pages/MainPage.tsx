@@ -4,15 +4,15 @@ export const MainPage = () => {
       <nav className="Nav-Wrapper">
         <div className="Nav-logo-title"></div>
         <div className="Nav-links-menu">
-          <a href="#">Home</a>
+          {/* <a href="#">Home</a>
           <a href="#">About</a>
           <a href="#">Contact</a>
-          <a href="#">Login</a>
+          <a href="#">Login</a> */}
         </div>
       </nav>
-      <section className="hero-wrapper">
+      <section className="MainHeroWrapper">
         <div className="hero-content-wrapper">
-          <div className="hero-content-img"></div>
+          <div className="MainHeroImageContainer"></div>
           <div className="hero-content-text"></div>
         </div>
         <h1 className="hero-title"></h1>
@@ -20,3 +20,5 @@ export const MainPage = () => {
     </div>
   );
 };
+
+
