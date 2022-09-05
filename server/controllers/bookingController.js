@@ -1,9 +1,7 @@
 const bookingValidation = require("../validations/bookingValidation.js");
 const BookingService = require("../services/bookingService.js");
-const GuestService = require("../services/guestService.js");
 const EmailService = require("../services/emailService.js");
 const bookingService = new BookingService();
-const guestService = new GuestService();
 const emailService = new EmailService();
 
 module.exports = class BookingController {
@@ -48,10 +46,10 @@ module.exports = class BookingController {
     }
   }
 
-  async GetGuestById(req, res, next) {
+  async GetBookingByDate(req, res, next) {
     try {
-      const id = req.params.id;
-      const result = await emailService.GetGuestById(id);
+      const date = req.body.date;
+      const result = await bookingService.GetBookingByDate(date);
       res.send(result);
     } catch (error) {
       next({ status: error.status, message: error.message });
@@ -78,27 +76,6 @@ module.exports = class BookingController {
       });
     } catch (error) {
       console.log("Error msg: ", error);
-      next({ status: error.status, message: error.message });
-    }
-  }
-
-  async EditGuest(req, res, next) {
-    try {
-      const id = req.params.id;
-      const guest = req.body;
-
-      bookingValidation.editGuestValidation(guest);
-
-      guestService.EditGuest(id, guest).then((guestDataInBooking) => {
-        if (!guestDataInBooking) {
-          res
-            .status(400)
-            .send({ message: `Unable to update guest with id: ${id}` });
-        } else {
-          res.send(guestDataInBooking);
-        }
-      });
-    } catch (error) {
       next({ status: error.status, message: error.message });
     }
   }

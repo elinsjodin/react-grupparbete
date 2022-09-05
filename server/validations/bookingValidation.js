@@ -26,13 +26,11 @@ const editBookingValidation = (updatedBookingToValidate) => {
 
 const editGuestValidation = (updatedGuestToValidate) => {
   const updatedGuest = Joi.object({
-    // bookedBy: Joi.object({
     name: Joi.string().required(),
     email: Joi.string().required(),
     phone: Joi.string().required(),
     bookingMessage: Joi.string(),
   });
-  // });
   return updatedGuest.validate(updatedGuestToValidate);
 };
 
