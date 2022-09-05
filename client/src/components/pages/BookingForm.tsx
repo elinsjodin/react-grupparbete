@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import Calendar from "react-calendar";
+import { useParams } from "react-router-dom";
 import { IBooking } from "../../models/IBooking";
 import { FormButton } from "../styledComponents/Buttons";
 import {
@@ -44,6 +45,8 @@ export const BookingForm = (props: IBookingsProps) => {
   //state for if date is taken
   const [dateTaken, setDateTaken] = useState(false);
 
+  const { matchDate } = useParams<{ matchDate: string }>();
+
   //FUNCTIONS in order you see them on screen
 
   //HANDLE DATE------------------------------------------
@@ -56,7 +59,7 @@ export const BookingForm = (props: IBookingsProps) => {
     handleBookingDate(date);
 
     props.results.forEach((booking) => {
-      if (booking.date === date.toDateString()) {
+      if (booking.date === date.toDateString() && booking.date.length < 15) {
         setDateTaken(true);
         console.log("date taken");
       } else {
@@ -70,29 +73,34 @@ export const BookingForm = (props: IBookingsProps) => {
   };
 
   //HANDLE TIME ---------------------------------------------
-  const handleFirstTimeFunction = () => {
-    props.results.forEach((booking) => {
-      if (booking.date !== filledForm.date) {
-        console.log("date not taken");
-      } else {
-        alert("date is taken");
-      }
-    });
-  };
 
   //handles click for time
   const handleFirstTime = () => {
-    //time matching with date is already in database then console log time taken
     setFilledForm({ ...filledForm, time: "18:00" });
-    handleFirstTimeFunction();
+
+    //if date is taken with that time
+    props.results.forEach((booking) => {
+      if (booking.date === filledForm.date && booking.time === "18:00") {
+        setDateTaken(true);
+        console.log("date taken");
+      }
+    });
+
     console.log(filledForm);
   };
 
   //handles click for time
   const handleSecondTime = () => {
-    //time matching with date is already in database then console log time taken
     setFilledForm({ ...filledForm, time: "21:00" });
-    handleFirstTimeFunction();
+
+    //if date is taken with that time
+    props.results.forEach((booking) => {
+      if (booking.date === filledForm.date && booking.time === "21:00") {
+        setDateTaken(true);
+        console.log("date taken");
+      }
+    });
+
     console.log(filledForm);
   };
 
