@@ -29,6 +29,13 @@ export const MainMenuWrapper = styled.div`
   display: flex;
   width: 100%;
   background-color: #0f0f0f;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    line-height: 1.3;
+    flex-shrink: 3;
+    
+  }
 `;
 
 export const MainBookingWrapper = styled.div`
@@ -41,6 +48,12 @@ export const MainContactWrapper = styled.div`
   display: flex;
   width: 100%;
   background-color: #0f0f0f;
-`;
 
+  @media (max-width: 768px) {
+    flex-direction: column;
+    line-height: 1.3;
+    flex-shrink: 3;
+    
+  }
+`;
 
