@@ -17,7 +17,6 @@ export const Navbar = () => {
           <Link className="contact-link" to="/contact">
             Contact
           </Link>
-          <button>0</button>
         </NavLinksContainer>
       </NavWrapper>
     </div>
