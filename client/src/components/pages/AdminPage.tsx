@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { AdminForm } from "../pages/AdminForm";
 import { IBooking } from "../../models/IBooking";
+import { IGuest } from "../../models/IBooking";
 
 export const AdminPage = () => {
   //state for all bookings in the database

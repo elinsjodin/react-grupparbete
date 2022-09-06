@@ -8,6 +8,7 @@ const guestController = new GuestController();
 
 // bookings will be an array of objects with the properties defined in the BookingsModel.js file
 router.get("/", bookingController.GetAllBookings);
+
 // Hämta specifik bokning
 router.get("/:id", bookingController.GetBookingById);
 // Redigera bokning

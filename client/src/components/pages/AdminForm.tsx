@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import Calendar from "react-calendar";
-import { IBooking } from "../../models/IBooking";
+import { IBooking, IGuest } from "../../models/IBooking";
 import { FormButton } from "../styledComponents/Buttons";
 import {
   AddBookingCalanderContainer,

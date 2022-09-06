@@ -60,11 +60,13 @@ export const BookingHeroContentContainer = styled.div`
   width: 50%;
   align-items: center;
   text-align: right;
-  p {
-    position: relative;
-    top: 50px;
-    color: #ffffff;
-    padding-right: 15px;
+  div {
+    p {
+      position: relative;
+      top: 50px;
+      color: #ffffff;
+      padding-right: 15px;
+    }
   }
 `;
 

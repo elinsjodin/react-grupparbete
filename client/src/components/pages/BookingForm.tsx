@@ -1,8 +1,9 @@
 //IMPORT MISC
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { IBooking } from "../../models/IBooking";
+import { GdprModal } from "../GdprModal";
 
 //IMPORT STYLING
 import { FormButton } from "../styledComponents/Buttons";
@@ -23,6 +24,7 @@ import {
   AddBookingWrapper,
   BookingHeroWrapper,
 } from "../styledComponents/Wrappers";
+import { Loader } from "../Loader";
 
 //interface for bookings
 interface IBookingsProps {
@@ -43,7 +45,15 @@ export const BookingForm = (props: IBookingsProps) => {
 
   const [dateTaken, setDateTaken] = useState(false);
 
-  //handles the date state change
+  const [showModal, setShowModal] = useState(false);
+
+  const [modalButton, setModalButton] = useState(true);
+
+  const [gdprChecked, setGdprChecked] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
+  //handles the date state changex
   const handleBookingDate = (date: Date) => {
     setValue(date);
     setFilledForm({ ...filledForm, date: date.toDateString() });
@@ -193,6 +203,10 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the submit button and sends the data to the database
   const handleSubmit = () => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
     axios
       .post("http://localhost:3000/bookings", filledForm)
       .then((response) => {
@@ -250,6 +264,7 @@ export const BookingForm = (props: IBookingsProps) => {
               <button onClick={handleAmountIncrease}>+</button>
 
               <p>{count}</p>
+
               <button onClick={handleAmountDecrease}>-</button>
             </section>
           </div>
@@ -257,7 +272,6 @@ export const BookingForm = (props: IBookingsProps) => {
         <AddBookingFormContainer>
           <AddBookingFormInputFieldsContainer>
             <p>Full Name</p>
-
             <FormInput
               placeholder="Lars larson"
               onChange={handleGuestName}
@@ -273,10 +287,39 @@ export const BookingForm = (props: IBookingsProps) => {
             <FormInput placeholder="No Caviar" onChange={handleGuestMessage} />
           </AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
-            <FormButton onClick={handleSubmit}>Book</FormButton>
+            {gdprChecked ? (
+              <FormButton
+                onClick={() => {
+                  handleSubmit();
+                  setLoading(true);
+                }}
+              >
+                Book
+              </FormButton>
+            ) : (
+              <div>
+                {modalButton ? (
+                  <FormButton
+                    onClick={() => {
+                      setShowModal(true);
+                      setModalButton(false);
+                    }}
+                  >
+                    GDPR Info
+                  </FormButton>
+                ) : (
+                  <GdprModal
+                    showModal={showModal}
+                    setShowModal={setShowModal}
+                    setGdprChecked={setGdprChecked}
+                  />
+                )}
+              </div>
+            )}
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
+      {loading ? <Loader loading={loading} /> : null}
     </div>
   );
 };
