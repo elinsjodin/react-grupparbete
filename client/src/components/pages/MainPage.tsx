@@ -1,5 +1,4 @@
 export const MainPage = () => {
-  // return <div></div>;
   return (
     <div className="MainPage-Wrapper">
       <nav className="Nav-Wrapper">

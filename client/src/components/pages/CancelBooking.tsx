@@ -19,7 +19,12 @@ export const CancelBooking = () => {
     <>
       <p>
         <Link to={"/booking-canceled"}>
-          <button onClick={handleCancelBooking}>Confirm cancel booking.</button>
+          <button
+            className="confirm-cancel-booking-btn"
+            onClick={handleCancelBooking}
+          >
+            Confirm cancel booking.
+          </button>
         </Link>
       </p>
     </>
