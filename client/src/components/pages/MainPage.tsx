@@ -1,7 +1,4 @@
 export const MainPage = () => {
-<<<<<<< HEAD
-  return <div></div>;
-=======
   return (
     <div className="MainPage-Wrapper">
       <nav className="Nav-Wrapper">
@@ -22,7 +19,4 @@ export const MainPage = () => {
       </section>
     </div>
   );
->>>>>>> feature/landingPage-styling
 };
-
-

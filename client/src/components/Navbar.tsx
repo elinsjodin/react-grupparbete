@@ -7,10 +7,16 @@ export const Navbar = () => {
     <div>
       <NavWrapper>
         <NavLogo>SORKINS</NavLogo>
-        <NavLinksContainer>
-          <Link to="/">Home</Link>
-          <Link to="/bookings">Booking</Link>
-          <Link to="/contact">Contact</Link>
+        <NavLinksContainer id="nav-links-container">
+          <Link className="home-link" to="/">
+            Home
+          </Link>
+          <Link className="bookings-link" to="/bookings">
+            Booking
+          </Link>
+          <Link className="contact-link" to="/contact">
+            Contact
+          </Link>
           <button>0</button>
         </NavLinksContainer>
       </NavWrapper>
