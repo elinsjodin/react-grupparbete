@@ -1,10 +1,7 @@
-//IMPORT MISC
 import axios from "axios";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import { IBooking } from "../../models/IBooking";
-
-//IMPORT STYLING
 import { FormButton } from "../styledComponents/Buttons";
 import {
   AddBookingCalanderContainer,
@@ -29,7 +26,7 @@ interface IBookingsProps {
   results: IBooking[];
 }
 
-export const BookingForm = (props: IBookingsProps) => {
+export const AdminForm = (props: IBookingsProps) => {
   const [count, setCount] = useState(1);
 
   const [value, setValue] = useState(new Date());
@@ -101,10 +98,9 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the number of guests state change for increment
   const handleAmountIncrease = () => {
-    if (count === 6) {
-      alert(
-        "You can't book for more than 6 people, if you need more please contact us"
-      );
+    if (count > 5) {
+      setCount(count + 1);
+      console.log("special booking ");
     } else {
       setCount(count + 1);
       setFilledForm({
@@ -207,13 +203,18 @@ export const BookingForm = (props: IBookingsProps) => {
     <div>
       <BookingHeroWrapper>
         <BookingHeroTitleContainer>
-          <h1>Booking</h1>
+          <h1>Admin</h1>
         </BookingHeroTitleContainer>
         <BookingHeroContentContainer>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            quidem, quisquam quisquam.
-          </p>
+          {props.results.map((booking) => {
+            return (
+              <div>
+                <p>{booking.date}</p>
+                <p>{booking.time}</p>
+                <p>{booking.numberOfGuests}</p>
+              </div>
+            );
+          })}
         </BookingHeroContentContainer>
       </BookingHeroWrapper>
       <AddBookingWrapper>
@@ -248,7 +249,6 @@ export const BookingForm = (props: IBookingsProps) => {
           <div>
             <section>
               <button onClick={handleAmountIncrease}>+</button>
-
               <p>{count}</p>
               <button onClick={handleAmountDecrease}>-</button>
             </section>

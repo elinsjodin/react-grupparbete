@@ -1,22 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-
 import { IBooking } from "../../models/IBooking";
 import { BookingForm } from "./BookingForm";
 
-//INTERFACES
-
-//STATES
-
-// props: { match: { params: { date: string; time: string }
-
 export const BookingPage = () => {
-  // state for backend data
+  //state for all bookings in the database
   const [backendData, setBackendData] = useState<IBooking[]>([]);
 
-  //FETCHES
-  // fetches all bookings from backend
+  //fetches all bookings from the database
   useEffect(() => {
     axios
       .get("http://localhost:3000/bookings")
@@ -28,25 +19,9 @@ export const BookingPage = () => {
       });
   }, []);
 
-  // const { id } = useParams<{ id: string }>();
-
-  // const handleCancelBooking = () => {
-  //   axios
-  //     .delete("http://localhost:3000/bookings/cancel/" + id)
-  //     .then((res) => {
-  //       console.log(res);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  //fetch booking by date from backend
-
-  //FUNCTIONS in order you see them on screen
-
   return (
     <div>
+      {/* props backendData down to BookingForm */}
       <BookingForm results={backendData} />
     </div>
   );
