@@ -319,6 +319,7 @@ export const BookingForm = (props: IBookingsProps) => {
           <AddBookingFormButtonFieldsContainer>
             {gdprChecked ? (
               <FormButton
+                className="booking-btn"
                 onClick={() => {
                   handleSubmit();
                   setLoading(true);

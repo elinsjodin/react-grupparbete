@@ -206,9 +206,9 @@ export const AdminForm = (props: IBookingsProps) => {
           <h1>Admin</h1>
         </BookingHeroTitleContainer>
         <BookingHeroContentContainer>
-          {props.results.map((booking) => {
+          {props.results.map((booking, i) => {
             return (
-              <div>
+              <div key={i}>
                 <p>{booking.date}</p>
                 <p>{booking.time}</p>
                 <p>{booking.numberOfGuests}</p>
