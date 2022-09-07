@@ -104,7 +104,6 @@ module.exports = class EmailService {
 
   async handleCancelBookingFromEmail(bookingId) {
     const result = await bookingModel.findById(bookingId).deleteOne();
-    console.log(result);
 
     if (!result) {
       throw new Error("Failed to cancel booking");

@@ -1,6 +1,6 @@
+require("dotenv").config();
 const BookingModel = require("../models/BookingsModel.js");
 const GuestModel = require("../models/GuestsModel.js");
-require("dotenv").config();
 
 module.exports = class BookingService {
   async CreateNewBooking(booking) {

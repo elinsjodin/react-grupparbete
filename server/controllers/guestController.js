@@ -33,4 +33,16 @@ module.exports = class GuestController {
       next({ status: error.status, message: error.message });
     }
   }
+
+  async DeleteGuest(req, res, next) {
+    try {
+      console.log("Deleting guest");
+      const id = req.params.id;
+
+      const result = await guestService.DeleteGuest(id);
+      res.send(result);
+    } catch (error) {
+      next({ status: error.status, message: error.message });
+    }
+  }
 };

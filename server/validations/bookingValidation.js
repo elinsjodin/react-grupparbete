@@ -17,18 +17,18 @@ const validateBooking = (bookingToValidate) => {
 
 const editBookingValidation = (updatedBookingToValidate) => {
   const updatedBooking = Joi.object({
-    date: Joi.string().required(),
-    time: Joi.string().required(),
-    numberOfGuests: Joi.number().required(),
+    date: Joi.string(),
+    time: Joi.string(),
+    numberOfGuests: Joi.number(),
   });
   return updatedBooking.validate(updatedBookingToValidate);
 };
 
 const editGuestValidation = (updatedGuestToValidate) => {
   const updatedGuest = Joi.object({
-    name: Joi.string().required(),
-    email: Joi.string().required(),
-    phone: Joi.string().required(),
+    name: Joi.string(),
+    email: Joi.string(),
+    phone: Joi.string(),
     bookingMessage: Joi.string(),
   });
   return updatedGuest.validate(updatedGuestToValidate);
