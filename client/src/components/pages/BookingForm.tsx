@@ -138,7 +138,7 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the name state change and sets the bookedBy state
   const handleGuestName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 20 && e.target.value.length < 3) {
+    if (e.target.value.length > 20) {
       alert("Name can't be longer than 20 characters");
     } else {
       setFilledForm({
@@ -198,14 +198,25 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the submit button and sends the data to the database
   const handleSubmit = () => {
-    axios
-      .post("http://localhost:3000/bookings", filledForm)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    if (
+      filledForm.bookedBy.name === "" ||
+      filledForm.bookedBy.email === "" ||
+      filledForm.bookedBy.phone === "" ||
+      filledForm.date === "" ||
+      filledForm.time === "" ||
+      filledForm.numberOfGuests === 0
+    ) {
+      alert("Please fill in all the fields");
+    } else {
+      axios
+        .post("http://localhost:3000/bookings", filledForm)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   return (
