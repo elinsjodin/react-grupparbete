@@ -41,6 +41,7 @@ export const GdprModal = (props: IProps) => {
             Only Cookies
           </ModalButton>
           <ModalButton
+            className="gdpr-accept-btn"
             onClick={() => {
               props.setShowModal(false);
               props.setGdprChecked(true);

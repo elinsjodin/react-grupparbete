@@ -307,10 +307,12 @@ export const BookingForm = (props: IBookingsProps) => {
           <AddBookingFormButtonFieldsContainer>
             {gdprChecked ? (
               <Link to={"/confirm"}>
+                {" "}
                 <FormButton
                   className="booking-btn"
                   onClick={() => {
                     handleSubmit();
+                    setLoading(true);
                   }}
                 >
                   Book
@@ -320,6 +322,7 @@ export const BookingForm = (props: IBookingsProps) => {
               <div>
                 {modalButton ? (
                   <FormButton
+                    className="gdpr-btn"
                     onClick={() => {
                       setShowModal(true);
                       setModalButton(false);
