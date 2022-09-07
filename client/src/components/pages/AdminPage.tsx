@@ -7,6 +7,7 @@ import { IGuest } from "../../models/IBooking";
 export const AdminPage = () => {
   //state for all bookings in the database
   const [backendData, setBackendData] = useState<IBooking[]>([]);
+  const [backendGuestData, setBackendGuestData] = useState<IGuest[]>([]);
 
   //fetches all bookings from the database
   useEffect(() => {
@@ -20,9 +21,21 @@ export const AdminPage = () => {
       });
   }, []);
 
+  //fetches all guests from the database
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/guests")
+      .then((response) => {
+        setBackendGuestData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <>
-      <AdminForm results={backendData} />
+      <AdminForm results={backendData} guestResults={backendGuestData} />
     </>
   );
 };

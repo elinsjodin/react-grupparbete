@@ -1,4 +1,5 @@
 export interface IGuest {
+  _id: string;
   name: string;
   email: string;
   phone: string;
@@ -17,4 +18,11 @@ export interface IEditBooking {
   date: string;
   time: string;
   numberOfGuests: number;
+}
+
+export interface IEditGuest {
+  name: string;
+  email: string;
+  phone: string;
+  message?: string;
 }
