@@ -24,10 +24,11 @@ router.put(
 );
 // Ta bort bokning
 router.delete("/booking/delete/:id", bookingController.DeleteBooking);
+// Redigera gäst
+router.put("/edit/guest/:id", guestController.EditGuest);
 // Hämta specifik gäst
 router.get("/edit/guest/:id", guestController.GetGuestById);
-// Redigera gäst
-router.put("/edit/guest/:id", guestController.GetGuestById);
+
 // Ta bort gästinfo
 router.delete("/guest/delete/:id", guestController.DeleteGuest);
 

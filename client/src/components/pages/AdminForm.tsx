@@ -211,8 +211,9 @@ export const AdminForm = (props: IBookingsProps) => {
               <p>{booking.date}</p>
             </Link>
           ))}
+
           {props.guestResults.map((guest, i) => (
-            <Link to={`/admin/edit/${guest._id}`} key={i}>
+            <Link to={`/admin/guest/edit/${guest._id}`} key={i}>
               <p>{guest.name}</p>
             </Link>
           ))}

@@ -172,6 +172,8 @@ export const SecondAdminForm = (props: IBookingsProps) => {
             <FormButton onClick={handleSubmit}>Book</FormButton>
 
             <FormButton onClick={handleDelete}>Delete</FormButton>
+
+            <Link to="/admin"> back</Link>
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>

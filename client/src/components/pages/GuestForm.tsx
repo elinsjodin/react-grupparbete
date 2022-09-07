@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import { IEditGuest } from "../../models/IBooking";
 import { FormButton } from "../styledComponents/Buttons";
 import {
@@ -14,6 +15,7 @@ interface IBookingsProps {
 }
 
 export const GuestForm = (props: IBookingsProps) => {
+  const { id } = useParams<{ id: string }>();
   const [filledForm, setFilledForm] = useState<IEditGuest>({
     name: "",
     email: "",
@@ -72,14 +74,30 @@ export const GuestForm = (props: IBookingsProps) => {
   //handles the submit button and sends the data to the database
   const handleSubmit = () => {
     axios
-      .put("http://localhost:3000/bookings", filledForm)
+      .put("http://localhost:3000/admin/edit/guest/" + id, filledForm)
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
+    console.log(filledForm);
+    console.log(props.results);
   };
+
+  const handleDelete = () => {
+    //delete the booking with same id as the url params
+    axios
+      .delete("http://localhost:3000/admin/guest/delete/" + id)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    console.log("delete");
+  };
+
   return (
     <div>
       <AddBookingFormContainer>
@@ -99,6 +117,8 @@ export const GuestForm = (props: IBookingsProps) => {
         </AddBookingFormInputFieldsContainer>
         <AddBookingFormButtonFieldsContainer>
           <FormButton onClick={handleSubmit}>Book</FormButton>
+          <FormButton onClick={handleDelete}>delete</FormButton>
+          <Link to="/admin"> back</Link>
         </AddBookingFormButtonFieldsContainer>
       </AddBookingFormContainer>
     </div>

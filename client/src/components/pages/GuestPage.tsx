@@ -15,7 +15,7 @@ export const GuestPage = () => {
   //get all booking with id from url params
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/guest/edit/${id}`)
+      .get(`http://localhost:3000/admin/edit/guest/${id}`)
       .then((response) => {
         setBackendData(response.data);
       })

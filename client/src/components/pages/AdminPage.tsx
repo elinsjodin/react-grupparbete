@@ -24,7 +24,7 @@ export const AdminPage = () => {
   //fetches all guests from the database
   useEffect(() => {
     axios
-      .get("http://localhost:3000/guests")
+      .get("http://localhost:3000/admin/guests")
       .then((response) => {
         setBackendGuestData(response.data);
       })

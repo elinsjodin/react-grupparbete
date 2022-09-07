@@ -26,7 +26,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />}></Route>
           <Route path="/admin" element={<AdminPage />}></Route>
           <Route path="/admin/edit/:id" element={<SecondAdminPage />}></Route>
-          <Route path="/guest/edit/:id" element={<GuestPage />}></Route>
+          <Route path="/admin/guest/edit/:id" element={<GuestPage />}></Route>
           <Route path="/confirm" element={<ConfirmationPage />}></Route>
           <Route
             path="/bookings/cancel/:id"
