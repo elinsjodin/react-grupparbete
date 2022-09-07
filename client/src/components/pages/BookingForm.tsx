@@ -312,7 +312,6 @@ export const BookingForm = (props: IBookingsProps) => {
                   className="booking-btn"
                   onClick={() => {
                     handleSubmit();
-                    setLoading(true);
                   }}
                 >
                   Book
