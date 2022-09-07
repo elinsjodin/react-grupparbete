@@ -11,3 +11,9 @@ export interface IBooking {
   numberOfGuests: number;
   bookedBy: IGuest;
 }
+
+export interface IEditBooking {
+  date: string;
+  time: string;
+  numberOfGuests: number;
+}

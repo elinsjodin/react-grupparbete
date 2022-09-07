@@ -2,7 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { IBooking } from "../../models/IBooking";
-import { AdminForm } from "./AdminForm";
+
+import { SecondAdminForm } from "./SecondAdminForm";
 
 export const SecondAdminPage = () => {
   //state for all bookings in the database
@@ -15,7 +16,7 @@ export const SecondAdminPage = () => {
   //get all booking with id from url params
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/admin/${id}`)
+      .get(`http://localhost:3000/admin/edit/${id}`)
       .then((response) => {
         setBackendData(response.data);
       })
@@ -24,17 +25,5 @@ export const SecondAdminPage = () => {
       });
   }, []);
 
-  //fetches all bookings from the database
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:3000/bookings")
-  //     .then((response) => {
-  //       setBackendData(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
-
-  return <AdminForm results={backendData} />;
+  return <SecondAdminForm results={backendData} />;
 };
