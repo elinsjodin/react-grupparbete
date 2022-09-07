@@ -14,13 +14,13 @@ router.get(
 );
 // Hämta specifik bokning
 router.get(
-  "/:id",
+  "/edit/:id",
   bookingController.GetBookingById,
   guestController.GetGuestById
 );
 // Redigera bokning och gästinfo
 router.put(
-  "/:id",
+  "/edit/:id",
   bookingController.EditBooking,
   guestController.EditGuest,
   bookingValidation.editBookingValidation
