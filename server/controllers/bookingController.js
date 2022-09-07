@@ -1,7 +1,9 @@
 const bookingValidation = require("../validations/bookingValidation.js");
 const BookingService = require("../services/bookingService.js");
 const EmailService = require("../services/emailService.js");
+const GuestService = require("../services/guestService.js");
 const bookingService = new BookingService();
+const guestService = new GuestService();
 const emailService = new EmailService();
 
 module.exports = class BookingController {
@@ -26,29 +28,12 @@ module.exports = class BookingController {
 
   async GetAllBookings(req, res, next) {
     try {
-      //recive a post from /bookings
       const results = await bookingService.GetAllBookings();
-      //send a response to the client
+
       res.send(results);
     } catch (error) {
       next({ status: error.status, message: error.message });
       console.log(error);
-    }
-  }
-
-  async GetBookingByDate(req, res, next) {
-    try {
-      const date = req.params.date;
-      const result = await bookingService.GetBookingById(date);
-
-      if (result) {
-        res.status(200).json(result);
-        console.log(result);
-      } else {
-        res.status(404).json({ message: "No bookings found" });
-      }
-    } catch (error) {
-      next({ status: error.status, message: error.message });
     }
   }
 
@@ -61,6 +46,22 @@ module.exports = class BookingController {
       next({ status: error.status, message: error.message });
     }
   }
+
+  // async GetBookingByDate(req, res, next) {
+  //   try {
+  //     const date = req.params.date;
+  //     const result = await bookingService.GetBookingById(date);
+
+  //     if (result) {
+  //       res.status(200).json(result);
+  //       console.log(result);
+  //     } else {
+  //       res.status(404).json({ message: "No bookings found" });
+  //     }
+  //   } catch (error) {
+  //     next({ status: error.status, message: error.message });
+  //   }
+  // }
 
   async GetBookingByDate(req, res, next) {
     try {

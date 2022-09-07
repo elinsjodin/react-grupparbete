@@ -14,6 +14,7 @@ module.exports = class GuestService {
 
   // async GetAllGuests() {
   //   const result = await guestModel.find({});
+
   //   if (!result) {
   //     throw new Error("Guests not found");
   //   } else {
@@ -26,6 +27,16 @@ module.exports = class GuestService {
 
     if (!result) {
       throw new Error("Failed to edit guest");
+    } else {
+      return result;
+    }
+  }
+
+  async DeleteGuest(id) {
+    const result = await guestModel.findById(id).deleteOne();
+
+    if (!result) {
+      throw new Error("Failed to delete guest");
     } else {
       return result;
     }
