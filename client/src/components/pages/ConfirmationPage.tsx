@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Loader } from "../Loader";
 
 interface IBackendData {
   bookings: string[];
@@ -8,6 +9,8 @@ export const ConfirmationPage = () => {
   const [backendData, setBackendData] = useState<IBackendData>({
     bookings: [],
   });
+
+  const [loading, setLoading] = useState(true);
 
   //Behöver hämta in specifik bokning med id
   // const { id } = useParams<{ id: string }>();
@@ -20,6 +23,12 @@ export const ConfirmationPage = () => {
       });
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, [loading]);
+
   return (
     <>
       {typeof backendData.bookings === "undefined" ? (
@@ -27,7 +36,8 @@ export const ConfirmationPage = () => {
       ) : (
         backendData.bookings.map((booking, i) => <p key={i}>{booking}</p>)
       )}
-      <div>Hello from ConfirmationPage</div>;
+      <div>Hello from ConfirmationPage</div>
+      {loading ? <Loader loading={loading} /> : null}
     </>
   );
 };

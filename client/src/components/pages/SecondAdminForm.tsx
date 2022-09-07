@@ -1,11 +1,7 @@
-//IMPORT MISC
 import axios from "axios";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import { IBooking } from "../../models/IBooking";
-import { GdprModal } from "../GdprModal";
-
-//IMPORT STYLING
 import { FormButton } from "../styledComponents/Buttons";
 import {
   AddBookingCalanderContainer,
@@ -24,14 +20,12 @@ import {
   AddBookingWrapper,
   BookingHeroWrapper,
 } from "../styledComponents/Wrappers";
-import { Link } from "react-router-dom";
 
-//interface for bookings
 interface IBookingsProps {
   results: IBooking[];
 }
 
-export const BookingForm = (props: IBookingsProps) => {
+export const AdminForm = (props: IBookingsProps) => {
   const [count, setCount] = useState(1);
 
   const [value, setValue] = useState(new Date());
@@ -45,13 +39,7 @@ export const BookingForm = (props: IBookingsProps) => {
 
   const [dateTaken, setDateTaken] = useState(false);
 
-  const [showModal, setShowModal] = useState(false);
-
-  const [modalButton, setModalButton] = useState(true);
-
-  const [gdprChecked, setGdprChecked] = useState(false);
-
-  //handles the date state changex
+  //handles the date state change
   const handleBookingDate = (date: Date) => {
     setValue(date);
     setFilledForm({ ...filledForm, date: date.toDateString() });
@@ -109,10 +97,9 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the number of guests state change for increment
   const handleAmountIncrease = () => {
-    if (count === 6) {
-      alert(
-        "You can't book for more than 6 people, if you need more please contact us"
-      );
+    if (count > 5) {
+      setCount(count + 1);
+      console.log("special booking ");
     } else {
       setCount(count + 1);
       setFilledForm({
@@ -206,139 +193,96 @@ export const BookingForm = (props: IBookingsProps) => {
         console.log(error);
       });
   };
-
   return (
-    <div>
-      <BookingHeroWrapper>
-        <BookingHeroTitleContainer>
-          <h1>Booking</h1>
-        </BookingHeroTitleContainer>
-        <BookingHeroContentContainer>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            quidem, quisquam quisquam.
-          </p>
-        </BookingHeroContentContainer>
-      </BookingHeroWrapper>
-      <AddBookingWrapper>
-        <AddBookingMonthContainer>July 2022</AddBookingMonthContainer>
-        <AddBookingCalanderContainer>
-          <div>
-            <Calendar
-              minDate={new Date()}
-              onChange={handlesetValue}
-              value={value}
-            />
-          </div>
-        </AddBookingCalanderContainer>
-        <AddBookingChooseTimeContainer>
-          <AddBookingChooseTimeHolder>
-            <h1>Choose a Time</h1>
+    <>
+      <div>
+        <BookingHeroWrapper>
+          <BookingHeroTitleContainer>
+            <h1>id Admin</h1>
+          </BookingHeroTitleContainer>
+          <BookingHeroContentContainer>ID Booking</BookingHeroContentContainer>
+        </BookingHeroWrapper>
+        <AddBookingWrapper>
+          <AddBookingMonthContainer>July 2022</AddBookingMonthContainer>
+          <AddBookingCalanderContainer>
             <div>
-              <section>
-                {dateTaken ? null : (
-                  <button
-                    className="first-seating-btn"
-                    onClick={handleFirstTime}
-                  >
+              <Calendar
+                minDate={new Date()}
+                onChange={handlesetValue}
+                value={value}
+              />
+            </div>
+          </AddBookingCalanderContainer>
+          <AddBookingChooseTimeContainer>
+            <AddBookingChooseTimeHolder>
+              <h1>Choose a Time</h1>
+              <div>
+                <section>
+                  <button onClick={handleFirstTime} value={filledForm.time}>
                     18:00
                   </button>
-                )}
-                {dateTaken ? null : (
-                  <button
-                    className="second-seating-btn"
-                    onClick={handleSecondTime}
-                  >
+
+                  <button onClick={handleSecondTime} value={filledForm.time}>
                     21:00
                   </button>
-                )}
+                </section>
+              </div>
+            </AddBookingChooseTimeHolder>
+          </AddBookingChooseTimeContainer>
+          <AddBookingChooseAmountContainer>
+            <h1>How many?</h1>
+            <div>
+              <section>
+                <button
+                  onClick={handleAmountIncrease}
+                  value={filledForm.numberOfGuests}
+                >
+                  +
+                </button>
+                <p>{count}</p>
+                <button
+                  onClick={handleAmountDecrease}
+                  value={filledForm.numberOfGuests}
+                >
+                  -
+                </button>
               </section>
             </div>
-          </AddBookingChooseTimeHolder>
-        </AddBookingChooseTimeContainer>
-        <AddBookingChooseAmountContainer>
-          <h1>How many?</h1>
-          <div>
-            <section>
-              <button
-                className="inc-guest-amount"
-                onClick={handleAmountIncrease}
-              >
-                +
-              </button>
+          </AddBookingChooseAmountContainer>
+          <AddBookingFormContainer>
+            <AddBookingFormInputFieldsContainer>
+              <p>Full Name</p>
 
-              <p>{count}</p>
-              <button
-                className="dec-guest-amount"
-                onClick={handleAmountDecrease}
-              >
-                -
-              </button>
-            </section>
-          </div>
-        </AddBookingChooseAmountContainer>
-        <AddBookingFormContainer>
-          <AddBookingFormInputFieldsContainer>
-            <p>Full Name</p>
-            <FormInput
-              className="full-name-field"
-              placeholder="Lars larson"
-              onChange={handleGuestName}
-            ></FormInput>
-            <p>Email</p>
-            <FormInput
-              className="email-field"
-              placeholder="Lars@larson.se"
-              onChange={handleGuestEmail}
-            />
-            <p>Phone</p>
-            <FormInput
-              className="phone-field"
-              placeholder="0701234567"
-              onChange={handleGuestPhone}
-            />
-            <p>user request</p>
-            <FormInput
-              className="message-field"
-              placeholder="No Caviar"
-              onChange={handleGuestMessage}
-            />
-          </AddBookingFormInputFieldsContainer>
-          <AddBookingFormButtonFieldsContainer>
-            {gdprChecked ? (
-              <Link to={"/confirm"}>
-                <FormButton
-                  className="booking-btn"
-                  onClick={() => {
-                    handleSubmit();
-                  }}
-                >
-                  Book
-                </FormButton>
-              </Link>
-            ) : (
-              <div>
-                {modalButton ? (
-                  <FormButton
-                    onClick={() => {
-                      setShowModal(true);
-                      setModalButton(false);
-                    }}
-                  >
-                    GDPR Info
-                  </FormButton>
-                ) : (
-                  <GdprModal
-                    showModal={showModal}
-                    setShowModal={setShowModal}
-                    setGdprChecked={setGdprChecked}
-                  />
-                )}
-              </div>
-            )}
-          </AddBookingFormButtonFieldsContainer>
-        </AddBookingFormContainer>
-      </AddBookingWrapper>
-    </div>
+              <FormInput
+                placeholder={filledForm.bookedBy.name}
+                onChange={handleGuestName}
+                value={filledForm.bookedBy.name}
+              ></FormInput>
+              <p>Email</p>
+              <FormInput
+                placeholder={filledForm.bookedBy.email}
+                onChange={handleGuestEmail}
+                value={filledForm.bookedBy.email}
+              />
+              <p>Phone</p>
+              <FormInput
+                placeholder={filledForm.bookedBy.phone}
+                onChange={handleGuestPhone}
+                value={filledForm.bookedBy.phone}
+              />
+              <p>Message</p>
+              <FormInput
+                placeholder={filledForm.bookedBy.message}
+                onChange={handleGuestMessage}
+                value={filledForm.bookedBy.message}
+              />
+            </AddBookingFormInputFieldsContainer>
+            <AddBookingFormButtonFieldsContainer>
+              <FormButton onClick={handleSubmit}>Book</FormButton>
+            </AddBookingFormButtonFieldsContainer>
+          </AddBookingFormContainer>
+        </AddBookingWrapper>
+      </div>
+    </>
   );
 };

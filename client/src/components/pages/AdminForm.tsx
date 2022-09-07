@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import Calendar from "react-calendar";
-import { IBooking, IGuest } from "../../models/IBooking";
+import { Link, useParams } from "react-router-dom";
+import { IBooking } from "../../models/IBooking";
 import { FormButton } from "../styledComponents/Buttons";
 import {
   AddBookingCalanderContainer,
@@ -29,6 +30,8 @@ interface IBookingsProps {
 export const AdminForm = (props: IBookingsProps) => {
   const [count, setCount] = useState(1);
 
+  const { id } = useParams<{ id: string }>();
+
   const [value, setValue] = useState(new Date());
 
   const [filledForm, setFilledForm] = useState<IBooking>({
@@ -44,56 +47,26 @@ export const AdminForm = (props: IBookingsProps) => {
   const handleBookingDate = (date: Date) => {
     setValue(date);
     setFilledForm({ ...filledForm, date: date.toDateString() });
+    console.log(props.results);
   };
 
   //handles the date vailidation and sets the dateTaken state
   const handlesetValue = (date: Date) => {
     handleBookingDate(date);
-
-    if (
-      props.results.filter((booking) => booking.date === date.toDateString())
-        .length > 30
-    ) {
-      console.log("date taken");
-      setDateTaken(true);
-    } else {
-      console.log("date not taken");
-      setDateTaken(false);
-    }
+    setFilledForm({ ...filledForm, date: date.toDateString() });
+    console.log(filledForm.date);
   };
 
   //handles validation for if the time is taken
   const handleFirstTime = () => {
-    let count = 0;
-    props.results.forEach((booking) => {
-      if (booking.date === filledForm.date && booking.time === "18:00") {
-        count++;
-      }
-    });
-    if (count < 15) {
-      console.log("time is not taken");
-      setFilledForm({ ...filledForm, time: "18:00" });
-    } else {
-      console.log("date is taken");
-      setDateTaken(true);
-    }
+    setFilledForm({ ...filledForm, time: "18:00" });
+    console.log(filledForm.time);
   };
 
   //handles validation for if the time is taken
   const handleSecondTime = () => {
-    let count = 0;
-    props.results.forEach((booking) => {
-      if (booking.date === filledForm.date && booking.time === "21:00") {
-        count++;
-      }
-    });
-    if (count < 15) {
-      console.log("time is not taken");
-      setFilledForm({ ...filledForm, time: "18:00" });
-    } else {
-      console.log("date is taken");
-      setDateTaken(true);
-    }
+    setFilledForm({ ...filledForm, time: "21:00" });
+    console.log(filledForm.time);
   };
 
   //handles the number of guests state change for increment
@@ -140,11 +113,7 @@ export const AdminForm = (props: IBookingsProps) => {
 
   //handles the email state change and sets the bookedBy state
   const handleGuestEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (
-      e.target.value.includes("@") &&
-      e.target.value.includes(".") &&
-      e.target.value.length < 30
-    ) {
+    if (e.target.value.length < 30) {
       setFilledForm({
         ...filledForm,
         bookedBy: {
@@ -174,7 +143,7 @@ export const AdminForm = (props: IBookingsProps) => {
 
   //handles the message state change and sets the bookedBy state
   const handleGuestMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 100) {
+    if (e.target.value.length < 100) {
       setFilledForm({
         ...filledForm,
         bookedBy: {
@@ -190,32 +159,25 @@ export const AdminForm = (props: IBookingsProps) => {
   //handles the submit button and sends the data to the database
   const handleSubmit = () => {
     axios
-      .post("http://localhost:3000/bookings", filledForm)
+      .put(`http://localhost:3000/admin/${id}`, filledForm)
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
+
+    console.log("det som finns i databasen", props.results);
+    console.log("det vi vill byta databasen till", filledForm);
   };
 
   return (
     <div>
       <BookingHeroWrapper>
         <BookingHeroTitleContainer>
-          <h1>Admin</h1>
+          <h1>Admin ID</h1>
         </BookingHeroTitleContainer>
-        <BookingHeroContentContainer>
-          {props.results.map((booking, i) => {
-            return (
-              <div key={i}>
-                <p>{booking.date}</p>
-                <p>{booking.time}</p>
-                <p>{booking.numberOfGuests}</p>
-              </div>
-            );
-          })}
-        </BookingHeroContentContainer>
+        <BookingHeroContentContainer></BookingHeroContentContainer>
       </BookingHeroWrapper>
       <AddBookingWrapper>
         <AddBookingMonthContainer>July 2022</AddBookingMonthContainer>
