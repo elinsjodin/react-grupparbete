@@ -12,6 +12,8 @@ router.get(
   bookingController.GetAllBookings,
   bookingController.CreateNewBooking
 );
+// Hämta alla bokningar och kunna skapa ny bokning
+router.get("/guests", guestController.GetAllGuests);
 // Hämta specifik bokning
 router.get("/edit/:id", bookingController.GetBookingById);
 // Redigera bokning

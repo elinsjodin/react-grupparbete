@@ -12,15 +12,15 @@ module.exports = class GuestService {
     }
   }
 
-  // async GetAllGuests() {
-  //   const result = await guestModel.find({});
+  async GetAllGuests() {
+    const result = await guestModel.find({});
 
-  //   if (!result) {
-  //     throw new Error("Guests not found");
-  //   } else {
-  //     return result;
-  //   }
-  // }
+    if (!result) {
+      throw new Error("Guests not found");
+    } else {
+      return result;
+    }
+  }
 
   async EditGuest(id, guest) {
     const result = await guestModel.findById(id).updateOne(guest);
