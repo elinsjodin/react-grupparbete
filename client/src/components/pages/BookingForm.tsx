@@ -37,6 +37,7 @@ export const BookingForm = (props: IBookingsProps) => {
   const [value, setValue] = useState(new Date());
 
   const [filledForm, setFilledForm] = useState<IBooking>({
+    _id: "",
     date: new Date().toDateString(),
     time: "",
     numberOfGuests: 1,

@@ -73,29 +73,20 @@ export const SecondAdminForm = (props: IBookingsProps) => {
 
   //handles the number of guests state change for increment
   const handleAmountIncrease = () => {
-    if (count > 5) {
-      setCount(count + 1);
-      console.log("special booking ");
-    } else {
-      setCount(count + 1);
-      setFilledForm({
-        ...filledForm,
-        numberOfGuests: count + 1,
-      });
-    }
+    setCount(count + 1);
+    setFilledForm({
+      ...filledForm,
+      numberOfGuests: count + 1,
+    });
   };
 
   //handles the number of guests state change for decrease
   const handleAmountDecrease = () => {
-    if (count === 1) {
-      return;
-    } else {
-      setCount(count - 1);
-      setFilledForm({
-        ...filledForm,
-        numberOfGuests: count - 1,
-      });
-    }
+    setCount(count - 1);
+    setFilledForm({
+      ...filledForm,
+      numberOfGuests: count - 1,
+    });
   };
 
   //handles the submit button and sends the data to the database
@@ -180,7 +171,7 @@ export const SecondAdminForm = (props: IBookingsProps) => {
         </AddBookingChooseAmountContainer>
         <AddBookingFormContainer>
           <AddBookingFormInputFieldsContainer>
-            <p>Full Name</p>
+            <Link to={"/edit/guest/"}></Link> <p>Edit guestinfo</p>
           </AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
             <FormButton onClick={handleSubmit}>Book</FormButton>

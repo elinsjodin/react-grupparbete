@@ -1,16 +1,13 @@
 const bookingValidation = require("../validations/bookingValidation.js");
 const BookingService = require("../services/bookingService.js");
 const EmailService = require("../services/emailService.js");
-const GuestService = require("../services/guestService.js");
 const bookingService = new BookingService();
-const guestService = new GuestService();
 const emailService = new EmailService();
 
 module.exports = class BookingController {
   async CreateNewBooking(req, res, next) {
     try {
       const bookingDto = req.body;
-      console.log("Req.body", req.body);
 
       bookingValidation.validateBooking(bookingDto);
 
@@ -33,14 +30,15 @@ module.exports = class BookingController {
       res.send(results);
     } catch (error) {
       next({ status: error.status, message: error.message });
-      console.log(error);
     }
   }
 
   async GetBookingById(req, res, next) {
     try {
       const id = req.params.id;
+
       const result = await bookingService.GetBookingById(id);
+
       res.send(result);
     } catch (error) {
       next({ status: error.status, message: error.message });

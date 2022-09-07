@@ -35,6 +35,7 @@ export const AdminForm = (props: IBookingsProps) => {
   const [value, setValue] = useState(new Date());
 
   const [filledForm, setFilledForm] = useState<IBooking>({
+    _id: "",
     date: new Date().toDateString(),
     time: "",
     numberOfGuests: 1,
@@ -206,7 +207,7 @@ export const AdminForm = (props: IBookingsProps) => {
         </BookingHeroTitleContainer>
         <BookingHeroContentContainer>
           {props.results.map((booking, i) => (
-            <Link to={`/admin/edit/${id}`} key={i}>
+            <Link to={`/admin/edit/${booking._id}`} key={i}>
               <p>{booking.date}</p>
             </Link>
           ))}

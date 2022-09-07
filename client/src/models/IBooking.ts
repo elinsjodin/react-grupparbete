@@ -6,6 +6,7 @@ export interface IGuest {
 }
 
 export interface IBooking {
+  _id: string;
   date: string;
   time: string;
   numberOfGuests: number;

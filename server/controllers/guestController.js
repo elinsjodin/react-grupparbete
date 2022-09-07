@@ -3,6 +3,17 @@ const GuestService = require("../services/guestService.js");
 const guestService = new GuestService();
 
 module.exports = class GuestController {
+  // async GetAllGuests(req, res, next) {
+  //   try {
+  //     const results = await guestService.GetAllGuests();
+
+  //     res.send(results);
+  //   } catch (error) {
+  //     next({ status: error.status, message: error.message });
+  //     console.log(error);
+  //   }
+  // }
+
   async GetGuestById(req, res, next) {
     try {
       const id = req.params.id;

@@ -11,7 +11,7 @@ const bookingController = new BookingController();
 
 router.get("/", bookingController.GetAllBookings);
 
-router.get("/:id", bookingController.GetBookingById);
+// router.get("/:id", bookingController.GetBookingById);
 
 router.get("/date", bookingController.GetBookingByDate);
 
