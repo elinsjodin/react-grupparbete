@@ -68,3 +68,29 @@ export const MainContactWrapper = styled.div`
     flex-shrink: 3;
   }
 `;
+
+// wrappers for Contact Page
+
+export const ContactWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  background-color: #0f0f0f;
+  padding-bottom: 60px;
+  padding-top: 50px;
+`;
+
+export const FindUsWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  background-color: #0f0f0f;
+  padding-bottom: 60px;
+  padding-top: 50px;
+`;
+
+export const FollowUsWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  background-color: #0f0f0f;
+  padding-bottom: 60px;
+  padding-top: 50px;
+`;

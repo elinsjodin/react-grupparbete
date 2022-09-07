@@ -463,3 +463,102 @@ export const MainContactTextContainer = styled.div`
     line-height: 1.3;
   }
 `;
+
+// CONTACT PAGE
+
+export const ContacTitleContainer = styled.div`
+  font-size: clamp(35px, 7vw, 40px);
+  display: flex;
+  width: 50%;
+  color: #ffffff;
+  font-weight: lighter;
+  align-items: flex-end;
+  justify-content: center;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+  }
+
+`;
+
+export const ContactTextContainer = styled.div`
+  font-size: clamp(12px, 3.6vw, 28px);
+  display: flex;
+  color: #ffffff;
+  width: 50%;
+  justify-content: center;
+  text-align: left;
+  flex-direction: column;
+  line-height: 50px;
+
+  p {
+  text-align: left;
+  font-weight: bold;
+  }
+
+  div {
+    font-style: italic;
+    text-align: left;
+  }
+  @media (max-width: 768px) {
+    line-height: 24px;
+
+  }
+
+  }
+`;
+
+export const FindUsTextContainer = styled.div`
+  font-size: clamp(12px, 3.6vw, 28px);
+  display: flex;
+  color: #ffffff;
+  width: 50%;
+  justify-content: right;
+  text-align: right;
+  flex-direction: column;
+
+  p {
+  text-align: right;
+  font-weight: bold;
+  }
+
+  div {
+    padding-left: 50px;
+    display: flex;
+    justify-content: right;
+    
+
+  }
+`;
+
+export const FindUsTitleContainer = styled.div`
+  font-size: clamp(35px, 7vw, 40px);
+  display: flex;
+  width: 50%;
+  max-width: 350px;
+  color: #ffffff;
+  font-weight: lighter;
+  justify-content: right;
+  align-items: flex-end;
+  padding-right: 25px;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+  }
+`;
+
+export const FollowTitleContainer = styled.div`
+  font-size: clamp(35px, 7vw, 40px);
+  display: flex;
+  width: 50%;
+  color: #ffffff;
+  font-weight: lighter;
+  align-items: flex-end;
+  justify-content: center;
+  padding-left: 10px;
+
+  @media (max-width: 768px) {
+    align-items: flex-start;
+  }
+
+`;
