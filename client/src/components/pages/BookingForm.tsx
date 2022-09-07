@@ -41,7 +41,7 @@ export const BookingForm = (props: IBookingsProps) => {
     date: new Date().toDateString(),
     time: "",
     numberOfGuests: 1,
-    bookedBy: { name: "", email: "", phone: "", message: "" },
+    bookedBy: { _id: "", name: "", email: "", phone: "", message: "" },
   });
 
   const [dateTaken, setDateTaken] = useState(false);

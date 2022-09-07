@@ -39,10 +39,7 @@ export const SecondAdminForm = (props: IBookingsProps) => {
     date: new Date().toDateString(),
     time: "",
     numberOfGuests: 1,
-    // bookedBy: { name: "", email: "", phone: "", message: "" },
   });
-
-  const [dateTaken, setDateTaken] = useState(false);
 
   //handles the date state change
   const handleBookingDate = (date: Date) => {
@@ -170,9 +167,7 @@ export const SecondAdminForm = (props: IBookingsProps) => {
           </div>
         </AddBookingChooseAmountContainer>
         <AddBookingFormContainer>
-          <AddBookingFormInputFieldsContainer>
-            <Link to={"/edit/guest/"}></Link> <p>Edit guestinfo</p>
-          </AddBookingFormInputFieldsContainer>
+          <AddBookingFormInputFieldsContainer></AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
             <FormButton onClick={handleSubmit}>Book</FormButton>
 

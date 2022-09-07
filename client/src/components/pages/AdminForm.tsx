@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import { Link, useParams } from "react-router-dom";
-import { IBooking } from "../../models/IBooking";
+import { IBooking, IGuest } from "../../models/IBooking";
 import { FormButton } from "../styledComponents/Buttons";
 import {
   AddBookingCalanderContainer,
@@ -25,12 +25,11 @@ import {
 //interface for bookings
 interface IBookingsProps {
   results: IBooking[];
+  guestResults: IGuest[];
 }
 
 export const AdminForm = (props: IBookingsProps) => {
   const [count, setCount] = useState(1);
-
-  const { id } = useParams<{ id: string }>();
 
   const [value, setValue] = useState(new Date());
 
@@ -39,7 +38,7 @@ export const AdminForm = (props: IBookingsProps) => {
     date: new Date().toDateString(),
     time: "",
     numberOfGuests: 1,
-    bookedBy: { name: "", email: "", phone: "", message: "" },
+    bookedBy: { _id: "", name: "", email: "", phone: "", message: "" },
   });
 
   const [dateTaken, setDateTaken] = useState(false);
@@ -53,6 +52,7 @@ export const AdminForm = (props: IBookingsProps) => {
   //handles the date vailidation and sets the dateTaken state
   const handlesetValue = (date: Date) => {
     handleBookingDate(date);
+    console.log(props.guestResults);
 
     if (
       props.results.filter((booking) => booking.date === date.toDateString())
@@ -209,6 +209,11 @@ export const AdminForm = (props: IBookingsProps) => {
           {props.results.map((booking, i) => (
             <Link to={`/admin/edit/${booking._id}`} key={i}>
               <p>{booking.date}</p>
+            </Link>
+          ))}
+          {props.guestResults.map((guest, i) => (
+            <Link to={`/admin/edit/${guest._id}`} key={i}>
+              <p>{guest.name}</p>
             </Link>
           ))}
         </BookingHeroContentContainer>
