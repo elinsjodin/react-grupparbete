@@ -140,11 +140,7 @@ export const AdminForm = (props: IBookingsProps) => {
 
   //handles the email state change and sets the bookedBy state
   const handleGuestEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (
-      e.target.value.includes("@") &&
-      e.target.value.includes(".") &&
-      e.target.value.length < 30
-    ) {
+    if (e.target.value.length < 30) {
       setFilledForm({
         ...filledForm,
         bookedBy: {
@@ -174,7 +170,7 @@ export const AdminForm = (props: IBookingsProps) => {
 
   //handles the message state change and sets the bookedBy state
   const handleGuestMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 100) {
+    if (e.target.value.length < 100) {
       setFilledForm({
         ...filledForm,
         bookedBy: {

@@ -68,7 +68,7 @@ export const SecondAdminPage = () => {
 
   //handles amount of guest increase
   const handleAmountIncrease = () => {
-    if (count === 6) {
+    if (count === 90) {
       alert(
         "You can't book for more than 6 people, if you need more please contact us"
       );
