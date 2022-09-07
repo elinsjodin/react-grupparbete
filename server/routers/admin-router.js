@@ -12,8 +12,6 @@ router.get(
   bookingController.GetAllBookings,
   bookingController.CreateNewBooking
 );
-// Hämta alla bokningar och kunna skapa ny bokning
-router.get("/guests", guestController.GetAllGuests);
 // Hämta specifik bokning
 router.get("/edit/:id", bookingController.GetBookingById);
 // Redigera bokning
@@ -24,10 +22,16 @@ router.put(
 );
 // Ta bort bokning
 router.delete("/booking/delete/:id", bookingController.DeleteBooking);
+// Hämta alla gäster
+router.get("/guests", guestController.GetAllGuests);
 // Hämta specifik gäst
 router.get("/edit/guest/:id", guestController.GetGuestById);
 // Redigera gäst
-router.put("/edit/guest/:id", guestController.GetGuestById);
+router.put(
+  "/edit/guest/:id",
+  guestController.EditGuest,
+  bookingValidation.editGuestValidation
+);
 // Ta bort gästinfo
 router.delete("/guest/delete/:id", guestController.DeleteGuest);
 
