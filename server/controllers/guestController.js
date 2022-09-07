@@ -17,7 +17,9 @@ module.exports = class GuestController {
   async GetGuestById(req, res, next) {
     try {
       const id = req.params.id;
+
       const result = await emailService.GetGuestById(id);
+
       res.send(result);
     } catch (error) {
       next({ status: error.status, message: error.message });
