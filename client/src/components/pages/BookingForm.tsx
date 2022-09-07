@@ -314,19 +314,23 @@ export const BookingForm = (props: IBookingsProps) => {
           </AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
             {gdprChecked ? (
-              <FormButton
-                className="booking-btn"
-                onClick={() => {
-                  handleSubmit();
-                  setLoading(true);
-                }}
-              >
-                Book
-              </FormButton>
+              <Link to={"/confirm"}>
+                {" "}
+                <FormButton
+                  className="booking-btn"
+                  onClick={() => {
+                    handleSubmit();
+                    setLoading(true);
+                  }}
+                >
+                  Book
+                </FormButton>
+              </Link>
             ) : (
               <div>
                 {modalButton ? (
                   <FormButton
+                    className="gdpr-btn"
                     onClick={() => {
                       setShowModal(true);
                       setModalButton(false);
@@ -343,12 +347,6 @@ export const BookingForm = (props: IBookingsProps) => {
                 )}
               </div>
             )}
-            {/* <Link to={"/confirm"}>
-              {" "}
-              <FormButton className="booking-btn" onClick={handleSubmit}>
-                Book
-              </FormButton>
-            </Link> */}
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
