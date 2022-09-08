@@ -245,10 +245,20 @@ export const AdminForm = (props: IBookingsProps) => {
               <section>
                 {/* if date is full then we remove appropriate button */}
                 {dateTaken ? null : (
-                  <button onClick={handleFirstTime}>18:00</button>
+                  <button
+                    className="first-seating-btn"
+                    onClick={handleFirstTime}
+                  >
+                    18:00
+                  </button>
                 )}
                 {dateTaken ? null : (
-                  <button onClick={handleSecondTime}>21:00</button>
+                  <button
+                    className="second-seating-btn"
+                    onClick={handleSecondTime}
+                  >
+                    21:00
+                  </button>
                 )}
               </section>
             </div>
@@ -258,9 +268,19 @@ export const AdminForm = (props: IBookingsProps) => {
           <h1>How many?</h1>
           <div>
             <section>
-              <button onClick={handleAmountIncrease}>+</button>
-              <p>{count}</p>
-              <button onClick={handleAmountDecrease}>-</button>
+              <button
+                className="inc-guest-amount"
+                onClick={handleAmountIncrease}
+              >
+                +
+              </button>
+              <p className="guest-amount">{count}</p>
+              <button
+                className="dec-guest-amount"
+                onClick={handleAmountDecrease}
+              >
+                -
+              </button>
             </section>
           </div>
         </AddBookingChooseAmountContainer>
@@ -269,21 +289,33 @@ export const AdminForm = (props: IBookingsProps) => {
             <p>Full Name</p>
 
             <FormInput
+              className="full-name-field"
               placeholder="Lars larson"
               onChange={handleGuestName}
             ></FormInput>
             <p>Email</p>
             <FormInput
+              className="email-field"
               placeholder="Lars@larson.se"
               onChange={handleGuestEmail}
             />
             <p>Phone</p>
-            <FormInput placeholder="0701234567" onChange={handleGuestPhone} />
+            <FormInput
+              className="phone-field"
+              placeholder="0701234567"
+              onChange={handleGuestPhone}
+            />
             <p>user request</p>
-            <FormInput placeholder="No Caviar" onChange={handleGuestMessage} />
+            <FormInput
+              className="message-field"
+              placeholder="No Caviar"
+              onChange={handleGuestMessage}
+            />
           </AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
-            <FormButton onClick={handleSubmit}>Book</FormButton>
+            <FormButton className="create-booking-btn" onClick={handleSubmit}>
+              Book
+            </FormButton>
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>

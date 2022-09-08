@@ -1,8 +1,10 @@
 const bookingValidation = require("../validations/bookingValidation.js");
 const BookingService = require("../services/bookingService.js");
 const EmailService = require("../services/emailService.js");
+const TestingService = require("../services/testingService.js");
 const bookingService = new BookingService();
 const emailService = new EmailService();
+const testingService = new TestingService();
 
 module.exports = class BookingController {
   async CreateNewBooking(req, res, next) {
@@ -133,6 +135,20 @@ module.exports = class BookingController {
       } catch (error) {
         next({ status: error.status, message: error.message });
       }
+    }
+  }
+
+  async FindBookingByIdForTesting(req, res, next) {
+    try {
+      const id = req.params.id;
+
+      const result = await testingService.FindBookingByIdForTesting(id);
+
+      if (result === null) {
+        res.sendStatus(200);
+      }
+    } catch (error) {
+      next({ status: error.status, message: error.message });
     }
   }
 };

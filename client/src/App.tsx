@@ -12,8 +12,6 @@ import { Layout } from "./components/pages/Layout";
 import { MainPage } from "./components/pages/MainPage";
 import { SecondAdminPage } from "./components/pages/SecondAdminPage";
 
-// Lägg till en admin/edit/:id här istället för secondadminpage?
-
 //function for bookings
 
 function App() {
