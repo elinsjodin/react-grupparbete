@@ -1,4 +1,4 @@
-describe("test navabr", () => {
+describe("testing app navigation", () => {
   it("should click on 'Contact'-link and navigate to correct route", () => {
     cy.visit("http://localhost:3000");
     cy.get("#nav-links-container").children().should("have.length", 3);

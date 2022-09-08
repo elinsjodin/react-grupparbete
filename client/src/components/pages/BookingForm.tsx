@@ -268,7 +268,7 @@ export const BookingForm = (props: IBookingsProps) => {
                 +
               </button>
 
-              <p>{count}</p>
+              <p className="guest-amount">{count}</p>
               <button
                 className="dec-guest-amount"
                 onClick={handleAmountDecrease}

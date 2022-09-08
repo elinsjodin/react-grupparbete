@@ -12,8 +12,6 @@ import { Layout } from "./components/pages/Layout";
 import { MainPage } from "./components/pages/MainPage";
 import { SecondAdminPage } from "./components/pages/SecondAdminPage";
 
-// Lägg till en admin/edit/:id här istället för secondadminpage?
-
 //function for bookings
 
 function App() {
@@ -26,7 +24,7 @@ function App() {
           <Route path="/contact" element={<ContactPage />}></Route>
           <Route path="/admin" element={<AdminPage />}></Route>
           <Route path="/admin/edit/:id" element={<SecondAdminPage />}></Route>
-          <Route path="/guest/edit/:id" element={<GuestPage />}></Route>
+          <Route path="/admin/guest/edit/:id" element={<GuestPage />}></Route>
           <Route path="/confirm" element={<ConfirmationPage />}></Route>
           <Route
             path="/bookings/cancel/:id"

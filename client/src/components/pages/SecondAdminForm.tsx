@@ -135,11 +135,19 @@ export const SecondAdminForm = (props: IBookingsProps) => {
             <h1>Choose a Time</h1>
             <div>
               <section>
-                <button onClick={handleFirstTime} value={filledForm.time}>
+                <button
+                  className="first-seating-btn"
+                  onClick={handleFirstTime}
+                  value={filledForm.time}
+                >
                   18:00
                 </button>
 
-                <button onClick={handleSecondTime} value={filledForm.time}>
+                <button
+                  className="second-seating-btn"
+                  onClick={handleSecondTime}
+                  value={filledForm.time}
+                >
                   21:00
                 </button>
               </section>
@@ -151,13 +159,15 @@ export const SecondAdminForm = (props: IBookingsProps) => {
           <div>
             <section>
               <button
+                className="inc-guest-amount"
                 onClick={handleAmountIncrease}
                 value={filledForm.numberOfGuests}
               >
                 +
               </button>
-              <p>{count}</p>
+              <p className="guest-amount">{count}</p>
               <button
+                className="dec-guest-amount"
                 onClick={handleAmountDecrease}
                 value={filledForm.numberOfGuests}
               >
@@ -169,9 +179,13 @@ export const SecondAdminForm = (props: IBookingsProps) => {
         <AddBookingFormContainer>
           <AddBookingFormInputFieldsContainer></AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
-            <FormButton onClick={handleSubmit}>Book</FormButton>
+            <FormButton className="update-booking-btn" onClick={handleSubmit}>
+              Book
+            </FormButton>
 
-            <FormButton onClick={handleDelete}>Delete</FormButton>
+            <FormButton className="delete-booking-btn" onClick={handleDelete}>
+              Delete
+            </FormButton>
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>

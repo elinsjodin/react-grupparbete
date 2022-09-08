@@ -7,11 +7,9 @@ const bookingController = new BookingController();
 const guestController = new GuestController();
 
 // Hämta alla bokningar och kunna skapa ny bokning
-router.get(
-  "/",
-  bookingController.GetAllBookings,
-  bookingController.CreateNewBooking
-);
+router.get("/", bookingController.GetAllBookings);
+
+router.post("/", bookingController.CreateNewBooking);
 // Hämta specifik bokning
 router.get("/edit/:id", bookingController.GetBookingById);
 // Redigera bokning
