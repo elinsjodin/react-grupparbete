@@ -227,13 +227,16 @@ export const BookingForm = (props: IBookingsProps) => {
         </BookingHeroTitleContainer>
         <BookingHeroContentContainer>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-            quidem, quisquam quisquam.
+            To book a table please choose a desired date and the amount of
+            people dining. we only accept tables of 6 so if you are more, please
+            contact us
           </p>
         </BookingHeroContentContainer>
       </BookingHeroWrapper>
       <AddBookingWrapper>
-        <AddBookingMonthContainer>July 2022</AddBookingMonthContainer>
+        <AddBookingMonthContainer>
+          <h1>Choose A date</h1>
+        </AddBookingMonthContainer>
         <AddBookingCalanderContainer>
           <div>
             <Calendar
@@ -245,7 +248,7 @@ export const BookingForm = (props: IBookingsProps) => {
         </AddBookingCalanderContainer>
         <AddBookingChooseTimeContainer>
           <AddBookingChooseTimeHolder>
-            <h1>Choose a Time</h1>
+            <h1>Choose A Time</h1>
             <div>
               <section>
                 {dateTaken ? null : (

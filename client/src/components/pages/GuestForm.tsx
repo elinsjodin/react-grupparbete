@@ -8,6 +8,10 @@ import {
   AddBookingFormContainer,
   AddBookingFormInputFieldsContainer,
 } from "../styledComponents/Containers";
+import {
+  EditGuestButtonContainer,
+  EditGuestWrapper,
+} from "../styledComponents/EditGuestStyling";
 import { FormInput } from "../styledComponents/Inputs";
 
 interface IBookingsProps {
@@ -100,27 +104,36 @@ export const GuestForm = (props: IBookingsProps) => {
 
   return (
     <div>
-      <AddBookingFormContainer>
-        <AddBookingFormInputFieldsContainer>
-          <p>Full Name</p>
+      <EditGuestWrapper>
+        <AddBookingFormContainer>
+          <AddBookingFormInputFieldsContainer>
+            <p>Full Name</p>
 
-          <FormInput
-            placeholder="Lars larson"
-            onChange={handleGuestName}
-          ></FormInput>
-          <p>Email</p>
-          <FormInput placeholder="Lars@larson.se" onChange={handleGuestEmail} />
-          <p>Phone</p>
-          <FormInput placeholder="0701234567" onChange={handleGuestPhone} />
-          <p>user request</p>
-          <FormInput placeholder="No Caviar" onChange={handleGuestMessage} />
-        </AddBookingFormInputFieldsContainer>
-        <AddBookingFormButtonFieldsContainer>
-          <FormButton onClick={handleSubmit}>Book</FormButton>
-          <FormButton onClick={handleDelete}>delete</FormButton>
-          <Link to="/admin"> back</Link>
-        </AddBookingFormButtonFieldsContainer>
-      </AddBookingFormContainer>
+            <FormInput
+              placeholder="Lars larson"
+              onChange={handleGuestName}
+            ></FormInput>
+            <p>Email</p>
+            <FormInput
+              placeholder="Lars@larson.se"
+              onChange={handleGuestEmail}
+            />
+            <p>Phone</p>
+            <FormInput placeholder="0701234567" onChange={handleGuestPhone} />
+            <p>user request</p>
+            <FormInput placeholder="No Caviar" onChange={handleGuestMessage} />
+          </AddBookingFormInputFieldsContainer>
+          <AddBookingFormButtonFieldsContainer>
+            <EditGuestButtonContainer>
+              <FormButton onClick={handleSubmit}>Book</FormButton>
+              <FormButton onClick={handleDelete}>delete</FormButton>
+              <Link to="/admin">
+                <FormButton>Back</FormButton>
+              </Link>
+            </EditGuestButtonContainer>
+          </AddBookingFormButtonFieldsContainer>
+        </AddBookingFormContainer>
+      </EditGuestWrapper>
     </div>
   );
 };

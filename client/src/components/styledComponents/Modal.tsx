@@ -42,7 +42,7 @@ export const ModalButtonContainer = styled.div`
 
 export const ModalButton = styled.button`
   height: 50px;
-  width: 75px;
+  width: 100px;
   background-color: #e3e3e3;
   border: none;
   text-decoration: none;

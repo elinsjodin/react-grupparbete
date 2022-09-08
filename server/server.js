@@ -29,7 +29,7 @@ app.use("/bookings", bookingsRouter);
 app.use("/confirm", confirmationRouter);
 //localhost:8000/admin
 app.use("/admin", adminRouter);
-// error hantering - måste ligga sist så att våra requests går igenom alla routes först
+// error hantering - måste ligga sist så att våra requests går igenom alla routes
 app.use(errorHandler);
 
 mongoose

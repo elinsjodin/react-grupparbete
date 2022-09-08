@@ -4,10 +4,11 @@ import styled from "styled-components";
 
 export const FormButton = styled.button`
   height: 40px;
-  width: 80%;
+  width: 100px;
   background-color: #ffffff;
   color: black;
   border: none;
+  border-radius: 5px;
 `;
 
 // Buttons for the Main Page
@@ -30,19 +31,18 @@ export const MainBookingButton = styled.button`
 `;
 
 export const MainContactButton = styled.button`
-display: flex;
-flex-direction: column;
-height: 40px;
-width: 50%;
-background-color: #ffffff;
-color: black;
-border: none;
-align-items: center;
-justify-content: center;
-margin-left: 145px;
+  display: flex;
+  flex-direction: column;
+  height: 40px;
+  width: 50%;
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  margin-left: 145px;
 
-@media (max-width: 768px) {
-  margin-left: 10px;
-}
+  @media (max-width: 768px) {
+    margin-left: 10px;
+  }
 `;
-

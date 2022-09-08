@@ -1,6 +1,5 @@
 import axios from "axios";
-import { log } from "console";
-import { param } from "cypress/types/jquery";
+
 import { useState } from "react";
 import Calendar from "react-calendar";
 import { Link, useParams } from "react-router-dom";
@@ -170,10 +169,10 @@ export const SecondAdminForm = (props: IBookingsProps) => {
           <AddBookingFormInputFieldsContainer></AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
             <FormButton onClick={handleSubmit}>Book</FormButton>
-
             <FormButton onClick={handleDelete}>Delete</FormButton>
-
-            <Link to="/admin"> back</Link>
+            <Link to="/admin">
+              <FormButton>Back</FormButton>
+            </Link>
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>

@@ -51,10 +51,10 @@ export const SpinnerOne = styled.div`
 `} 1.5s infinite;
   width: 30px;
   height: 30px;
-  background-color: #58bb5d;
+  background-color: #ffffff;
   border-radius: 50%;
   //add a drop shadow
-  box-shadow: 0px 0px 5px 5px rgba(57, 183, 76, 0.203);
+  box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.203);
 `;
 
 //create spinner based on spinner one

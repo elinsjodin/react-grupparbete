@@ -1,27 +1,14 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Loader } from "../Loader";
+import { ConfirmationWrapper } from "../styledComponents/ConfirmStyling";
 
 interface IBackendData {
   bookings: string[];
 }
 
 export const ConfirmationPage = () => {
-  const [backendData, setBackendData] = useState<IBackendData>({
-    bookings: [],
-  });
-
   const [loading, setLoading] = useState(true);
-
-  //Behöver hämta in specifik bokning med id
-  // const { id } = useParams<{ id: string }>();
-
-  useEffect(() => {
-    fetch("/")
-      .then((res) => res.json())
-      .then((data) => {
-        setBackendData(data);
-      });
-  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,13 +18,15 @@ export const ConfirmationPage = () => {
 
   return (
     <>
-      {typeof backendData.bookings === "undefined" ? (
-        <p>Loading...</p>
-      ) : (
-        backendData.bookings.map((booking, i) => <p key={i}>{booking}</p>)
-      )}
-      <div>Hello from ConfirmationPage</div>
       {loading ? <Loader loading={loading} /> : null}
+      <ConfirmationWrapper>
+        <h1>Thank you for your booking!</h1>
+        <h2>Check your Email for Confirmation</h2>
+        <p>You can also remove your booking from it!</p>
+        <Link to={"/"}>
+          <button>Back to Home </button>
+        </Link>
+      </ConfirmationWrapper>
     </>
   );
 };

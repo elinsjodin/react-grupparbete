@@ -13,12 +13,14 @@ import {
   AddBookingFormContainer,
   AddBookingFormInputFieldsContainer,
   AddBookingMonthContainer,
+  AdminBookingContainer,
   BookingHeroContentContainer,
   BookingHeroTitleContainer,
 } from "../styledComponents/Containers";
 import { FormInput } from "../styledComponents/Inputs";
 import {
   AddBookingWrapper,
+  AdminBookingWrapper,
   BookingHeroWrapper,
 } from "../styledComponents/Wrappers";
 
@@ -205,20 +207,26 @@ export const AdminForm = (props: IBookingsProps) => {
         <BookingHeroTitleContainer>
           <h1>Admin</h1>
         </BookingHeroTitleContainer>
-        <BookingHeroContentContainer>
+        <BookingHeroContentContainer></BookingHeroContentContainer>
+      </BookingHeroWrapper>
+      <AdminBookingWrapper>
+        <AdminBookingContainer>
+          <h2>Bookings</h2>
           {props.results.map((booking, i) => (
             <Link to={`/admin/edit/${booking._id}`} key={i}>
               <p>{booking.date}</p>
             </Link>
           ))}
-
+        </AdminBookingContainer>
+        <AdminBookingContainer>
+          <h2>Guests</h2>
           {props.guestResults.map((guest, i) => (
             <Link to={`/admin/guest/edit/${guest._id}`} key={i}>
               <p>{guest.name}</p>
             </Link>
           ))}
-        </BookingHeroContentContainer>
-      </BookingHeroWrapper>
+        </AdminBookingContainer>
+      </AdminBookingWrapper>
       <AddBookingWrapper>
         <AddBookingMonthContainer>July 2022</AddBookingMonthContainer>
         <AddBookingCalanderContainer>

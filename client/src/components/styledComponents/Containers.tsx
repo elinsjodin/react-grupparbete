@@ -14,11 +14,15 @@ export const BookingHeroTitleContainer = styled.div`
   height: 375px;
   width: 50%;
   align-items: center;
+  /* background-color: #0f0f0f; */
   h1 {
     position: relative;
     bottom: 90px;
     color: #ffffff;
     padding-left: 15px;
+    @media (min-width: 768px) {
+      left: 100px;
+    }
   }
 `;
 //container for hero content of booking page
@@ -29,44 +33,67 @@ export const BookingHeroContentContainer = styled.div`
   align-items: center;
   text-align: right;
   color: #ffffff;
-  div {
-    color: #ffffff;
-    p {
-      position: relative;
-      top: 50px;
-      color: #ffffff;
-      padding-right: 15px;
+
+  p {
+    position: relative;
+    top: 50px;
+    right: 20px;
+    @media (min-width: 768px) {
+      right: 100px;
     }
   }
+  /* @media (max-width: 768px) {
+  } */
 `;
 
 //container for booking form and input
 export const AddBookingMonthContainer = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 50px;
-  width: 100%;
+  width: 100vw;
+  /* background-color: #0f0f0f; */
+  color: #ffffff;
 `;
 
 //container for booking form and input
 export const AddBookingCalanderContainer = styled.div`
   display: flex;
-  height: 170px;
-  width: 100%;
+  height: 180px;
+  width: 100vw;
   color: #ffffff;
-  padding-left: 15px;
+  justify-content: center;
+
+  div {
+    button {
+      padding: 3px;
+      color: white;
+      background-color: #0f0f0f;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      //on hover, change color of button
+      &:hover {
+        color: #0f0f0f;
+        background-color: #ffffff;
+      }
+    }
+  }
 `;
 //container for booking form and input
 export const AddBookingChooseTimeContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 170px;
-  width: 100%;
+  width: 100vw;
   color: #ffffff;
+  /* background-color: #0f0f0f; */
 `;
 export const AddBookingChooseTimeHolder = styled.div`
   display: flex;
   flex-direction: column;
-  height: 50px;
+  height: 200px;
   width: 100vw;
   color: #ffffff;
   justify-content: center;
@@ -78,7 +105,7 @@ export const AddBookingChooseTimeHolder = styled.div`
   div {
     display: flex;
     height: 50px;
-    width: 100%;
+    width: 100vw;
     justify-content: center;
     align-items: center;
 
@@ -89,7 +116,16 @@ export const AddBookingChooseTimeHolder = styled.div`
       align-items: center;
 
       button {
+        border-radius: 5px;
+        text-decoration: none;
+        border: none;
         height: 30px;
+        //on click, change color of button
+        //on hover, change color of button
+        &:hover {
+          color: #0f0f0f;
+          background-color: #ffffff;
+        }
       }
     }
   }
@@ -97,30 +133,39 @@ export const AddBookingChooseTimeHolder = styled.div`
 
 export const AddBookingChooseAmountContainer = styled.div`
   display: flex;
-  height: 170px;
-  width: 100%;
+  height: 200px;
+  width: 100vw;
   color: #ffffff;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: #0f0f0f;
   h1 {
     display: flex;
   }
   div {
     display: flex;
     height: 50px;
-    width: 100%;
+    width: 100vw;
     justify-content: center;
     align-items: center;
 
     section {
       display: flex;
-      gap: 40px;
+      gap: 30px;
       justify-content: center;
       align-items: center;
 
       button {
+        border-radius: 5px;
+        text-decoration: none;
+        border: none;
         height: 30px;
+        width: 30px;
+        &:active {
+          color: #0f0f0f;
+          background-color: #ffffff;
+        }
       }
     }
   }
@@ -129,9 +174,11 @@ export const AddBookingChooseAmountContainer = styled.div`
 //container for booking form and input
 export const AddBookingFormContainer = styled.div`
   display: flex;
-  height: 300px;
-  width: 100%;
+  height: 350px;
+  margin-left: 20px;
+  width: 90%;
   color: #ffffff;
+  background-color: #0f0f0f;
 `;
 
 export const AddBookingFormInputFieldsContainer = styled.div`
@@ -140,7 +187,6 @@ export const AddBookingFormInputFieldsContainer = styled.div`
   width: 50%;
   flex-direction: column;
   justify-content: center;
-  padding-left: 15px;
   p {
     display: flex;
     color: #ffffff;
@@ -153,7 +199,8 @@ export const AddBookingFormButtonFieldsContainer = styled.div`
   width: 50%;
   justify-content: right;
   align-items: center;
-  padding-right: 15px;
+  background-color: #0f0f0f;
+  gap: 10px;
 `;
 
 // wrappers => Containers => Text
@@ -165,7 +212,6 @@ export const NavLogo = styled.div`
   display: flex;
   height: 150px;
   width: 50%;
-  padding-left: 15px;
   align-items: center;
   color: #ffffff;
 `;
@@ -478,7 +524,6 @@ export const ContacTitleContainer = styled.div`
   @media (max-width: 768px) {
     align-items: flex-start;
   }
-
 `;
 
 export const ContactTextContainer = styled.div`
@@ -492,8 +537,8 @@ export const ContactTextContainer = styled.div`
   line-height: 50px;
 
   p {
-  text-align: left;
-  font-weight: bold;
+    text-align: left;
+    font-weight: bold;
   }
 
   div {
@@ -502,9 +547,6 @@ export const ContactTextContainer = styled.div`
   }
   @media (max-width: 768px) {
     line-height: 24px;
-
-  }
-
   }
 `;
 
@@ -518,16 +560,14 @@ export const FindUsTextContainer = styled.div`
   flex-direction: column;
 
   p {
-  text-align: right;
-  font-weight: bold;
+    text-align: right;
+    font-weight: bold;
   }
 
   div {
     padding-left: 50px;
     display: flex;
     justify-content: right;
-    
-
   }
 `;
 
@@ -560,5 +600,21 @@ export const FollowTitleContainer = styled.div`
   @media (max-width: 768px) {
     align-items: flex-start;
   }
+`;
 
+export const AdminBookingContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 25vw;
+  height: 100%;
+  background-color: #0f0f0f;
+  color: white;
+  padding: 20px;
+  p {
+    font-size: 1.5em;
+    color: white;
+    text-decoration: underline;
+  }
 `;

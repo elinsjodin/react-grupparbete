@@ -28,6 +28,7 @@ import {
   MainBookingWrapper,
   MainContactWrapper,
 } from "../styledComponents/Wrappers";
+import { Link } from "react-router-dom";
 
 const IMAGE_1 =
   "https://www.kindacode.com/wp-content/uploads/2021/08/fried-chicken.jpeg";
@@ -139,7 +140,11 @@ export const MainPage = () => {
       <MainBookingWrapper>
         <MainBookingContentContainer>
           <MainBookingImgContainer>
-            <img src={IMAGE_1} className="App-logo" alt="MainBookingImage" />
+            <img
+              src={IMAGE_1}
+              className="anything-else"
+              alt="MainBookingImage"
+            />
           </MainBookingImgContainer>
           <MainBookingTextContainer>
             At Sorkins, we’re creating the next generation of
@@ -147,7 +152,9 @@ export const MainPage = () => {
             world as a source of inspiration, is transformed into one exciting
             menu.
           </MainBookingTextContainer>
-          <MainBookingButton>Book</MainBookingButton>
+          <Link to="/bookings">
+            <MainBookingButton>Book</MainBookingButton>
+          </Link>
         </MainBookingContentContainer>
 
         <MainBookingTitleContainer>
@@ -157,9 +164,14 @@ export const MainPage = () => {
 
       <MainContactWrapper>
         <MainContactTitleContainer>Contact</MainContactTitleContainer>
+
         <MainContactContentContainer>
           <MainContactImgContainer>
-            <img src={IMAGE_2} className="App-logo" alt="MainContactImage" />
+            <img
+              src={IMAGE_2}
+              className="anything-else"
+              alt="MainContactImage"
+            />
           </MainContactImgContainer>
           <MainContactTextContainer>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
@@ -169,7 +181,9 @@ export const MainPage = () => {
             Quis enim aliquam corporis officia error assumenda sed eligendi
             delectus doloribus? Ducimus, similique non!
           </MainContactTextContainer>
-          <MainContactButton>Contact</MainContactButton>
+          <Link to="/contact">
+            <MainContactButton>Contact</MainContactButton>
+          </Link>
         </MainContactContentContainer>
       </MainContactWrapper>
     </div>

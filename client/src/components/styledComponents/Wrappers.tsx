@@ -6,8 +6,9 @@ import styled from "styled-components";
 export const BookingHeroWrapper = styled.div`
   display: flex;
   height: 375px;
-  width: 100%;
+  width: 100vw;
   background-color: #0f0f0f;
+  box-sizing: border-box;
 `;
 
 //wrapper for booking form and input
@@ -15,7 +16,7 @@ export const AddBookingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #0f0f0f;
-  width: 100%;
+  width: 100vw;
   height: 100%;
 `;
 
@@ -27,7 +28,7 @@ export const AddBookingWrapper = styled.div`
 export const NavWrapper = styled.div`
   display: flex;
   height: 150px;
-  width: 100%;
+  width: 100vw;
   background-color: #0f0f0f;
 `;
 
@@ -93,4 +94,11 @@ export const FollowUsWrapper = styled.div`
   background-color: #0f0f0f;
   padding-bottom: 60px;
   padding-top: 50px;
+`;
+
+export const AdminBookingWrapper = styled.div`
+  display: flex;
+  width: 100vw;
+  background-color: #0f0f0f;
+  padding-bottom: 60px;
 `;
