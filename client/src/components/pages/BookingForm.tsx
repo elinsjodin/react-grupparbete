@@ -68,6 +68,7 @@ export const BookingForm = (props: IBookingsProps) => {
     ) {
       console.log("date taken");
       setDateTaken(true);
+      alert("Date is fully booked!");
     } else {
       console.log("date not taken");
       setDateTaken(false);
@@ -88,6 +89,7 @@ export const BookingForm = (props: IBookingsProps) => {
     } else {
       console.log("date is taken");
       setDateTaken(true);
+      alert("Time not available!");
     }
   };
 
