@@ -102,6 +102,7 @@ export const SecondAdminForm = (props: IBookingsProps) => {
     axios
       .delete("http://localhost:3000/admin/booking/delete/" + id)
       .then((response) => {
+        alert("Deleted!");
         console.log(response);
       })
       .catch((error) => {
@@ -179,13 +180,13 @@ export const SecondAdminForm = (props: IBookingsProps) => {
           <AddBookingFormInputFieldsContainer></AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
             <FormButton className="update-booking-btn" onClick={handleSubmit}>
-              Book
+              Update
             </FormButton>
             <FormButton className="delete-booking-btn" onClick={handleDelete}>
               Delete
             </FormButton>
             <Link to="/admin">
-              <FormButton>Back</FormButton>
+              <FormButton className="back-to-admin-btn">Back</FormButton>
             </Link>
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>

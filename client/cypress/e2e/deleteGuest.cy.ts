@@ -4,10 +4,10 @@ beforeEach(() => {
     expect(res.status).to.eq(200);
   });
 });
-// Testing delete req api call to database when guest clicks on "Confirm cancel booking"-button
-describe("delete booking", () => {
-  it("should create and delete booking", () => {
-    // Create booking to delete
+// Testing delete req api call to database when admin deletes guest
+describe("delete guest", () => {
+  it("should create a booking and then delete guest info from it", () => {
+    // Create booking to delete guest info from
     cy.request({
       method: "POST",
       url: "http://localhost:3000/bookings",
@@ -29,12 +29,12 @@ describe("delete booking", () => {
       expect(res.body).has.property("time", "18:00");
       expect(res.body).has.property("numberOfGuests", 2);
       expect(res.body).has.property("bookedBy");
-      const bookingId = res.body._id;
-      cy.log("booking-id", bookingId);
-      // Delete booking
+      const guestId = res.body.bookedBy;
+      cy.log("guest-id", guestId);
+      // Delete guest info
       cy.request({
         method: "DELETE",
-        url: "http://localhost:3000/bookings/cancel/" + bookingId,
+        url: "http://localhost:3000/admin/guest/delete/" + guestId,
       }).then((res) => expect(res.status).to.eq(200));
     });
   });

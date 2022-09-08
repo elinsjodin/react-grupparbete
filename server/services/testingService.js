@@ -1,14 +1,10 @@
 require("dotenv").config();
-const BookingModel = require("../models/BookingsModel.js");
+const bookingModel = require("../models/BookingsModel.js");
+const guestModel = require("../models/GuestsModel.js");
 
 module.exports = class TestingService {
-  async FindBookingByIdForTesting(id) {
-    const booking = await BookingModel.findById(id);
-
-    if (!booking) {
-      throw new Error("Booking not found");
-    } else {
-      return booking;
-    }
+  async DeleteDataFromDatabase() {
+    await bookingModel.deleteMany({});
+    await guestModel.deleteMany({});
   }
 };

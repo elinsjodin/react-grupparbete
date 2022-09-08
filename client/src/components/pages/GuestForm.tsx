@@ -94,6 +94,7 @@ export const GuestForm = (props: IBookingsProps) => {
     axios
       .delete("http://localhost:3000/admin/guest/delete/" + id)
       .then((response) => {
+        alert("Deleted!");
         console.log(response);
       })
       .catch((error) => {
@@ -110,25 +111,39 @@ export const GuestForm = (props: IBookingsProps) => {
             <p>Full Name</p>
 
             <FormInput
+              className="full-name-field"
               placeholder="Lars larson"
               onChange={handleGuestName}
             ></FormInput>
             <p>Email</p>
             <FormInput
+              className="email-field"
               placeholder="Lars@larson.se"
               onChange={handleGuestEmail}
             />
             <p>Phone</p>
-            <FormInput placeholder="0701234567" onChange={handleGuestPhone} />
-            <p>user request</p>
-            <FormInput placeholder="No Caviar" onChange={handleGuestMessage} />
+            <FormInput
+              className="phone-field"
+              placeholder="0701234567"
+              onChange={handleGuestPhone}
+            />
+            <p>User request</p>
+            <FormInput
+              className="message-field"
+              placeholder="No Caviar"
+              onChange={handleGuestMessage}
+            />
           </AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
             <EditGuestButtonContainer>
-              <FormButton onClick={handleSubmit}>Book</FormButton>
-              <FormButton onClick={handleDelete}>delete</FormButton>
+              <FormButton className="update-guest-btn" onClick={handleSubmit}>
+                Update
+              </FormButton>
+              <FormButton className="delete-guest-btn" onClick={handleDelete}>
+                delete
+              </FormButton>
               <Link to="/admin">
-                <FormButton>Back</FormButton>
+                <FormButton className="back-to-admin-btn">Back</FormButton>
               </Link>
             </EditGuestButtonContainer>
           </AddBookingFormButtonFieldsContainer>

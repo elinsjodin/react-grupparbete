@@ -1,7 +1,13 @@
+// Clears database
+beforeEach(() => {
+  cy.request("DELETE", "http://localhost:8000/testing").then((res) => {
+    expect(res.status).to.eq(200);
+  });
+});
 // Testing put req api call to database when admin updates guest
 describe("update guest", () => {
   it("should create a booking and then edit guest info to check update-functionality", () => {
-    // Create booking to update
+    // Create booking to update guest info on
     cy.request({
       method: "POST",
       url: "http://localhost:3000/admin",
@@ -25,7 +31,7 @@ describe("update guest", () => {
       expect(res.body).has.property("bookedBy");
       const guestId = res.body.bookedBy;
       cy.log("guest-id", guestId);
-      // Update booking
+      // Update guest info
       cy.request({
         method: "PUT",
         url: "http://localhost:3000/admin/edit/guest/" + guestId,

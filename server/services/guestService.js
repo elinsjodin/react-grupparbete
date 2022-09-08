@@ -24,7 +24,6 @@ module.exports = class GuestService {
 
   async EditGuest(id, guest) {
     const result = await guestModel.findById(id).updateOne(guest);
-    console.log(result);
 
     if (!result) {
       throw new Error("Failed to edit guest");

@@ -1,3 +1,4 @@
+// Navigation
 describe("testing app navigation", () => {
   it("should click on 'Contact'-link and navigate to correct route", () => {
     cy.visit("http://localhost:3000");
