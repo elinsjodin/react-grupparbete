@@ -178,21 +178,15 @@ export const SecondAdminForm = (props: IBookingsProps) => {
         <AddBookingFormContainer>
           <AddBookingFormInputFieldsContainer></AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
-<<<<<<< HEAD
-            <FormButton onClick={handleSubmit}>Book</FormButton>
-            <FormButton onClick={handleDelete}>Delete</FormButton>
-            <Link to="/admin">
-              <FormButton>Back</FormButton>
-            </Link>
-=======
             <FormButton className="update-booking-btn" onClick={handleSubmit}>
               Book
             </FormButton>
-
             <FormButton className="delete-booking-btn" onClick={handleDelete}>
               Delete
             </FormButton>
->>>>>>> feature/cypTests
+            <Link to="/admin">
+              <FormButton>Back</FormButton>
+            </Link>
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
