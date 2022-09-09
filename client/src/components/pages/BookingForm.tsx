@@ -102,7 +102,7 @@ export const BookingForm = (props: IBookingsProps) => {
     });
     if (count < 15) {
       console.log("time is not taken");
-      setFilledForm({ ...filledForm, time: "18:00" });
+      setFilledForm({ ...filledForm, time: "21:00" });
     } else {
       console.log("date is taken");
       setDateTaken(true);
@@ -139,7 +139,7 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the name state change and sets the bookedBy state
   const handleGuestName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 20) {
+    if (e.target.value.length > 100) {
       alert("Name can't be longer than 20 characters");
     } else {
       setFilledForm({
@@ -154,7 +154,7 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the email state change and sets the bookedBy state
   const handleGuestEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length < 40) {
+    if (e.target.value.length < 100) {
       setFilledForm({
         ...filledForm,
         bookedBy: {
