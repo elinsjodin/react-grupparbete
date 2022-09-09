@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Calendar from "react-calendar";
 import { Link } from "react-router-dom";
 import { IBooking, IGuest } from "../../models/IBooking";
@@ -80,7 +80,7 @@ export const AdminForm = (props: IBookingsProps) => {
         count += Math.ceil(booking.numberOfGuests / 6);
       }
     });
-    if (count >= 15) {
+    if (count >= 16) {
       setTimeTaken(true);
     } else {
       setFilledForm({ ...filledForm, time: "18:00" });
@@ -95,7 +95,7 @@ export const AdminForm = (props: IBookingsProps) => {
         count += Math.ceil(booking.numberOfGuests / 6);
       }
     });
-    if (count >= 15) {
+    if (count >= 16) {
       setSecondTimeTaken(true);
     } else {
       setFilledForm({ ...filledForm, time: "21:00" });
@@ -195,6 +195,7 @@ export const AdminForm = (props: IBookingsProps) => {
 
       if (guests >= 90) {
         alert("Can't book");
+        return guests;
       } else {
         axios
           .post("http://localhost:3000/bookings", filledForm)
@@ -205,6 +206,7 @@ export const AdminForm = (props: IBookingsProps) => {
           .catch((error) => {
             console.log(error);
           });
+        return;
       }
     }
   };
@@ -331,7 +333,6 @@ export const AdminForm = (props: IBookingsProps) => {
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
-      {dateTaken ? <p>Sorry, this date is already booked</p> : null}
     </div>
   );
 };

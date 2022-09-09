@@ -98,7 +98,7 @@ export const BookingForm = (props: IBookingsProps) => {
         count += Math.ceil(booking.numberOfGuests / 6);
       }
     });
-    if (count >= 15) {
+    if (count >= 16) {
       setSecondTimeTaken(true);
     } else {
       setFilledForm({ ...filledForm, time: "21:00" });
@@ -206,14 +206,24 @@ export const BookingForm = (props: IBookingsProps) => {
       alert("Please fill in all the fields");
       window.location.href = "http://localhost:3000/bookings";
     } else {
-      axios
-        .post("http://localhost:3000/bookings", filledForm)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      for (let i = 0; i < props.results.length; i++) {
+        const guests = props.results[i].numberOfGuests;
+
+        if (guests >= 90) {
+          alert("We are fully booked on this day!");
+          return guests;
+        } else {
+          axios
+            .post("http://localhost:3000/bookings", filledForm)
+            .then((response) => {
+              console.log(response);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+          return;
+        }
+      }
     }
   };
 
