@@ -42,6 +42,8 @@ export const BookingForm = (props: IBookingsProps) => {
 
   const [dateTaken, setDateTaken] = useState(false);
 
+  const [secondTimeTaken, setSecondTimeTaken] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
 
   const [modalButton, setModalButton] = useState(true);
@@ -60,12 +62,13 @@ export const BookingForm = (props: IBookingsProps) => {
 
     if (
       props.results.filter((booking) => booking.date === date.toDateString())
-        .length > 4
+        .length > 30
     ) {
       setDateTaken(true);
-      alert("Date is fully booked!");
+      setSecondTimeTaken(false);
     } else {
       setDateTaken(false);
+      setSecondTimeTaken(false);
     }
   };
 
@@ -77,10 +80,11 @@ export const BookingForm = (props: IBookingsProps) => {
         count++;
       }
     });
-    if (count < 2) {
-      setFilledForm({ ...filledForm, time: "18:00" });
-    } else {
+    if (count > 15) {
       setDateTaken(true);
+    } else {
+      setFilledForm({ ...filledForm, time: "18:00" });
+      // setDateTaken(false);
     }
   };
 
@@ -92,10 +96,11 @@ export const BookingForm = (props: IBookingsProps) => {
         count++;
       }
     });
-    if (count < 2) {
-      setFilledForm({ ...filledForm, time: "21:00" });
+    if (count > 15) {
+      setSecondTimeTaken(true);
     } else {
-      setDateTaken(true);
+      setFilledForm({ ...filledForm, time: "21:00" });
+      // setDateTaken(false);
     }
   };
 
@@ -242,7 +247,9 @@ export const BookingForm = (props: IBookingsProps) => {
             <h1>Choose A Time</h1>
             <div>
               <section>
-                {dateTaken ? null : (
+                {dateTaken ? (
+                  true
+                ) : (
                   <button
                     className="first-seating-btn"
                     onClick={handleFirstTime}
@@ -250,7 +257,9 @@ export const BookingForm = (props: IBookingsProps) => {
                     18:00
                   </button>
                 )}
-                {dateTaken ? null : (
+                {secondTimeTaken ? (
+                  true
+                ) : (
                   <button
                     className="second-seating-btn"
                     onClick={handleSecondTime}
