@@ -30,12 +30,24 @@ import {
 } from "../styledComponents/Wrappers";
 import { Link } from "react-router-dom";
 
-const IMAGE_1 =
-  "https://www.kindacode.com/wp-content/uploads/2021/08/fried-chicken.jpeg";
-const IMAGE_2 =
-  "https://www.kindacode.com/wp-content/uploads/2021/08/fried-chicken.jpeg";
-const FALLBACK_IMAGE =
-  "https://www.kindacode.com/wp-content/uploads/2021/08/oops.png";
+const image1 = require("../../assets/images-1.jpeg");
+const image2 = require("../../assets/images-2.jpeg");
+const image3 = require("../../assets/images-3.jpeg");
+const image4 = require("../../assets/images-4.jpeg");
+const image5 = require("../../assets/images-5.jpeg");
+const image6 = require("../../assets/images-6.jpeg");
+const image7 = require("../../assets/images-7.jpeg");
+const image8 = require("../../assets/images-8.jpeg");
+const image9 = require("../../assets/images-9.jpeg");
+const image10 = require("../../assets/images-10.jpeg");
+const image11 = require("../../assets/images-11.jpeg");
+
+// const IMAGE_1 =
+//   "https://www.kindacode.com/wp-content/uploads/2021/08/fried-chicken.jpeg";
+// const IMAGE_2 =
+//   "https://www.kindacode.com/wp-content/uploads/2021/08/fried-chicken.jpeg";
+// const FALLBACK_IMAGE =
+//   "https://www.kindacode.com/wp-content/uploads/2021/08/oops.png";
 
 export const MainPage = () => {
   return (
@@ -43,7 +55,7 @@ export const MainPage = () => {
       <MainPageWrapper>
         <MainHeroContentContainer>
           <MainHeroImgContainer>
-            <img src={IMAGE_1} alt="MainHeroImage" />
+            <img src={image1} alt="MainHeroImage" />
           </MainHeroImgContainer>
           <MainHeroTextContainer>
             At Sorkins, we’re creating the next generation of
@@ -63,7 +75,7 @@ export const MainPage = () => {
         <MenuTitleContainer>Our Menu</MenuTitleContainer>
         <MenuContentContainer>
           <MenuImageContainer>
-            <img src={IMAGE_1} alt="MainMenuImage" />
+            <img src={image11} alt="MainMenuImage" />
           </MenuImageContainer>
           <MenuTextContainer>
             <br />
@@ -129,7 +141,7 @@ export const MainPage = () => {
             purée. Season with sugar, vinegar, a little ground cumin, salt and
             pepper. Delicious!
             <br />
-            <br /> / Mathias.”
+            <br />
             <br />
             <br />
             <br />
@@ -141,7 +153,7 @@ export const MainPage = () => {
         <MainBookingContentContainer>
           <MainBookingImgContainer>
             <img
-              src={IMAGE_1}
+              src={image7}
               className="anything-else"
               alt="MainBookingImage"
             />
@@ -168,22 +180,18 @@ export const MainPage = () => {
         <MainContactContentContainer>
           <MainContactImgContainer>
             <img
-              src={IMAGE_2}
+              src={image8}
               className="anything-else"
               alt="MainContactImage"
             />
           </MainContactImgContainer>
           <MainContactTextContainer>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-            corporis cumque voluptas, earum nobis officiis voluptatibus aut
-            velit enim placeat quas odit cupiditate facilis, porro deserunt
-            aspernatur qui libero optio iste itaque, magni nihil modi iusto.
-            Quis enim aliquam corporis officia error assumenda sed eligendi
-            delectus doloribus? Ducimus, similique non!
+            {" "}
+            Feel free to contact us by clicking here!
+            <Link to="/contact">
+              <MainContactButton>Contact</MainContactButton>
+            </Link>
           </MainContactTextContainer>
-          <Link to="/contact">
-            <MainContactButton>Contact</MainContactButton>
-          </Link>
         </MainContactContentContainer>
       </MainContactWrapper>
     </div>

@@ -89,7 +89,6 @@ export const BookingForm = (props: IBookingsProps) => {
     } else {
       console.log("date is taken");
       setDateTaken(true);
-      alert("Time not available!");
     }
   };
 
@@ -155,7 +154,7 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the email state change and sets the bookedBy state
   const handleGuestEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length < 30) {
+    if (e.target.value.length < 40) {
       setFilledForm({
         ...filledForm,
         bookedBy: {

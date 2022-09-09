@@ -27,7 +27,7 @@ export const CancelBooking = () => {
               className="confirm-cancel-booking-btn"
               onClick={handleCancelBooking}
             >
-              Cancel booking.
+              Cancel booking
             </FormButton>
           </Link>
         </p>
