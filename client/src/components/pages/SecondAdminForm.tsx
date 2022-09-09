@@ -49,22 +49,16 @@ export const SecondAdminForm = (props: IBookingsProps) => {
   //handles the date vailidation and sets the dateTaken state
   const handlesetValue = (date: Date) => {
     handleBookingDate(date);
-    console.log(filledForm);
-    console.log(props.results);
   };
 
   //handles validation for if the time is taken
   const handleFirstTime = () => {
     setFilledForm({ ...filledForm, time: "18:00" });
-    console.log(filledForm);
-    console.log(props.results);
   };
 
   //handles validation for if the time is taken
   const handleSecondTime = () => {
     setFilledForm({ ...filledForm, time: "21:00" });
-    console.log(filledForm);
-    console.log(props.results);
   };
 
   //handles the number of guests state change for increment
@@ -108,7 +102,6 @@ export const SecondAdminForm = (props: IBookingsProps) => {
       .catch((error) => {
         console.log(error);
       });
-    console.log("delete");
   };
 
   return (

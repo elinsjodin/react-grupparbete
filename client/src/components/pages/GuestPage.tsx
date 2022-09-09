@@ -5,10 +5,8 @@ import { IGuest } from "../../models/IBooking";
 import { GuestForm } from "./GuestForm";
 
 export const GuestPage = () => {
-  //state for all bookings in the database
   const [backendData, setBackendData] = useState<IGuest[]>([]);
 
-  //id
   // get id from useParams
   const { id } = useParams<{ id: string }>();
 

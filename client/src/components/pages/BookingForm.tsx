@@ -1,11 +1,8 @@
-//IMPORT MISC
 import axios from "axios";
 import { useState } from "react";
 import Calendar from "react-calendar";
 import { IBooking } from "../../models/IBooking";
 import { GdprModal } from "../GdprModal";
-
-//IMPORT STYLING
 import { FormButton } from "../styledComponents/Buttons";
 import {
   AddBookingCalanderContainer,
@@ -26,7 +23,6 @@ import {
 } from "../styledComponents/Wrappers";
 import { Link } from "react-router-dom";
 
-//interface for bookings
 interface IBookingsProps {
   results: IBooking[];
 }
@@ -64,13 +60,11 @@ export const BookingForm = (props: IBookingsProps) => {
 
     if (
       props.results.filter((booking) => booking.date === date.toDateString())
-        .length > 30
+        .length > 4
     ) {
-      console.log("date taken");
       setDateTaken(true);
       alert("Date is fully booked!");
     } else {
-      console.log("date not taken");
       setDateTaken(false);
     }
   };
@@ -83,11 +77,9 @@ export const BookingForm = (props: IBookingsProps) => {
         count++;
       }
     });
-    if (count < 15) {
-      console.log("time is not taken");
+    if (count < 2) {
       setFilledForm({ ...filledForm, time: "18:00" });
     } else {
-      console.log("date is taken");
       setDateTaken(true);
     }
   };
@@ -100,11 +92,9 @@ export const BookingForm = (props: IBookingsProps) => {
         count++;
       }
     });
-    if (count < 15) {
-      console.log("time is not taken");
-      setFilledForm({ ...filledForm, time: "18:00" });
+    if (count < 2) {
+      setFilledForm({ ...filledForm, time: "21:00" });
     } else {
-      console.log("date is taken");
       setDateTaken(true);
     }
   };

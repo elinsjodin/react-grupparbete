@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { Loader } from "../Loader";
 import { ConfirmationWrapper } from "../styledComponents/ConfirmStyling";
 
-interface IBackendData {
-  bookings: string[];
-}
-
 export const ConfirmationPage = () => {
   const [loading, setLoading] = useState(true);
 

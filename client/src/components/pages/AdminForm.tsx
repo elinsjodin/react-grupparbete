@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import Calendar from "react-calendar";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { IBooking, IGuest } from "../../models/IBooking";
 import { FormButton } from "../styledComponents/Buttons";
 import {
@@ -60,10 +60,8 @@ export const AdminForm = (props: IBookingsProps) => {
       props.results.filter((booking) => booking.date === date.toDateString())
         .length > 30
     ) {
-      console.log("date taken");
       setDateTaken(true);
     } else {
-      console.log("date not taken");
       setDateTaken(false);
     }
   };
@@ -77,10 +75,8 @@ export const AdminForm = (props: IBookingsProps) => {
       }
     });
     if (count < 15) {
-      console.log("time is not taken");
       setFilledForm({ ...filledForm, time: "18:00" });
     } else {
-      console.log("date is taken");
       setDateTaken(true);
     }
   };
@@ -94,10 +90,8 @@ export const AdminForm = (props: IBookingsProps) => {
       }
     });
     if (count < 15) {
-      console.log("time is not taken");
       setFilledForm({ ...filledForm, time: "18:00" });
     } else {
-      console.log("date is taken");
       setDateTaken(true);
     }
   };
@@ -106,7 +100,6 @@ export const AdminForm = (props: IBookingsProps) => {
   const handleAmountIncrease = () => {
     if (count > 5) {
       setCount(count + 1);
-      console.log("special booking ");
     } else {
       setCount(count + 1);
       setFilledForm({

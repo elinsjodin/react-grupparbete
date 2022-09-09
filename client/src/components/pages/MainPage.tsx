@@ -31,23 +31,9 @@ import {
 import { Link } from "react-router-dom";
 
 const image1 = require("../../assets/images-1.jpeg");
-const image2 = require("../../assets/images-2.jpeg");
-const image3 = require("../../assets/images-3.jpeg");
-const image4 = require("../../assets/images-4.jpeg");
-const image5 = require("../../assets/images-5.jpeg");
-const image6 = require("../../assets/images-6.jpeg");
 const image7 = require("../../assets/images-7.jpeg");
 const image8 = require("../../assets/images-8.jpeg");
-const image9 = require("../../assets/images-9.jpeg");
-const image10 = require("../../assets/images-10.jpeg");
 const image11 = require("../../assets/images-11.jpeg");
-
-// const IMAGE_1 =
-//   "https://www.kindacode.com/wp-content/uploads/2021/08/fried-chicken.jpeg";
-// const IMAGE_2 =
-//   "https://www.kindacode.com/wp-content/uploads/2021/08/fried-chicken.jpeg";
-// const FALLBACK_IMAGE =
-//   "https://www.kindacode.com/wp-content/uploads/2021/08/oops.png";
 
 export const MainPage = () => {
   return (

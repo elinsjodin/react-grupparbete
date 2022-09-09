@@ -6,10 +6,8 @@ import { IBooking } from "../../models/IBooking";
 import { SecondAdminForm } from "./SecondAdminForm";
 
 export const SecondAdminPage = () => {
-  //state for all bookings in the database
   const [backendData, setBackendData] = useState<IBooking[]>([]);
 
-  //id
   // get id from useParams
   const { id } = useParams<{ id: string }>();
 

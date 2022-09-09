@@ -4,7 +4,6 @@ import { IBooking } from "../../models/IBooking";
 import { BookingForm } from "./BookingForm";
 
 export const BookingPage = () => {
-  //state for all bookings in the database
   const [backendData, setBackendData] = useState<IBooking[]>([]);
 
   //fetches all bookings from the database
@@ -21,7 +20,6 @@ export const BookingPage = () => {
 
   return (
     <div>
-      {/* props backendData down to BookingForm */}
       <BookingForm results={backendData} />
     </div>
   );
