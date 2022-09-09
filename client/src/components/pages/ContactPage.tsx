@@ -18,8 +18,8 @@ export const ContactPage = () => {
         <ContacTitleContainer>Contact</ContacTitleContainer>
         <ContactTextContainer>
           <p>Are you more than 6 people?</p>
-          Contact us and we will make reservtions for you
-          <div>sorkins@sorkins.com</div>
+          Contact us and we will make reservtions for you at
+          <div>restaurantsorkins@gmail.com</div>
         </ContactTextContainer>
       </ContactWrapper>
 
