@@ -13,36 +13,23 @@ export const FormButton = styled.button`
 
 // Buttons for the Main Page
 
-
 export const MainBookingButton = styled.button`
   margin-top: 20px;
-  width: 140px;
+  color: #fff;
+  width: 100%;
+  max-width: 140px;
+  min-width: 139px;
   text-decoration: none;
   font-size: 1em;
-  padding: 10px 20px;
+  padding:15px 15px;
   border: 1px solid #fff;
-  background: #fff;
+  background-color: #0f0f0f;
   letter-spacing: 1px;
-  display: inline-block;
-
-
-
-
   
+  :hover > div{ 
+    cursor: pointer;   
+}
 `
-export const MainContactButton = styled.button`
-  display: flex;
-  flex-direction: column;
-  height: 40px;
-  width: 50%;
-  background-color: #ffffff;
-  color: black;
-  border: none;
-  align-items: center;
-  justify-content: center;
-  margin-left: 145px;
 
-  @media (max-width: 768px) {
-    margin-left: 10px;
-  }
-`;
+export const MainContactButton = styled(MainBookingButton)`
+`

@@ -244,12 +244,10 @@ export const MainHeroContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 50%;
-  align-items: left;
   justify-content: center;
-
   @media (max-width: 768px) {
   
-    padding-left: 0.8em;
+    padding-left: 10px;
     padding-bottom: 2px;
   }
 `;
@@ -262,7 +260,7 @@ export const MainHeroImgContainer = styled.div`
   width: 33%
   margin: 0;
   img {
-    width: 100%;
+    width: 90%;
   }
 `;
 
@@ -272,10 +270,10 @@ export const MainHeroTextContainer = styled.div`
   text-align: right;
   color: white;
   font-size: clamp(0.8em, 1.6vw, 2em);
-  padding-left: 10px;
   font-weight: 7;
-  line-height: 1.1;
+  line-height: 1;
   justify-content: right;
+  padding-bottom: 20px;
 
   @media (max-width: 768px) {
     justify-content: left;
@@ -293,9 +291,9 @@ export const HeroTextContainer = styled.div`
   align-items: flex-end;
   justify-content: right;
   padding-top: 30px;
-  }
+  margin-bottom: 0;
+  
   @media (max-width: 768px) {
-
     max-width: 100%;
   }
 `;
@@ -312,7 +310,8 @@ export const MainHeroTitleContainer = styled.div`
   align-items: right;
   text-align: right;
   padding-right: 10px;
-  padding-left: 10px;
+  padding-bottom: 100px;
+
   line-height: 0.9;
   letter-spacing: 8px;
 
@@ -320,6 +319,7 @@ export const MainHeroTitleContainer = styled.div`
     align-items: right;
     text-align: right;
     font-weight: 400;
+    letter-spacing: 9px;
   }
   @media (max-width: 768px) {
     flex-direction: column;
@@ -359,7 +359,7 @@ export const MenuContentContainer = styled.div`
   width: 50%;
   align-items: right;
   flex-direction: column;
-  padding-bottom: 200px;
+
 
   @media (max-width: 768px) {
     
@@ -379,10 +379,14 @@ export const MenuImageContainer = styled.div`
   margin: 0;
   img {
     width: 100%;
+
+    @media (max-width: 768px) {
+    
+      width: 50%;
+
+    }
   }
 `;
-
-
 
 export const MenuTextContainer = styled.div`
   display: flex;
@@ -418,97 +422,82 @@ export const HeroBookingContainer = styled(HeroTextContainer)`
 export const MainBookingTitleContainer = styled(MainHeroTitleContainer)`
 font-size: clamp(0.8em, 6vw, 8em);
 @media (max-width: 768px) {
-  display: flex;
-  text-align: right;
-  align-items: left;
+  justify-content: center;
   letter-spacing: 0.2px;
 
 }
 `;
+
 // Container Main Page - Contact
 
 export const MainContactContentContainer = styled.div`
   display: flex;
-  flex-direction: column;
   width: 50%;
   align-items: right;
-  justify-content: center;
+  flex-direction: column;
+  padding-bottom: 200px;
 
   @media (max-width: 768px) {
-  
-    padding-right: 0.8em;
-    padding-bottom: 2px;
+    
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
   }
 `;
 
 export const MainContactImgContainer = styled.div`
-
   display: flex;
   max-width: 100%;
   align-items: right;
   justify-content: right;
-  width: 33%
+  width: 100%
   margin: 0;
   img {
     width: 100%;
+
+    @media (max-width: 768px) {
+    
+      width: 50%;
+
+    }
   }
 `;
 
-
-export const MainContactTextContainer = styled.div`
-padding-top: 30px;
+export const MainContactTitleContainer = styled(MainHeroTitleContainer)`
+  font-size: clamp(0.8em, 6vw, 8em);
+  letter-spacing: 0.2px;
   display: flex;
-  text-align: right;
-  max-width: 100%;
-  color: white;
-  font-size: clamp(1em, 2.2vw, 2em);
-  margin-right: 2em;
-  font-weight: 7;
-  line-height: 1.2;
-  justify-content: right;
-
-  @media (max-width: 768px) {
-    justify-content: left;
-
-    text-align: left;
-    line-height: 1.3;
-  }
+  align-items: left;
+  justify-content: left;
+  text-align: left;
+  
 `;
 
-export const HeroContactContainer = styled.div`
+export const MainContactContainer = styled.div`
   display: flex;
+  width: 50%;
+  align-items: right;
   flex-direction: column;
-  max-width: 50%;
-  align-items: flex-end;
-  justify-content: left;
- 
-  }
-  @media (max-width: 768px) {
+  padding-bottom: 200px;
 
-    max-width: 100%;
+  @media (max-width: 768px) {
+    
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
   }
 `;
 
-
-export const MainContactTitleContainer = styled.div`
+export const MainContactTextContainer = styled(MainHeroTextContainer)`
   display: flex;
-  font-size: clamp(0.8em, 5vw, 8em);
-  font-weight: 300;
-  width: 100%;
-  color: white;
+  align-items: left;
   justify-content: left;
-  padding-top: 100px;
-  align-items: bottom;
-  text-align: center;
-  padding-left: 0.8em;
-  padding-bottom: 15px;
-  line-height: 0.9;
-  letter-spacing: 6px;
+  text-align: left; 
+  padding-top: 20px;
+  padding-bottom: 5px;
 
-  @media (max-width: 768px) {
-    justify-content: center;
-    padding-left: 0px;
-  }
 `;
 
 

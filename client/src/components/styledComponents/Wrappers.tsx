@@ -20,7 +20,6 @@ export const AddBookingWrapper = styled.div`
   height: 100%;
 `;
 
-//wrappers for Main Page
 
 // wrappers => Containers => Text
 
@@ -36,8 +35,8 @@ export const NavWrapper = styled.div`
 
 export const MainPageWrapper = styled.div`
   display: flex;
-  width: 100%;
-  height: calc( 90vh );
+  width: 100vw;
+  height: calc( 100vh );
   background-color: #0f0f0f; 
   @media (max-width: 768px) {
   
@@ -46,6 +45,16 @@ export const MainPageWrapper = styled.div`
 `;
 
 
+export const MainBookingWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  height: calc( 100vh );
+  background-color: #0f0f0f; 
+  @media (max-width: 768px) {
+  
+    height: calc( 60vh );
+  }
+`;
 
 export const MainMenuWrapper = styled.div`
   display: flex;
@@ -54,32 +63,17 @@ export const MainMenuWrapper = styled.div`
 
   @media (max-width: 768px) {
     flex-direction: column;
-    line-height: 1.3;
-    flex-shrink: 3;
   }
 `;
 
-export const MainBookingWrapper = styled.div`
+export const MainContactWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: calc( 90vh );
+  height: calc( 100vh );
   background-color: #0f0f0f; 
   @media (max-width: 768px) {
   
     height: calc( 60vh );
-  }
-`;
-
-
-export const MainContactWrapper = styled.div`
-  padding-top: 200px;
-  display: flex;
-  width: 100%;
-  height: calc( 90vh );
-  background-color: #0f0f0f; 
-  @media (max-width: 768px) {
-  
-    height: calc( 30vh );
   }
 `;
 

@@ -16,8 +16,8 @@ import {
   MainContactImgContainer,
   MainContactContentContainer,
   HeroTextContainer, 
-  HeroContactContainer,
-  HeroBookingContainer
+  HeroBookingContainer,
+  MainContactContainer,
 } from "../styledComponents/Containers";
 
 import {
@@ -34,19 +34,11 @@ import {
 } from "../styledComponents/Wrappers";
 import { Link } from "react-router-dom";
 
-const HeroImg =
-  "https://i.postimg.cc/4nCZ8qn0/images-1.jpg";
-const MenuImg =
-  "https://i.postimg.cc/BbfMmf2k/images-8.jpg";
-const BookingImg =
-  "https://i.postimg.cc/CLzHVt52/images-4.jpg";
-const ContactImg =
-  "https://i.postimg.cc/GhHHXTm0/images-11.jpg";
 
-
-const FALLBACK_IMAGE =
-  "https://www.kindacode.com/wp-content/uploads/2021/08/oops.png";
-
+const image1 = require("../../assets/images-1.jpeg");
+const image14 = require("../../assets/images-14.jpg");
+const image8 = require("../../assets/images-12.jpg");
+const image13 = require("../../assets/images-13.jpg");
 
 export const MainPage = () => {
   return (
@@ -54,14 +46,13 @@ export const MainPage = () => {
       <MainPageWrapper>
         <MainHeroContentContainer>
           <MainHeroImgContainer>
-            <img src={HeroImg} alt="MainHeroImage" />
+            <img src={image1} alt="MainHeroImage" />
           </MainHeroImgContainer>
           <MainHeroTextContainer>
             <HeroTextContainer>
             At Sorkins, we’re creating the next generation of
             lacto-ovo-vegetarian cuisine. Quality fresh produce, with the whole
             world as a source of inspiration, is transformed into one exciting menu.
-      
             </HeroTextContainer>
           </MainHeroTextContainer>
         </MainHeroContentContainer>
@@ -76,7 +67,7 @@ export const MainPage = () => {
         <MenuTitleContainer>Our Menu</MenuTitleContainer>
         <MenuContentContainer>
           <MenuImageContainer>
-            <img src={MenuImg} alt="MainMenuImage" />
+            <img src={image14} alt="MainMenuImage" />
           </MenuImageContainer>
           <MenuTextContainer>
             <br />
@@ -113,50 +104,65 @@ export const MainPage = () => {
         <MainBookingContentContainer>
           <MainBookingImgContainer>
             <img
-              src={BookingImg}
+              src={image8}
               className="anything-else"
               alt="MainBookingImage"
             />
           </MainBookingImgContainer>
           <MainBookingTextContainer>
             <HeroBookingContainer>
-            At Sorkins, we’re creating the next generation of
-            lacto-ovo-vegetarian cuisine. Quality fresh produce, with the whole
-            world as a source of inspiration, is transformed into one exciting
-            menu.
+            Table reservations can be made one month to the calendar date. 
+            Online reservations up to 12 guests. If you are more than that, 
+            send your booking request to ES Reservations. 
+            Sorkins is a cash free resturant.
             <Link to="/bookings">
-              <MainBookingButton><div>Book</div></MainBookingButton>
+              <MainBookingButton>
+                <div>
+                  Book
+                </div>
+              </MainBookingButton>
             </Link>
             </HeroBookingContainer>
-            
           </MainBookingTextContainer>
         </MainBookingContentContainer>
         <MainBookingTitleContainer>
           Table Reservations
         </MainBookingTitleContainer>
-        
       </MainBookingWrapper>
 
       <MainContactWrapper>
-        <MainContactTitleContainer>Contact</MainContactTitleContainer>
-
+        <MainContactTitleContainer>
+          Contact
+        </MainContactTitleContainer>
         <MainContactContentContainer>
           <MainContactImgContainer>
             <img
-              src={ContactImg}
+              src={image13}
               className="anything-else"
-              alt="MainContactImage"
+              alt="MainBookingImage"
             />
           </MainContactImgContainer>
           <MainContactTextContainer>
-          
-            Table reservations can be made one month to the calendar date. 
-Online reservations up to 12 guests. If you are more than that, send your booking request to ES Reservations.
-Sorkins is a cash free resturant.
-        
+            <MainContactContainer>
+            Are you interested in a private dinner in a restuant enviromen?
+            No problem. We offer Sorkin's chef's table as a chambre séparée, where we serve 
+            a selection of set menus for up to 8 guests in the same party
+            <Link to="/contact">
+              <MainContactButton>
+                <div>
+                  Contact
+                </div>
+              </MainContactButton>
+            </Link>
+            </MainContactContainer>
           </MainContactTextContainer>
         </MainContactContentContainer>
       </MainContactWrapper>
+
+
+
+
+
     </div>
   );
 };
