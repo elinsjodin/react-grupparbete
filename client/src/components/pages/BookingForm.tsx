@@ -135,7 +135,7 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the name state change and sets the bookedBy state
   const handleGuestName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 100) {
+    if (e.target.value.length > 20) {
       alert("Name can't be longer than 20 characters");
     } else {
       setFilledForm({
@@ -150,7 +150,7 @@ export const BookingForm = (props: IBookingsProps) => {
 
   //handles the email state change and sets the bookedBy state
   const handleGuestEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length < 100) {
+    if (e.target.value.length < 40) {
       setFilledForm({
         ...filledForm,
         bookedBy: {
