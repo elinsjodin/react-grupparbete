@@ -6,11 +6,14 @@ beforeEach(() => {
 });
 // Validation needed!!
 describe("create booking", () => {
-  it("should test form validation for required fields and return error", () => {
+  it("should test form validation for required fields and return alert", () => {
     cy.visit("http://localhost:3000/bookings");
     cy.get(".gdpr-btn").click();
     cy.get(".gdpr-accept-btn").click();
-    // Fill out required fields validation needed
+    cy.on("window:alert", (t) => {
+      expect(t).to.contains("Please fill in all the fields");
+    });
+    cy.url().should("eq", "http://localhost:3000/bookings");
   });
   // Testing validation
   it("should test validaton for booking over 6 people and return not possible", () => {
