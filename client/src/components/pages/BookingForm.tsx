@@ -206,26 +206,26 @@ export const BookingForm = (props: IBookingsProps) => {
       alert("Please fill in all the fields");
       window.location.href = "http://localhost:3000/bookings";
     } else {
-      for (let i = 0; i < props.results.length; i++) {
-        const guests = props.results[i].numberOfGuests;
+      // for (let i = 0; i < props.results.length; i++) {
+      //   const guests = props.results[i].numberOfGuests;
 
-        if (guests >= 90) {
-          alert("We are fully booked on this day!");
-          return guests;
-        } else {
-          axios
-            .post("http://localhost:3000/bookings", filledForm)
-            .then((response) => {
-              console.log(response);
-            })
-            .catch((error) => {
-              console.log(error);
-            });
-          return;
-        }
-      }
+      //   if (guests >= 90) {
+      //     alert("We are fully booked on this day!");
+      //     return guests;
+      //   } else {
+      axios
+        .post("http://localhost:3000/bookings", filledForm)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      //return;
     }
   };
+  //}
+  //};
 
   return (
     <div>
