@@ -1,10 +1,18 @@
-describe("create booking", () => {
-  it("should test form validation for required fields and return error", () => {
-    cy.visit("http://localhost:3000/bookings");
-    cy.get(".gdpr-btn").click();
-    cy.get(".gdpr-accept-btn").click();
-    // Fill out required fields validation needed
+// Clears database
+beforeEach(() => {
+  cy.request("DELETE", "http://localhost:8000/testing").then((res) => {
+    expect(res.status).to.eq(200);
   });
+});
+// Validation needed!!
+describe("create booking", () => {
+  // it("should test form validation for required fields and return error", () => {
+  //   cy.visit("http://localhost:3000/bookings");
+  //   cy.get(".gdpr-btn").click();
+  //   cy.get(".gdpr-accept-btn").click();
+  //   // Fill out required fields validation needed
+  // });
+  // Testing validation
   it("should test validaton for booking over 6 people and return not possible", () => {
     cy.visit("http://localhost:3000/bookings");
     cy.get(".react-calendar__month-view__days > :nth-child(20)")
@@ -25,6 +33,7 @@ describe("create booking", () => {
       );
     });
   });
+  // Creates a new booking
   it("should fill out all required fields in form, click on booking-button to create a new booking and go to 'Confirmed Booking'-page", () => {
     cy.visit("http://localhost:3000/bookings");
     cy.get(".react-calendar__month-view__days > :nth-child(20)")

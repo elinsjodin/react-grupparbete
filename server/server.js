@@ -3,6 +3,7 @@ const app = express();
 const bookingsRouter = require("./routers/bookings-router.js");
 const confirmationRouter = require("./routers/confirmation-router.js");
 const adminRouter = require("./routers/admin-router.js");
+const testingRouter = require("./routers/testing-router.js");
 const { default: mongoose } = require("mongoose");
 const config = require("./configurations/config.js");
 const errorHandler = require("./middlewares/errorHandler.js");
@@ -29,6 +30,8 @@ app.use("/bookings", bookingsRouter);
 app.use("/confirm", confirmationRouter);
 //localhost:8000/admin
 app.use("/admin", adminRouter);
+// För testning
+app.use("/testing", testingRouter);
 // error hantering - måste ligga sist så att våra requests går igenom alla routes
 app.use(errorHandler);
 

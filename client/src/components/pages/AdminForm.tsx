@@ -194,6 +194,7 @@ export const AdminForm = (props: IBookingsProps) => {
     axios
       .post("http://localhost:3000/bookings", filledForm)
       .then((response) => {
+        window.location.reload();
         console.log(response);
       })
       .catch((error) => {
@@ -214,7 +215,7 @@ export const AdminForm = (props: IBookingsProps) => {
           <h2>Bookings</h2>
           {props.results.map((booking, i) => (
             <Link to={`/admin/edit/${booking._id}`} key={i}>
-              <p>{booking.date}</p>
+              <p className="booking-link">{booking.date}</p>
             </Link>
           ))}
         </AdminBookingContainer>
@@ -222,7 +223,7 @@ export const AdminForm = (props: IBookingsProps) => {
           <h2>Guests</h2>
           {props.guestResults.map((guest, i) => (
             <Link to={`/admin/guest/edit/${guest._id}`} key={i}>
-              <p>{guest.name}</p>
+              <p className="guest-name-on-link">{guest.name}</p>
             </Link>
           ))}
         </AdminBookingContainer>
