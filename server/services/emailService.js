@@ -16,7 +16,7 @@ module.exports = class EmailService {
           pass: process.env.PASSWORD,
         },
       });
-      console.log({ bookingConfirmation });
+
       const message = {
         from: '"Sorkins", <restaurantsorkins@gmail.com>',
         to: bookingConfirmation.bookedBy.email,

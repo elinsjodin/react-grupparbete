@@ -1,10 +1,8 @@
 const bookingValidation = require("../validations/bookingValidation.js");
 const BookingService = require("../services/bookingService.js");
 const EmailService = require("../services/emailService.js");
-const TestingService = require("../services/testingService.js");
 const bookingService = new BookingService();
 const emailService = new EmailService();
-const testingService = new TestingService();
 
 module.exports = class BookingController {
   async CreateNewBooking(req, res, next) {
@@ -47,35 +45,10 @@ module.exports = class BookingController {
     }
   }
 
-  // async GetBookingByDate(req, res, next) {
-  //   try {
-  //     const date = req.params.date;
-  //     const result = await bookingService.GetBookingById(date);
-
-  //     if (result) {
-  //       res.status(200).json(result);
-  //       console.log(result);
-  //     } else {
-  //       res.status(404).json({ message: "No bookings found" });
-  //     }
-  //   } catch (error) {
-  //     next({ status: error.status, message: error.message });
-  //   }
-  // }
-
-  async GetBookingByDate(req, res, next) {
-    try {
-      const date = req.body.date;
-      const result = await bookingService.GetBookingByDate(date);
-      res.send(result);
-    } catch (error) {
-      next({ status: error.status, message: error.message });
-    }
-  }
-
   async EditBooking(req, res, next) {
     try {
       const id = req.params.id;
+
       const booking = req.body;
 
       bookingValidation.editBookingValidation(booking);
@@ -86,13 +59,10 @@ module.exports = class BookingController {
             .status(400)
             .send({ message: `Unable to update booking with id: ${id}` });
         } else {
-          console.log("data", dataInBooking);
-
           res.send(dataInBooking);
         }
       });
     } catch (error) {
-      console.log("Error msg: ", error);
       next({ status: error.status, message: error.message });
     }
   }
@@ -100,7 +70,9 @@ module.exports = class BookingController {
   async DeleteBooking(req, res, next) {
     try {
       const id = req.params.id;
+
       const result = await bookingService.DeleteBooking(id);
+
       res.send(result);
     } catch (error) {
       next({ status: error.status, message: error.message });
@@ -121,6 +93,7 @@ module.exports = class BookingController {
 
   async CancelBooking(req, res, next) {
     const bookingId = req.params.id;
+
     const booking = await bookingService.GetBookingById(bookingId);
 
     if (booking) {
@@ -135,20 +108,6 @@ module.exports = class BookingController {
       } catch (error) {
         next({ status: error.status, message: error.message });
       }
-    }
-  }
-
-  async FindBookingByIdForTesting(req, res, next) {
-    try {
-      const id = req.params.id;
-
-      const result = await testingService.FindBookingByIdForTesting(id);
-
-      if (result === null) {
-        res.sendStatus(200);
-      }
-    } catch (error) {
-      next({ status: error.status, message: error.message });
     }
   }
 };

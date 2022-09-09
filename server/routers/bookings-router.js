@@ -15,7 +15,4 @@ router.post(
 
 router.delete("/cancel/:id", bookingController.CancelBooking);
 
-// Router för testning i Cypress
-router.get("/cancel/test", bookingController.FindBookingByIdForTesting);
-
 module.exports = router;

@@ -40,7 +40,6 @@ module.exports = class BookingService {
 
       newGuest.save(function (err, doc) {
         if (err) return console.error(err);
-        console.log("Document inserted succussfully!");
       });
       const result = await newBooking.save();
 
@@ -69,17 +68,6 @@ module.exports = class BookingService {
       throw new Error("Booking not found");
     } else {
       return booking;
-    }
-  }
-
-  async GetBookingByDate(date) {
-    const dateInBooking = await BookingModel.find(date);
-    console.log("Date", dateInBooking);
-
-    if (!dateInBooking) {
-      throw new Error("Date not found");
-    } else {
-      return dateInBooking;
     }
   }
 
