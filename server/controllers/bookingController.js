@@ -11,6 +11,20 @@ module.exports = class BookingController {
 
       bookingValidation.validateBooking(bookingDto);
 
+      const guests = bookingDto.numberOfGuests;
+
+      const availableTables = await bookingService.GetAvailableTables(
+        bookingDto.date,
+        bookingDto.time
+      );
+
+      const desiredTableAmount = await bookingService.GetTableAmount(guests);
+
+      if (availableTables < desiredTableAmount) {
+        res.send(error, "We are fully booked on this day!");
+        return;
+      }
+
       const result = await bookingService.CreateNewBooking(bookingDto);
 
       bookingDto.id = result._id;
