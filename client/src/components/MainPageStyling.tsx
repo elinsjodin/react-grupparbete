@@ -28,7 +28,7 @@ import {
   MainBookingWrapper,
   MainContactWrapper,
 } from "./styledComponents/Wrappers";
-import logo from "../logo.svg";
+import MainHeroImg from "../assets/images-4.jpeg";
 
 export const MainPageHero = () => {
   return (
@@ -36,7 +36,7 @@ export const MainPageHero = () => {
       <MainPageWrapper>
         <MainHeroContentContainer>
           <MainHeroImgContainer>
-            <img src={logo} className="App-logo" alt="MainHeroImage" />
+            <img src={MainHeroImg} className="App-logo" alt="MainHeroImage" />
           </MainHeroImgContainer>
           <MainHeroTextContainer>
             At Sorkins, we’re creating the next generation of
@@ -52,7 +52,7 @@ export const MainPageHero = () => {
         <MenuTitleContainer>Our Menu</MenuTitleContainer>
         <MenuContentContainer>
           <MenuImageContainer>
-            <img src={logo} className="App-logo" alt="MainMenuImage" />
+            <img src={MainHeroImg} className="App-logo" alt="MainMenuImage" />
           </MenuImageContainer>
           <MenuTextContainer>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
@@ -68,7 +68,7 @@ export const MainPageHero = () => {
       <MainBookingWrapper>
         <MainBookingContentContainer>
           <MainBookingImgContainer>
-            <img src={logo} className="App-logo" alt="MainBookingImage" />
+            <img src={MainHeroImg} className="App-logo" alt="MainBookingImage" />
           </MainBookingImgContainer>
           <MainBookingTextContainer>
             At Sorkins, we’re creating the next generation of
@@ -88,7 +88,7 @@ export const MainPageHero = () => {
         <MainContactTitleContainer>Contact</MainContactTitleContainer>
         <MainContactContentContainer>
           <MainContactImgContainer>
-            <img src={logo} className="App-logo" alt="MainContactImage" />
+            <img src={MainHeroImg} className="App-logo" alt="MainContactImage" />
           </MainContactImgContainer>
           <MainContactTextContainer>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus

@@ -242,12 +242,13 @@ export const NavLinksContainer = styled.div`
 //container Main Page - Hero
 export const MainHeroContentContainer = styled.div`
   display: flex;
+  flex-direction: column;
   width: 50%;
   align-items: left;
-  flex-direction: column;
-  padding-bottom: 100px;
+  justify-content: center;
 
   @media (max-width: 768px) {
+  
     padding-left: 0.8em;
     padding-bottom: 2px;
   }
@@ -255,10 +256,11 @@ export const MainHeroContentContainer = styled.div`
 
 export const MainHeroImgContainer = styled.div`
   display: flex;
+  max-width: 50%;
   align-items: left;
   justify-content: left;
+  width: 33%
   margin: 0;
-  padding-bottom: 10px;
   img {
     width: 100%;
   }
@@ -266,39 +268,57 @@ export const MainHeroImgContainer = styled.div`
 
 export const MainHeroTextContainer = styled.div`
   display: flex;
+  max-width: 100%;
   text-align: right;
   color: white;
-  font-size: clamp(0.6em, 1.9vw, 2.2em);
-  padding-left: 2em;
+  font-size: clamp(0.8em, 1.6vw, 2em);
+  padding-left: 10px;
   font-weight: 7;
-  line-height: 1.2;
+  line-height: 1.1;
+  justify-content: right;
 
   @media (max-width: 768px) {
-    flex-grow: 5;
     justify-content: left;
-    padding-left: 0em;
+    padding-left: 0px;
+    padding-top: 10px;
     text-align: left;
-    line-height: 1.3;
+    line-height: 1.5;
   }
 `;
+
+export const HeroTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  align-items: flex-end;
+  justify-content: right;
+  padding-top: 30px;
+  }
+  @media (max-width: 768px) {
+
+    max-width: 100%;
+  }
+`;
+
+
 export const MainHeroTitleContainer = styled.div`
   display: flex;
-  flex-shrink: 100;
-  font-size: clamp(2em, 5vw, 8em);
+  flex-direction: column;
+  font-size: clamp(2em, 6vw, 8em);
   font-weight: 300;
-  width: 100%;
+  width: 50%;
   color: white;
-  justify-content: right;
-  align-items: center;
+  justify-content: center;
+  align-items: right;
   text-align: right;
-  padding-right: 0.8em;
-  padding-left: 0.8em;
-  padding-bottom: 1.5em;
+  padding-right: 10px;
+  padding-left: 10px;
   line-height: 0.9;
   letter-spacing: 8px;
 
   span {
-    letter-spacing: 5px;
+    align-items: right;
+    text-align: right;
     font-weight: 400;
   }
   @media (max-width: 768px) {
@@ -311,70 +331,68 @@ export const MainHeroTitleContainer = styled.div`
 
 //container Main Page - Menu
 
+
+export const MenuTitleContainer = styled.div`
+  display: flex;
+  font-size: clamp(0.8em, 5vw, 8em);
+  font-weight: 300;
+  width: 100%;
+  color: white;
+  justify-content: left;
+  padding-top: 100px;
+  align-items: bottom;
+  text-align: center;
+  padding-left: 0.8em;
+  padding-bottom: 15px;
+  line-height: 0.9;
+  letter-spacing: 6px;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    padding-left: 0px;
+  }
+`;
+
+
 export const MenuContentContainer = styled.div`
   display: flex;
   width: 50%;
   align-items: right;
   flex-direction: column;
+  padding-bottom: 200px;
 
   @media (max-width: 768px) {
+    
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
-  }
-`;
-
-export const MenuTitleContainer = styled.div`
-  display: flex;
-  flex-shrink: 100;
-  font-size: clamp(2em, 5vw, 8em);
-  font-weight: 300;
-  width: 100%;
-  color: white;
-  justify-content: center;
-  padding-top: 100px;
-  align-items: left;
-  text-align: center;
-  padding-left: 0.8em;
-  padding-bottom: 15px;
-  line-height: 0.9;
-  letter-spacing: 8px;
-
-  span {
-    letter-spacing: 5px;
-    font-weight: 400;
-  }
-  @media (max-width: 768px) {
-    justify-content: right;
-    padding-left: 0px;
+    padding-bottom: 20px;
   }
 `;
 
 export const MenuImageContainer = styled.div`
   display: flex;
+  max-width: 100%;
   align-items: right;
   justify-content: right;
+  width: 33%
   margin: 0;
-  padding-bottom: 10px;
   img {
     width: 100%;
-
-    @media (max-width: 768px) {
-      width: 50%;
-
-      padding-right: 15px;
-      justify-content: center;
-    }
   }
 `;
+
+
+
 export const MenuTextContainer = styled.div`
   display: flex;
-  text-align: left;
+  text-align: right;
   color: white;
-  font-size: clamp(1em, 1.9vw, 2.2em);
+  font-size: clamp(1em, 2.2vw, 2em);
   margin-right: 2em;
   font-weight: 7;
   line-height: 1.2;
+  justify-content: right;
 
   @media (max-width: 768px) {
     justify-content: left;
@@ -385,122 +403,69 @@ export const MenuTextContainer = styled.div`
 `;
 //container Main Page - Booking
 
-export const MainBookingContentContainer = styled.div`
-  display: flex;
-  width: 50%;
-  align-items: center;
-  flex-direction: column;
+export const MainBookingContentContainer = styled(MainHeroContentContainer)`
 `;
 
-export const MainBookingImgContainer = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: 15px;
-
-  img {
-    width: 50%;
-  }
-  & > div {
-    flex: 1;
-  }
+export const MainBookingImgContainer = styled(MainHeroImgContainer)`
 `;
 
-export const MainBookingTextContainer = styled.div`
+export const MainBookingTextContainer = styled(MainHeroTextContainer)`
+`;
+
+export const HeroBookingContainer = styled(HeroTextContainer)`
+`;
+
+export const MainBookingTitleContainer = styled(MainHeroTitleContainer)`
+font-size: clamp(0.8em, 6vw, 8em);
+@media (max-width: 768px) {
   display: flex;
   text-align: right;
-  color: white;
-  font-size: clamp(1em, 1.9vw, 2.2em);
-  margin-right: 2em;
-  font-weight: 7;
-  line-height: 1.2;
+  align-items: left;
+  letter-spacing: 0.2px;
 
-  @media (max-width: 768px) {
-    justify-content: left;
-
-    text-align: left;
-    line-height: 1.3;
-  }
+}
 `;
-export const MainBookingTitleContainer = styled.div`
-  font-size: clamp(1.5em, 2.9vw, 3em);
-  display: flex;
-  width: 100%;
-  color: white;
-  justify-content: right;
-  align-items: center;
-  margin-right: 16px;
-
-  @media (max-width: 768px) {
-    flex: 1;
-  }
-`;
-
 // Container Main Page - Contact
 
 export const MainContactContentContainer = styled.div`
   display: flex;
+  flex-direction: column;
   width: 50%;
   align-items: right;
-  flex-direction: column;
-
-  @media (max-width: 768px) {
-    width: 100%;
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-`;
-
-export const MainContactTitleContainer = styled.div`
-  display: flex;
-  flex-shrink: 100;
-  font-size: clamp(2em, 5vw, 8em);
-  font-weight: 300;
-  width: 100%;
-  color: white;
   justify-content: center;
-  padding-top: 100px;
-  align-items: left;
-  text-align: center;
-  padding-left: 0.8em;
-  padding-bottom: 15px;
-  line-height: 0.9;
-  letter-spacing: 8px;
 
-  span {
-    letter-spacing: 5px;
-    font-weight: 400;
-  }
   @media (max-width: 768px) {
-    justify-content: right;
-    padding-left: 0px;
+  
+    padding-right: 0.8em;
+    padding-bottom: 2px;
   }
 `;
 
 export const MainContactImgContainer = styled.div`
+
   display: flex;
+  max-width: 100%;
   align-items: right;
   justify-content: right;
+  width: 33%
   margin: 0;
-  padding-bottom: 10px;
   img {
     width: 100%;
-
-    @media (max-width: 768px) {
-      width: 50%;
-
-      padding-right: 15px;
-      justify-content: center;
-    }
   }
 `;
+
+
 export const MainContactTextContainer = styled.div`
+padding-top: 30px;
   display: flex;
-  text-align: left;
+  text-align: right;
+  max-width: 100%;
   color: white;
-  font-size: clamp(1em, 1.9vw, 2.2em);
+  font-size: clamp(1em, 2.2vw, 2em);
   margin-right: 2em;
   font-weight: 7;
   line-height: 1.2;
+  justify-content: right;
 
   @media (max-width: 768px) {
     justify-content: left;
@@ -509,6 +474,43 @@ export const MainContactTextContainer = styled.div`
     line-height: 1.3;
   }
 `;
+
+export const HeroContactContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+  align-items: flex-end;
+  justify-content: left;
+ 
+  }
+  @media (max-width: 768px) {
+
+    max-width: 100%;
+  }
+`;
+
+
+export const MainContactTitleContainer = styled.div`
+  display: flex;
+  font-size: clamp(0.8em, 5vw, 8em);
+  font-weight: 300;
+  width: 100%;
+  color: white;
+  justify-content: left;
+  padding-top: 100px;
+  align-items: bottom;
+  text-align: center;
+  padding-left: 0.8em;
+  padding-bottom: 15px;
+  line-height: 0.9;
+  letter-spacing: 6px;
+
+  @media (max-width: 768px) {
+    justify-content: center;
+    padding-left: 0px;
+  }
+`;
+
 
 // CONTACT PAGE
 

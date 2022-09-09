@@ -37,8 +37,15 @@ export const NavWrapper = styled.div`
 export const MainPageWrapper = styled.div`
   display: flex;
   width: 100%;
-  background-color: #0f0f0f;
+  height: calc( 90vh );
+  background-color: #0f0f0f; 
+  @media (max-width: 768px) {
+  
+    height: calc( 30vh );
+  }
 `;
+
+
 
 export const MainMenuWrapper = styled.div`
   display: flex;
@@ -55,20 +62,27 @@ export const MainMenuWrapper = styled.div`
 export const MainBookingWrapper = styled.div`
   display: flex;
   width: 100%;
-  background-color: #0f0f0f;
-`;
-
-export const MainContactWrapper = styled.div`
-  display: flex;
-  width: 100%;
-  background-color: #0f0f0f;
-
+  height: calc( 90vh );
+  background-color: #0f0f0f; 
   @media (max-width: 768px) {
-    flex-direction: column;
-    line-height: 1.3;
-    flex-shrink: 3;
+  
+    height: calc( 60vh );
   }
 `;
+
+
+export const MainContactWrapper = styled.div`
+  padding-top: 200px;
+  display: flex;
+  width: 100%;
+  height: calc( 90vh );
+  background-color: #0f0f0f; 
+  @media (max-width: 768px) {
+  
+    height: calc( 30vh );
+  }
+`;
+
 
 // wrappers for Contact Page
 

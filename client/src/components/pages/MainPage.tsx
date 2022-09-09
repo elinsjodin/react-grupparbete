@@ -15,6 +15,9 @@ import {
   MainContactTextContainer,
   MainContactImgContainer,
   MainContactContentContainer,
+  HeroTextContainer, 
+  HeroContactContainer,
+  HeroBookingContainer
 } from "../styledComponents/Containers";
 
 import {
@@ -27,15 +30,23 @@ import {
   MainMenuWrapper,
   MainBookingWrapper,
   MainContactWrapper,
+  
 } from "../styledComponents/Wrappers";
 import { Link } from "react-router-dom";
 
-const IMAGE_1 =
-  "https://www.kindacode.com/wp-content/uploads/2021/08/fried-chicken.jpeg";
-const IMAGE_2 =
-  "https://www.kindacode.com/wp-content/uploads/2021/08/fried-chicken.jpeg";
+const HeroImg =
+  "https://i.postimg.cc/4nCZ8qn0/images-1.jpg";
+const MenuImg =
+  "https://i.postimg.cc/BbfMmf2k/images-8.jpg";
+const BookingImg =
+  "https://i.postimg.cc/CLzHVt52/images-4.jpg";
+const ContactImg =
+  "https://i.postimg.cc/GhHHXTm0/images-11.jpg";
+
+
 const FALLBACK_IMAGE =
   "https://www.kindacode.com/wp-content/uploads/2021/08/oops.png";
+
 
 export const MainPage = () => {
   return (
@@ -43,13 +54,15 @@ export const MainPage = () => {
       <MainPageWrapper>
         <MainHeroContentContainer>
           <MainHeroImgContainer>
-            <img src={IMAGE_1} alt="MainHeroImage" />
+            <img src={HeroImg} alt="MainHeroImage" />
           </MainHeroImgContainer>
           <MainHeroTextContainer>
+            <HeroTextContainer>
             At Sorkins, we’re creating the next generation of
             lacto-ovo-vegetarian cuisine. Quality fresh produce, with the whole
-            world as a source of inspiration, is transformed into one exciting
-            menu.
+            world as a source of inspiration, is transformed into one exciting menu.
+      
+            </HeroTextContainer>
           </MainHeroTextContainer>
         </MainHeroContentContainer>
         <MainHeroTitleContainer>
@@ -63,7 +76,7 @@ export const MainPage = () => {
         <MenuTitleContainer>Our Menu</MenuTitleContainer>
         <MenuContentContainer>
           <MenuImageContainer>
-            <img src={IMAGE_1} alt="MainMenuImage" />
+            <img src={MenuImg} alt="MainMenuImage" />
           </MenuImageContainer>
           <MenuTextContainer>
             <br />
@@ -74,64 +87,23 @@ export const MainPage = () => {
             <br /> –
             <br />
             <br />
-            Bread from Green Rabbit
+            Bread from Yellow Rabbit
             <br />
-            Butter from Löts gårdsmejeri
+            Butter from Göts gårdsmejeri
             <br />
-            Chanterelle cappuccino
+            Green peas
             <br />
             <br />
             Appetiser…
             <br />
             Truffled green ”foie gras” with wheat levain croutons
             <br />
-            <br />
             From the garden…
-            <br />
             Artichoke, broccoli, peas, leaves & sprouts
             <br />
-            <br />
             Japanese Inspiration…
-            <br /> Jasmine rice in salad leaves with deep fried onion, ginger,
+            Jasmine rice in salad leaves with deep fried onion, ginger,
             nashi pear, wasabi
-            <br />
-            <br /> This month´s produce… Beetroot
-            <br />
-            Raspberry, smoked cheese, trevisano, browned butter
-            <br />
-            <br />
-            Summer´s flavours…
-            <br />
-            Roasted pointed cabbage, cheese, herbs, lemon zest
-            <br />
-            <br /> From the berry bush……
-            <br /> Summer berries, swiss roll, punch
-            <br />
-            <br /> –
-            <br />
-            <br /> Every season offers its specific ingredients, therefore we
-            change one of the dishes every month and dedicate it to an
-            ingredient in season.
-            <br />
-            <br /> Produce in focus for August: Beetroot!
-            <br />
-            <br /> “ Beetroot came to the Nordic countries in the 17th and 18th
-            centuries. The plant is easy to grow and hardy which enables it to
-            be cultivated in favorable locations far up north in Sweden.
-            Beetroot is often eaten as freshly cooked primroses or, even more
-            commonly, as pickled. As a freshly cooked primer the beet tastes
-            sweet and has hints of soil. In September, we pay homage to beets
-            and prepare a dish in Rutabaga on local primeur beets with fresh
-            raspberries, roasted red tardivo salad with smoked cheese.
-            Otherwise, a fun tip that anyone can make at home is Cwikta (Polish
-            Beetroot and Horseradish Scramble). Grate horseradish and blend in a
-            food processor with whole cooked pickled beets to make a smooth
-            purée. Season with sugar, vinegar, a little ground cumin, salt and
-            pepper. Delicious!
-            <br />
-            <br /> / Mathias.”
-            <br />
-            <br />
             <br />
           </MenuTextContainer>
         </MenuContentContainer>
@@ -141,25 +113,28 @@ export const MainPage = () => {
         <MainBookingContentContainer>
           <MainBookingImgContainer>
             <img
-              src={IMAGE_1}
+              src={BookingImg}
               className="anything-else"
               alt="MainBookingImage"
             />
           </MainBookingImgContainer>
           <MainBookingTextContainer>
+            <HeroBookingContainer>
             At Sorkins, we’re creating the next generation of
             lacto-ovo-vegetarian cuisine. Quality fresh produce, with the whole
             world as a source of inspiration, is transformed into one exciting
             menu.
+            <Link to="/bookings">
+              <MainBookingButton><div>Book</div></MainBookingButton>
+            </Link>
+            </HeroBookingContainer>
+            
           </MainBookingTextContainer>
-          <Link to="/bookings">
-            <MainBookingButton>Book</MainBookingButton>
-          </Link>
         </MainBookingContentContainer>
-
         <MainBookingTitleContainer>
           Table Reservations
         </MainBookingTitleContainer>
+        
       </MainBookingWrapper>
 
       <MainContactWrapper>
@@ -168,22 +143,18 @@ export const MainPage = () => {
         <MainContactContentContainer>
           <MainContactImgContainer>
             <img
-              src={IMAGE_2}
+              src={ContactImg}
               className="anything-else"
               alt="MainContactImage"
             />
           </MainContactImgContainer>
           <MainContactTextContainer>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus
-            corporis cumque voluptas, earum nobis officiis voluptatibus aut
-            velit enim placeat quas odit cupiditate facilis, porro deserunt
-            aspernatur qui libero optio iste itaque, magni nihil modi iusto.
-            Quis enim aliquam corporis officia error assumenda sed eligendi
-            delectus doloribus? Ducimus, similique non!
+          
+            Table reservations can be made one month to the calendar date. 
+Online reservations up to 12 guests. If you are more than that, send your booking request to ES Reservations.
+Sorkins is a cash free resturant.
+        
           </MainContactTextContainer>
-          <Link to="/contact">
-            <MainContactButton>Contact</MainContactButton>
-          </Link>
         </MainContactContentContainer>
       </MainContactWrapper>
     </div>
