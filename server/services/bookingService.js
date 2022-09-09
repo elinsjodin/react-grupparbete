@@ -41,6 +41,7 @@ module.exports = class BookingService {
       newGuest.save(function (err, doc) {
         if (err) return console.error(err);
       });
+
       const result = await newBooking.save();
 
       if (!result) {
@@ -49,6 +50,24 @@ module.exports = class BookingService {
         return result;
       }
     }
+  }
+
+  async GetTableAmount(guests) {
+    return Math.ceil(guests / 6);
+  }
+
+  async GetAvailableTables(date, time) {
+    const existingBookings = await BookingModel.find({
+      date,
+      time,
+    });
+
+    let neededTables = 0;
+    existingBookings.forEach((booking) => {
+      neededTables += Math.ceil(booking.numberOfGuests / 6);
+    });
+
+    return 15 - neededTables;
   }
 
   async GetAllBookings() {
