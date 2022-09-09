@@ -67,7 +67,7 @@ module.exports = class BookingService {
       neededTables += Math.ceil(booking.numberOfGuests / 6);
     });
 
-    return 15 - neededTables;
+    return 16 - neededTables;
   }
 
   async GetAllBookings() {

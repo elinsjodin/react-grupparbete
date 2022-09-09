@@ -43,7 +43,9 @@ export const AdminForm = (props: IBookingsProps) => {
     bookedBy: { _id: "", name: "", email: "", phone: "", message: "" },
   });
 
-  const [dateTaken, setDateTaken] = useState(false);
+  const [timeTaken, setTimeTaken] = useState(false);
+
+  const [secondTimeTaken, setSecondTimeTaken] = useState(false);
 
   //handles the date state changex
   const handleBookingDate = (date: Date) => {
@@ -55,13 +57,18 @@ export const AdminForm = (props: IBookingsProps) => {
   const handlesetValue = (date: Date) => {
     handleBookingDate(date);
 
-    if (
-      props.results.filter((booking) => booking.date === date.toDateString())
-        .length > 30
-    ) {
-      setDateTaken(true);
-    } else {
-      setDateTaken(false);
+    for (let i = 0; i < props.results.length; i++) {
+      const guests = props.results[i].numberOfGuests;
+      if (
+        props.results.filter((booking) => booking.date === date.toDateString())
+          .length >= 30 &&
+        guests >= 180
+      ) {
+        alert("We are fully booked on this day!");
+        setTimeTaken(true);
+      } else {
+        setTimeTaken(false);
+      }
     }
   };
 
@@ -70,13 +77,13 @@ export const AdminForm = (props: IBookingsProps) => {
     let count = 0;
     props.results.forEach((booking) => {
       if (booking.date === filledForm.date && booking.time === "18:00") {
-        count++;
+        count += Math.ceil(booking.numberOfGuests / 6);
       }
     });
-    if (count < 15) {
-      setFilledForm({ ...filledForm, time: "18:00" });
+    if (count >= 15) {
+      setTimeTaken(true);
     } else {
-      setDateTaken(true);
+      setFilledForm({ ...filledForm, time: "18:00" });
     }
   };
 
@@ -85,13 +92,13 @@ export const AdminForm = (props: IBookingsProps) => {
     let count = 0;
     props.results.forEach((booking) => {
       if (booking.date === filledForm.date && booking.time === "21:00") {
-        count++;
+        count += Math.ceil(booking.numberOfGuests / 6);
       }
     });
-    if (count < 15) {
-      setFilledForm({ ...filledForm, time: "18:00" });
+    if (count >= 15) {
+      setSecondTimeTaken(true);
     } else {
-      setDateTaken(true);
+      setFilledForm({ ...filledForm, time: "21:00" });
     }
   };
 
@@ -123,8 +130,8 @@ export const AdminForm = (props: IBookingsProps) => {
 
   //handles the name state change and sets the bookedBy state
   const handleGuestName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 20 && e.target.value.length < 3) {
-      alert("Name can't be longer than 20 characters");
+    if (e.target.value.length > 100) {
+      alert("Name can't be longer than 100 characters");
     } else {
       setFilledForm({
         ...filledForm,
@@ -138,7 +145,7 @@ export const AdminForm = (props: IBookingsProps) => {
 
   //handles the email state change and sets the bookedBy state
   const handleGuestEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length < 30) {
+    if (e.target.value.length < 100) {
       setFilledForm({
         ...filledForm,
         bookedBy: {
@@ -153,8 +160,8 @@ export const AdminForm = (props: IBookingsProps) => {
 
   //handles the phone state change and sets the bookedBy state
   const handleGuestPhone = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 8 && e.target.value.length < 8) {
-      alert("Phone number can't be more than 8 digits");
+    if (e.target.value.length > 10) {
+      alert("Phone number can't be more than 10 digits");
     } else {
       setFilledForm({
         ...filledForm,
@@ -183,15 +190,23 @@ export const AdminForm = (props: IBookingsProps) => {
 
   //handles the submit button and sends the data to the database
   const handleSubmit = () => {
-    axios
-      .post("http://localhost:3000/bookings", filledForm)
-      .then((response) => {
-        window.location.reload();
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    for (let i = 0; i < props.results.length; i++) {
+      const guests = props.results[i].numberOfGuests;
+
+      if (guests >= 90) {
+        alert("Can't book");
+      } else {
+        axios
+          .post("http://localhost:3000/bookings", filledForm)
+          .then((response) => {
+            window.location.reload();
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    }
   };
 
   return (
@@ -236,9 +251,9 @@ export const AdminForm = (props: IBookingsProps) => {
           <AddBookingChooseTimeHolder>
             <h1>Choose a Time</h1>
             <div>
+              {timeTaken ? <p>Sorry this time is not available!</p> : null}
               <section>
-                {/* if date is full then we remove appropriate button */}
-                {dateTaken ? null : (
+                {timeTaken ? null : (
                   <button
                     className="first-seating-btn"
                     onClick={handleFirstTime}
@@ -246,7 +261,10 @@ export const AdminForm = (props: IBookingsProps) => {
                     18:00
                   </button>
                 )}
-                {dateTaken ? null : (
+                {secondTimeTaken ? (
+                  <p>Sorry this time is not available!</p>
+                ) : null}
+                {secondTimeTaken ? null : (
                   <button
                     className="second-seating-btn"
                     onClick={handleSecondTime}

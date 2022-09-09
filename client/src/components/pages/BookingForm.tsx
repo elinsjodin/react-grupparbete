@@ -40,7 +40,7 @@ export const BookingForm = (props: IBookingsProps) => {
     bookedBy: { _id: "", name: "", email: "", phone: "", message: "" },
   });
 
-  const [dateTaken, setDateTaken] = useState(false);
+  const [timeTaken, setTimeTaken] = useState(false);
 
   const [secondTimeTaken, setSecondTimeTaken] = useState(false);
 
@@ -60,15 +60,18 @@ export const BookingForm = (props: IBookingsProps) => {
   const handlesetValue = (date: Date) => {
     handleBookingDate(date);
 
-    if (
-      props.results.filter((booking) => booking.date === date.toDateString())
-        .length > 30
-    ) {
-      setDateTaken(true);
-      setSecondTimeTaken(false);
-    } else {
-      setDateTaken(false);
-      setSecondTimeTaken(false);
+    for (let i = 0; i < props.results.length; i++) {
+      const guests = props.results[i].numberOfGuests;
+      if (
+        props.results.filter((booking) => booking.date === date.toDateString())
+          .length >= 30 &&
+        guests >= 180
+      ) {
+        alert("We are fully booked on this day!");
+        setTimeTaken(true);
+      } else {
+        setTimeTaken(false);
+      }
     }
   };
 
@@ -77,14 +80,13 @@ export const BookingForm = (props: IBookingsProps) => {
     let count = 0;
     props.results.forEach((booking) => {
       if (booking.date === filledForm.date && booking.time === "18:00") {
-        count++;
+        count += Math.ceil(booking.numberOfGuests / 6);
       }
     });
-    if (count > 15) {
-      setDateTaken(true);
+    if (count >= 16) {
+      setTimeTaken(true);
     } else {
       setFilledForm({ ...filledForm, time: "18:00" });
-      // setDateTaken(false);
     }
   };
 
@@ -93,14 +95,13 @@ export const BookingForm = (props: IBookingsProps) => {
     let count = 0;
     props.results.forEach((booking) => {
       if (booking.date === filledForm.date && booking.time === "21:00") {
-        count++;
+        count += Math.ceil(booking.numberOfGuests / 6);
       }
     });
-    if (count > 15) {
+    if (count >= 15) {
       setSecondTimeTaken(true);
     } else {
       setFilledForm({ ...filledForm, time: "21:00" });
-      // setDateTaken(false);
     }
   };
 
@@ -203,6 +204,7 @@ export const BookingForm = (props: IBookingsProps) => {
       filledForm.numberOfGuests === 0
     ) {
       alert("Please fill in all the fields");
+      window.location.href = "http://localhost:3000/bookings";
     } else {
       axios
         .post("http://localhost:3000/bookings", filledForm)
@@ -246,8 +248,9 @@ export const BookingForm = (props: IBookingsProps) => {
           <AddBookingChooseTimeHolder>
             <h1>Choose A Time</h1>
             <div>
+              {timeTaken ? <p>Sorry this time is not available!</p> : null}
               <section>
-                {dateTaken ? (
+                {timeTaken ? (
                   true
                 ) : (
                   <button
@@ -257,6 +260,9 @@ export const BookingForm = (props: IBookingsProps) => {
                     18:00
                   </button>
                 )}
+                {secondTimeTaken ? (
+                  <p>Sorry this time is not available!</p>
+                ) : null}
                 {secondTimeTaken ? (
                   true
                 ) : (
@@ -312,7 +318,7 @@ export const BookingForm = (props: IBookingsProps) => {
               placeholder="0701234567"
               onChange={handleGuestPhone}
             />
-            <p>user request</p>
+            <p>User request</p>
             <FormInput
               className="message-field"
               placeholder="No Caviar"
