@@ -208,7 +208,7 @@ export const AddBookingFormButtonFieldsContainer = styled.div`
 //NAVBAR
 
 //container for navbar
-export const NavLogo = styled.div`
+export const NavLogo = styled.nav`
   display: flex;
   height: 150px;
   width: 50%;
@@ -217,7 +217,7 @@ export const NavLogo = styled.div`
 `;
 
 //container for navbar
-export const NavLinksContainer = styled.div`
+export const NavLinksContainer = styled.nav`
   display: flex;
   height: 150px;
   width: 50%;

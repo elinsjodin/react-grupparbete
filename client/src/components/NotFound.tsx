@@ -1,7 +1,18 @@
+import { Link } from "react-router-dom";
+import { FormButton } from "./styledComponents/Buttons";
+import { CancelBookingWrapper } from "./styledComponents/CancelBookingStyling";
+
 export const NotFound = () => {
   return (
-    <div>
-      <h1>404</h1>
-    </div>
+    <>
+      <CancelBookingWrapper>
+        <h1>Woops, Something went wrong!</h1>
+        <p>
+          <Link to={"/"}>
+            <FormButton>To Home</FormButton>
+          </Link>
+        </p>
+      </CancelBookingWrapper>
+    </>
   );
 };

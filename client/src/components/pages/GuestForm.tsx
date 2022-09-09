@@ -85,7 +85,6 @@ export const GuestForm = (props: IBookingsProps) => {
       .catch((error) => {
         console.log(error);
       });
-    console.log(filledForm);
     console.log(props.results);
   };
 
@@ -100,7 +99,6 @@ export const GuestForm = (props: IBookingsProps) => {
       .catch((error) => {
         console.log(error);
       });
-    console.log("delete");
   };
 
   return (
@@ -118,14 +116,15 @@ export const GuestForm = (props: IBookingsProps) => {
             <p>Email</p>
             <FormInput
               className="email-field"
-              placeholder="Lars@larson.se"
+              placeholder="guest@guest.se"
               onChange={handleGuestEmail}
             />
             <p>Phone</p>
             <FormInput
               className="phone-field"
-              placeholder="0701234567"
               onChange={handleGuestPhone}
+              //change placeholder to the current phone number
+              placeholder="0701234567"
             />
             <p>User request</p>
             <FormInput

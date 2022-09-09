@@ -322,16 +322,14 @@ export const BookingForm = (props: IBookingsProps) => {
           </AddBookingFormInputFieldsContainer>
           <AddBookingFormButtonFieldsContainer>
             {gdprChecked ? (
-              <Link to="/confirm">
-                <FormButton
-                  className="booking-btn"
-                  onClick={() => {
-                    handleSubmit();
-                  }}
-                >
-                  Book
-                </FormButton>
-              </Link>
+              <FormButton
+                className="booking-btn"
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                <Link to="/confirm">Book</Link>
+              </FormButton>
             ) : (
               <div>
                 {modalButton ? (
