@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import { Link } from "react-router-dom";
 import { IBooking, IGuest } from "../../models/IBooking";
@@ -243,6 +243,7 @@ export const AdminForm = (props: IBookingsProps) => {
               minDate={new Date()}
               onChange={handlesetValue}
               value={value}
+              locale="en-GB"
             />
           </div>
         </AddBookingCalanderContainer>
@@ -330,6 +331,7 @@ export const AdminForm = (props: IBookingsProps) => {
           </AddBookingFormButtonFieldsContainer>
         </AddBookingFormContainer>
       </AddBookingWrapper>
+      {dateTaken ? <p>Sorry, this date is already booked</p> : null}
     </div>
   );
 };
