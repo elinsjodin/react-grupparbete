@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { NotFound } from "./components/NotFound";
+import { NotFound } from "./components/pages/NotFound";
 import { AdminPage } from "./components/pages/AdminPage";
 import { BookingCanceled } from "./components/pages/BookingCanceled";
 import { BookingPage } from "./components/pages/BookingPage";
@@ -11,6 +11,7 @@ import { GuestPage } from "./components/pages/GuestPage";
 import { Layout } from "./components/pages/Layout";
 import { MainPage } from "./components/pages/MainPage";
 import { SecondAdminPage } from "./components/pages/SecondAdminPage";
+
 
 //function for bookings
 
